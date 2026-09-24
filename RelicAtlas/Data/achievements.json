@@ -1,0 +1,2634 @@
+[
+  {
+    "Id": 129,
+    "Name": "Raising the Curtana",
+    "Series": "arr",
+    "Job": "PLD",
+    "Stage": 0
+  },
+  {
+    "Id": 130,
+    "Name": "Enter the Coeurl",
+    "Series": "arr",
+    "Job": "MNK",
+    "Stage": 0
+  },
+  {
+    "Id": 131,
+    "Name": "Cleaving to Tradition",
+    "Series": "arr",
+    "Job": "WAR",
+    "Stage": 0
+  },
+  {
+    "Id": 132,
+    "Name": "Having a Gae Old Time",
+    "Series": "arr",
+    "Job": "DRG",
+    "Stage": 0
+  },
+  {
+    "Id": 133,
+    "Name": "Hard to Miss",
+    "Series": "arr",
+    "Job": "BRD",
+    "Stage": 0
+  },
+  {
+    "Id": 134,
+    "Name": "Dressed to Heal",
+    "Series": "arr",
+    "Job": "WHM",
+    "Stage": 0
+  },
+  {
+    "Id": 135,
+    "Name": "Ohohohohoho!",
+    "Series": "arr",
+    "Job": "BLM",
+    "Stage": 0
+  },
+  {
+    "Id": 597,
+    "Name": "Green Eyes",
+    "Series": "arr",
+    "Job": "SMN",
+    "Stage": 0
+  },
+  {
+    "Id": 598,
+    "Name": "The Reader",
+    "Series": "arr",
+    "Job": "SCH",
+    "Stage": 0
+  },
+  {
+    "Id": 1053,
+    "Name": "Yoshimitsu's Island",
+    "Series": "arr",
+    "Job": "NIN",
+    "Stage": 0
+  },
+  {
+    "Id": 1406,
+    "Name": "Animaniac: Ancile & Almace",
+    "Series": "hw",
+    "Job": "PLD",
+    "Stage": 2
+  },
+  {
+    "Id": 1407,
+    "Name": "Animaniac: Verethragna",
+    "Series": "hw",
+    "Job": "MNK",
+    "Stage": 2
+  },
+  {
+    "Id": 1408,
+    "Name": "Animaniac: Ukonvasara",
+    "Series": "hw",
+    "Job": "WAR",
+    "Stage": 2
+  },
+  {
+    "Id": 1409,
+    "Name": "Animaniac: Rhongomiant",
+    "Series": "hw",
+    "Job": "DRG",
+    "Stage": 2
+  },
+  {
+    "Id": 1410,
+    "Name": "Animaniac: Gandiva",
+    "Series": "hw",
+    "Job": "BRD",
+    "Stage": 2
+  },
+  {
+    "Id": 1411,
+    "Name": "Animaniac: Majestas",
+    "Series": "hw",
+    "Job": "WHM",
+    "Stage": 2
+  },
+  {
+    "Id": 1412,
+    "Name": "Animaniac: Hvergelmir",
+    "Series": "hw",
+    "Job": "BLM",
+    "Stage": 2
+  },
+  {
+    "Id": 1413,
+    "Name": "Animaniac: The Draconomicon",
+    "Series": "hw",
+    "Job": "SMN",
+    "Stage": 2
+  },
+  {
+    "Id": 1414,
+    "Name": "Animaniac: Tetrabiblos",
+    "Series": "hw",
+    "Job": "SCH",
+    "Stage": 2
+  },
+  {
+    "Id": 1415,
+    "Name": "Animaniac: Kannagi",
+    "Series": "hw",
+    "Job": "NIN",
+    "Stage": 2
+  },
+  {
+    "Id": 1416,
+    "Name": "Animaniac: Armageddon",
+    "Series": "hw",
+    "Job": "MCH",
+    "Stage": 2
+  },
+  {
+    "Id": 1417,
+    "Name": "Animaniac: Nothung",
+    "Series": "hw",
+    "Job": "DRK",
+    "Stage": 2
+  },
+  {
+    "Id": 1418,
+    "Name": "Animaniac: Deneb",
+    "Series": "hw",
+    "Job": "AST",
+    "Stage": 2
+  },
+  {
+    "Id": 1499,
+    "Name": "Hyper Animaniac: Ancile & Almace",
+    "Series": "hw",
+    "Job": "PLD",
+    "Stage": 2
+  },
+  {
+    "Id": 1500,
+    "Name": "Hyper Animaniac: Verethragna",
+    "Series": "hw",
+    "Job": "MNK",
+    "Stage": 3
+  },
+  {
+    "Id": 1501,
+    "Name": "Hyper Animaniac: Ukonvasara",
+    "Series": "hw",
+    "Job": "WAR",
+    "Stage": 3
+  },
+  {
+    "Id": 1502,
+    "Name": "Hyper Animaniac: Rhongomiant",
+    "Series": "hw",
+    "Job": "DRG",
+    "Stage": 3
+  },
+  {
+    "Id": 1503,
+    "Name": "Hyper Animaniac: Gandiva",
+    "Series": "hw",
+    "Job": "BRD",
+    "Stage": 3
+  },
+  {
+    "Id": 1504,
+    "Name": "Hyper Animaniac: Majestas",
+    "Series": "hw",
+    "Job": "WHM",
+    "Stage": 3
+  },
+  {
+    "Id": 1505,
+    "Name": "Hyper Animaniac: Hvergelmir",
+    "Series": "hw",
+    "Job": "BLM",
+    "Stage": 3
+  },
+  {
+    "Id": 1506,
+    "Name": "Hyper Animaniac: The Draconomicon",
+    "Series": "hw",
+    "Job": "SMN",
+    "Stage": 2
+  },
+  {
+    "Id": 1507,
+    "Name": "Hyper Animaniac: Tetrabiblos",
+    "Series": "hw",
+    "Job": "SCH",
+    "Stage": 2
+  },
+  {
+    "Id": 1508,
+    "Name": "Hyper Animaniac: Kannagi",
+    "Series": "hw",
+    "Job": "NIN",
+    "Stage": 3
+  },
+  {
+    "Id": 1509,
+    "Name": "Hyper Animaniac: Armageddon",
+    "Series": "hw",
+    "Job": "MCH",
+    "Stage": 3
+  },
+  {
+    "Id": 1510,
+    "Name": "Hyper Animaniac: Nothung",
+    "Series": "hw",
+    "Job": "DRK",
+    "Stage": 3
+  },
+  {
+    "Id": 1511,
+    "Name": "Hyper Animaniac: Deneb",
+    "Series": "hw",
+    "Job": "AST",
+    "Stage": 3
+  },
+  {
+    "Id": 1605,
+    "Name": "It's Alive: The Twin Thegns",
+    "Series": "hw",
+    "Job": "PLD",
+    "Stage": 4
+  },
+  {
+    "Id": 1606,
+    "Name": "It's Alive: The Sultan",
+    "Series": "hw",
+    "Job": "MNK",
+    "Stage": 4
+  },
+  {
+    "Id": 1607,
+    "Name": "It's Alive: The Blood Emperor",
+    "Series": "hw",
+    "Job": "WAR",
+    "Stage": 4
+  },
+  {
+    "Id": 1608,
+    "Name": "It's Alive: The Overlord",
+    "Series": "hw",
+    "Job": "DRG",
+    "Stage": 4
+  },
+  {
+    "Id": 1609,
+    "Name": "It's Alive: The Autarch",
+    "Series": "hw",
+    "Job": "BRD",
+    "Stage": 4
+  },
+  {
+    "Id": 1610,
+    "Name": "It's Alive: The White Tsar",
+    "Series": "hw",
+    "Job": "WHM",
+    "Stage": 4
+  },
+  {
+    "Id": 1611,
+    "Name": "It's Alive: The Black Khan",
+    "Series": "hw",
+    "Job": "BLM",
+    "Stage": 4
+  },
+  {
+    "Id": 1612,
+    "Name": "It's Alive: The Mad Queen",
+    "Series": "hw",
+    "Job": "SMN",
+    "Stage": 4
+  },
+  {
+    "Id": 1613,
+    "Name": "It's Alive: The Magnate",
+    "Series": "hw",
+    "Job": "SCH",
+    "Stage": 4
+  },
+  {
+    "Id": 1614,
+    "Name": "It's Alive: The Thorn Prince",
+    "Series": "hw",
+    "Job": "NIN",
+    "Stage": 4
+  },
+  {
+    "Id": 1615,
+    "Name": "It's Alive: The Dynast",
+    "Series": "hw",
+    "Job": "MCH",
+    "Stage": 4
+  },
+  {
+    "Id": 1616,
+    "Name": "It's Alive: The Tyrant",
+    "Series": "hw",
+    "Job": "DRK",
+    "Stage": 4
+  },
+  {
+    "Id": 1617,
+    "Name": "It's Alive: The Last Heir",
+    "Series": "hw",
+    "Job": "AST",
+    "Stage": 4
+  },
+  {
+    "Id": 1667,
+    "Name": "It's Smart: The Twin Thegns",
+    "Series": "hw",
+    "Job": "PLD",
+    "Stage": 5
+  },
+  {
+    "Id": 1668,
+    "Name": "It's Smart: The Sultan",
+    "Series": "hw",
+    "Job": "MNK",
+    "Stage": 5
+  },
+  {
+    "Id": 1669,
+    "Name": "It's Smart: The Blood Emperor",
+    "Series": "hw",
+    "Job": "WAR",
+    "Stage": 5
+  },
+  {
+    "Id": 1670,
+    "Name": "It's Smart: The Overlord",
+    "Series": "hw",
+    "Job": "DRG",
+    "Stage": 5
+  },
+  {
+    "Id": 1671,
+    "Name": "It's Smart: The Autarch",
+    "Series": "hw",
+    "Job": "BRD",
+    "Stage": 5
+  },
+  {
+    "Id": 1672,
+    "Name": "It's Smart: The White Tsar",
+    "Series": "hw",
+    "Job": "WHM",
+    "Stage": 5
+  },
+  {
+    "Id": 1673,
+    "Name": "It's Smart: The Black Khan",
+    "Series": "hw",
+    "Job": "BLM",
+    "Stage": 5
+  },
+  {
+    "Id": 1674,
+    "Name": "It's Smart: The Mad Queen",
+    "Series": "hw",
+    "Job": "SMN",
+    "Stage": 5
+  },
+  {
+    "Id": 1675,
+    "Name": "It's Smart: The Magnate",
+    "Series": "hw",
+    "Job": "SCH",
+    "Stage": 5
+  },
+  {
+    "Id": 1676,
+    "Name": "It's Smart: The Thorn Prince",
+    "Series": "hw",
+    "Job": "NIN",
+    "Stage": 5
+  },
+  {
+    "Id": 1677,
+    "Name": "It's Smart: The Dynast",
+    "Series": "hw",
+    "Job": "MCH",
+    "Stage": 5
+  },
+  {
+    "Id": 1678,
+    "Name": "It's Smart: The Tyrant",
+    "Series": "hw",
+    "Job": "DRK",
+    "Stage": 5
+  },
+  {
+    "Id": 1679,
+    "Name": "It's Smart: The Last Heir",
+    "Series": "hw",
+    "Job": "AST",
+    "Stage": 5
+  },
+  {
+    "Id": 1695,
+    "Name": "It's Done: Aettir & Priwen",
+    "Series": "hw",
+    "Job": "PLD",
+    "Stage": 6
+  },
+  {
+    "Id": 1696,
+    "Name": "It's Done: Nyepels",
+    "Series": "hw",
+    "Job": "MNK",
+    "Stage": 6
+  },
+  {
+    "Id": 1697,
+    "Name": "It's Done: Minos",
+    "Series": "hw",
+    "Job": "WAR",
+    "Stage": 6
+  },
+  {
+    "Id": 1698,
+    "Name": "It's Done: Areadbhar",
+    "Series": "hw",
+    "Job": "DRG",
+    "Stage": 6
+  },
+  {
+    "Id": 1699,
+    "Name": "It's Done: Terpander",
+    "Series": "hw",
+    "Job": "BRD",
+    "Stage": 6
+  },
+  {
+    "Id": 1700,
+    "Name": "It's Done: Sindri",
+    "Series": "hw",
+    "Job": "WHM",
+    "Stage": 6
+  },
+  {
+    "Id": 1701,
+    "Name": "It's Done: Kaladanda",
+    "Series": "hw",
+    "Job": "BLM",
+    "Stage": 6
+  },
+  {
+    "Id": 1702,
+    "Name": "It's Done: Mimesis",
+    "Series": "hw",
+    "Job": "SMN",
+    "Stage": 6
+  },
+  {
+    "Id": 1703,
+    "Name": "It's Done: Anabasis",
+    "Series": "hw",
+    "Job": "SCH",
+    "Stage": 6
+  },
+  {
+    "Id": 1704,
+    "Name": "It's Done: Sandungs",
+    "Series": "hw",
+    "Job": "NIN",
+    "Stage": 6
+  },
+  {
+    "Id": 1705,
+    "Name": "It's Done: Deathlocke",
+    "Series": "hw",
+    "Job": "MCH",
+    "Stage": 6
+  },
+  {
+    "Id": 1706,
+    "Name": "It's Done: Cronus",
+    "Series": "hw",
+    "Job": "DRK",
+    "Stage": 6
+  },
+  {
+    "Id": 1707,
+    "Name": "It's Done: Canopus",
+    "Series": "hw",
+    "Job": "AST",
+    "Stage": 6
+  },
+  {
+    "Id": 1708,
+    "Name": "It's Really Done: Aettir Lux & Priwen Lux",
+    "Series": "hw",
+    "Job": "PLD",
+    "Stage": 7
+  },
+  {
+    "Id": 1709,
+    "Name": "It's Really Done: Nyepels Lux",
+    "Series": "hw",
+    "Job": "MNK",
+    "Stage": 7
+  },
+  {
+    "Id": 1710,
+    "Name": "It's Really Done: Minos Lux",
+    "Series": "hw",
+    "Job": "WAR",
+    "Stage": 7
+  },
+  {
+    "Id": 1711,
+    "Name": "It's Really Done: Areadbhar Lux",
+    "Series": "hw",
+    "Job": "DRG",
+    "Stage": 7
+  },
+  {
+    "Id": 1712,
+    "Name": "It's Really Done: Terpander Lux",
+    "Series": "hw",
+    "Job": "BRD",
+    "Stage": 7
+  },
+  {
+    "Id": 1713,
+    "Name": "It's Really Done: Sindri Lux",
+    "Series": "hw",
+    "Job": "WHM",
+    "Stage": 7
+  },
+  {
+    "Id": 1714,
+    "Name": "It's Really Done: Kaladanda Lux",
+    "Series": "hw",
+    "Job": "BLM",
+    "Stage": 7
+  },
+  {
+    "Id": 1715,
+    "Name": "It's Really Done: Mimesis Lux",
+    "Series": "hw",
+    "Job": "SMN",
+    "Stage": 7
+  },
+  {
+    "Id": 1716,
+    "Name": "It's Really Done: Anabasis Lux",
+    "Series": "hw",
+    "Job": "SCH",
+    "Stage": 7
+  },
+  {
+    "Id": 1717,
+    "Name": "It's Really Done: Sandungs Lux",
+    "Series": "hw",
+    "Job": "NIN",
+    "Stage": 7
+  },
+  {
+    "Id": 1718,
+    "Name": "It's Really Done: Deathlocke Lux",
+    "Series": "hw",
+    "Job": "MCH",
+    "Stage": 7
+  },
+  {
+    "Id": 1719,
+    "Name": "It's Really Done: Cronus Lux",
+    "Series": "hw",
+    "Job": "DRK",
+    "Stage": 7
+  },
+  {
+    "Id": 1720,
+    "Name": "It's Really Done: Canopus Lux",
+    "Series": "hw",
+    "Job": "AST",
+    "Stage": 7
+  },
+  {
+    "Id": 2030,
+    "Name": "I've Got It: Galatyn Anemos & Evalach Anemos",
+    "Series": "sb",
+    "Job": "PLD",
+    "Stage": 4
+  },
+  {
+    "Id": 2031,
+    "Name": "I've Got It: Farsha Anemos",
+    "Series": "sb",
+    "Job": "WAR",
+    "Stage": 4
+  },
+  {
+    "Id": 2032,
+    "Name": "I've Got It: Caladbolg Anemos",
+    "Series": "sb",
+    "Job": "DRK",
+    "Stage": 4
+  },
+  {
+    "Id": 2033,
+    "Name": "I've Got It: Ryunohige Anemos",
+    "Series": "sb",
+    "Job": "DRG",
+    "Stage": 4
+  },
+  {
+    "Id": 2034,
+    "Name": "I've Got It: Sudarshana Chakra Anemos",
+    "Series": "sb",
+    "Job": "MNK",
+    "Stage": 4
+  },
+  {
+    "Id": 2035,
+    "Name": "I've Got It: Nagi Anemos",
+    "Series": "sb",
+    "Job": "NIN",
+    "Stage": 4
+  },
+  {
+    "Id": 2036,
+    "Name": "I've Got It: Kiku-ichimonji Anemos",
+    "Series": "sb",
+    "Job": "SAM",
+    "Stage": 4
+  },
+  {
+    "Id": 2037,
+    "Name": "I've Got It: Failnaught Anemos",
+    "Series": "sb",
+    "Job": "BRD",
+    "Stage": 4
+  },
+  {
+    "Id": 2038,
+    "Name": "I've Got It: Outsider Anemos",
+    "Series": "sb",
+    "Job": "MCH",
+    "Stage": 4
+  },
+  {
+    "Id": 2039,
+    "Name": "I've Got It: Vanargand Anemos",
+    "Series": "sb",
+    "Job": "BLM",
+    "Stage": 4
+  },
+  {
+    "Id": 2040,
+    "Name": "I've Got It: Lemegeton Anemos",
+    "Series": "sb",
+    "Job": "SMN",
+    "Stage": 4
+  },
+  {
+    "Id": 2041,
+    "Name": "I've Got It: Murgleis Anemos",
+    "Series": "sb",
+    "Job": "RDM",
+    "Stage": 4
+  },
+  {
+    "Id": 2042,
+    "Name": "I've Got It: Aymur Anemos",
+    "Series": "sb",
+    "Job": "WHM",
+    "Stage": 4
+  },
+  {
+    "Id": 2043,
+    "Name": "I've Got It: Organum Anemos",
+    "Series": "sb",
+    "Job": "SCH",
+    "Stage": 4
+  },
+  {
+    "Id": 2044,
+    "Name": "I've Got It: Pleiades Anemos",
+    "Series": "sb",
+    "Job": "AST",
+    "Stage": 4
+  },
+  {
+    "Id": 2082,
+    "Name": "I've Got It: Elemental Sword",
+    "Series": "sb",
+    "Job": "PLD",
+    "Stage": 7
+  },
+  {
+    "Id": 2083,
+    "Name": "I've Got It: Elemental Battleaxe",
+    "Series": "sb",
+    "Job": "WAR",
+    "Stage": 7
+  },
+  {
+    "Id": 2084,
+    "Name": "I've Got It: Elemental Guillotine",
+    "Series": "sb",
+    "Job": "DRK",
+    "Stage": 7
+  },
+  {
+    "Id": 2085,
+    "Name": "I've Got It: Elemental Lance",
+    "Series": "sb",
+    "Job": "DRG",
+    "Stage": 7
+  },
+  {
+    "Id": 2086,
+    "Name": "I've Got It: Elemental Knuckles",
+    "Series": "sb",
+    "Job": "MNK",
+    "Stage": 7
+  },
+  {
+    "Id": 2087,
+    "Name": "I've Got It: Elemental Knives",
+    "Series": "sb",
+    "Job": "NIN",
+    "Stage": 7
+  },
+  {
+    "Id": 2088,
+    "Name": "I've Got It: Elemental Blade",
+    "Series": "sb",
+    "Job": "SAM",
+    "Stage": 7
+  },
+  {
+    "Id": 2089,
+    "Name": "I've Got It: Elemental Harp Bow",
+    "Series": "sb",
+    "Job": "BRD",
+    "Stage": 7
+  },
+  {
+    "Id": 2090,
+    "Name": "I've Got It: Elemental Handgonne",
+    "Series": "sb",
+    "Job": "MCH",
+    "Stage": 7
+  },
+  {
+    "Id": 2091,
+    "Name": "I've Got It: Elemental Rod",
+    "Series": "sb",
+    "Job": "BLM",
+    "Stage": 7
+  },
+  {
+    "Id": 2092,
+    "Name": "I've Got It: Elemental Grimoire",
+    "Series": "sb",
+    "Job": "SMN",
+    "Stage": 7
+  },
+  {
+    "Id": 2093,
+    "Name": "I've Got It: Elemental Tuck",
+    "Series": "sb",
+    "Job": "RDM",
+    "Stage": 7
+  },
+  {
+    "Id": 2094,
+    "Name": "I've Got It: Elemental Cane",
+    "Series": "sb",
+    "Job": "WHM",
+    "Stage": 7
+  },
+  {
+    "Id": 2095,
+    "Name": "I've Got It: Elemental Codex",
+    "Series": "sb",
+    "Job": "SCH",
+    "Stage": 7
+  },
+  {
+    "Id": 2096,
+    "Name": "I've Got It: Elemental Astrometer",
+    "Series": "sb",
+    "Job": "AST",
+    "Stage": 7
+  },
+  {
+    "Id": 2143,
+    "Name": "I've Got It: Pyros Sword",
+    "Series": "sb",
+    "Job": "PLD",
+    "Stage": 10
+  },
+  {
+    "Id": 2144,
+    "Name": "I've Got It: Pyros Battleaxe",
+    "Series": "sb",
+    "Job": "WAR",
+    "Stage": 10
+  },
+  {
+    "Id": 2145,
+    "Name": "I've Got It: Pyros Guillotine",
+    "Series": "sb",
+    "Job": "DRK",
+    "Stage": 10
+  },
+  {
+    "Id": 2146,
+    "Name": "I've Got It: Pyros Lance",
+    "Series": "sb",
+    "Job": "DRG",
+    "Stage": 10
+  },
+  {
+    "Id": 2147,
+    "Name": "I've Got It: Pyros Knuckles",
+    "Series": "sb",
+    "Job": "MNK",
+    "Stage": 10
+  },
+  {
+    "Id": 2148,
+    "Name": "I've Got It: Pyros Knives",
+    "Series": "sb",
+    "Job": "NIN",
+    "Stage": 10
+  },
+  {
+    "Id": 2149,
+    "Name": "I've Got It: Pyros Blade",
+    "Series": "sb",
+    "Job": "SAM",
+    "Stage": 10
+  },
+  {
+    "Id": 2150,
+    "Name": "I've Got It: Pyros Harp Bow",
+    "Series": "sb",
+    "Job": "BRD",
+    "Stage": 10
+  },
+  {
+    "Id": 2151,
+    "Name": "I've Got It: Pyros Handgonne",
+    "Series": "sb",
+    "Job": "MCH",
+    "Stage": 10
+  },
+  {
+    "Id": 2152,
+    "Name": "I've Got It: Pyros Rod",
+    "Series": "sb",
+    "Job": "BLM",
+    "Stage": 10
+  },
+  {
+    "Id": 2153,
+    "Name": "I've Got It: Pyros Grimoire",
+    "Series": "sb",
+    "Job": "SMN",
+    "Stage": 10
+  },
+  {
+    "Id": 2154,
+    "Name": "I've Got It: Pyros Tuck",
+    "Series": "sb",
+    "Job": "RDM",
+    "Stage": 10
+  },
+  {
+    "Id": 2155,
+    "Name": "I've Got It: Pyros Cane",
+    "Series": "sb",
+    "Job": "WHM",
+    "Stage": 10
+  },
+  {
+    "Id": 2156,
+    "Name": "I've Got It: Pyros Codex",
+    "Series": "sb",
+    "Job": "SCH",
+    "Stage": 10
+  },
+  {
+    "Id": 2157,
+    "Name": "I've Got It: Pyros Astrometer",
+    "Series": "sb",
+    "Job": "AST",
+    "Stage": 10
+  },
+  {
+    "Id": 2212,
+    "Name": "I've Got It: Antea Eureka & Bellerophon Eureka",
+    "Series": "sb",
+    "Job": "PLD",
+    "Stage": 14
+  },
+  {
+    "Id": 2213,
+    "Name": "I've Got It: Shamash Eureka",
+    "Series": "sb",
+    "Job": "WAR",
+    "Stage": 14
+  },
+  {
+    "Id": 2214,
+    "Name": "I've Got It: Xiphias Eureka",
+    "Series": "sb",
+    "Job": "DRK",
+    "Stage": 14
+  },
+  {
+    "Id": 2215,
+    "Name": "I've Got It: Daboya Eureka",
+    "Series": "sb",
+    "Job": "DRG",
+    "Stage": 14
+  },
+  {
+    "Id": 2216,
+    "Name": "I've Got It: Dumuzis Eureka",
+    "Series": "sb",
+    "Job": "MNK",
+    "Stage": 14
+  },
+  {
+    "Id": 2217,
+    "Name": "I've Got It: Kasasagi Eureka",
+    "Series": "sb",
+    "Job": "NIN",
+    "Stage": 14
+  },
+  {
+    "Id": 2218,
+    "Name": "I've Got It: Torigashira Eureka",
+    "Series": "sb",
+    "Job": "SAM",
+    "Stage": 14
+  },
+  {
+    "Id": 2219,
+    "Name": "I've Got It: Circinae Eureka",
+    "Series": "sb",
+    "Job": "BRD",
+    "Stage": 14
+  },
+  {
+    "Id": 2220,
+    "Name": "I've Got It: Mollfrith Eureka",
+    "Series": "sb",
+    "Job": "MCH",
+    "Stage": 14
+  },
+  {
+    "Id": 2221,
+    "Name": "I've Got It: Paikea Eureka",
+    "Series": "sb",
+    "Job": "BLM",
+    "Stage": 14
+  },
+  {
+    "Id": 2222,
+    "Name": "I've Got It: Tuah Eureka",
+    "Series": "sb",
+    "Job": "SMN",
+    "Stage": 14
+  },
+  {
+    "Id": 2223,
+    "Name": "I've Got It: Brunello Eureka",
+    "Series": "sb",
+    "Job": "RDM",
+    "Stage": 14
+  },
+  {
+    "Id": 2224,
+    "Name": "I've Got It: Rose Couverte Eureka",
+    "Series": "sb",
+    "Job": "WHM",
+    "Stage": 14
+  },
+  {
+    "Id": 2225,
+    "Name": "I've Got It: Jebat Eureka",
+    "Series": "sb",
+    "Job": "SCH",
+    "Stage": 14
+  },
+  {
+    "Id": 2226,
+    "Name": "I've Got It: Albireo Eureka",
+    "Series": "sb",
+    "Job": "AST",
+    "Stage": 14
+  },
+  {
+    "Id": 2569,
+    "Name": "Pièce de Résistance: Honorbound & Tenacity",
+    "Series": "shb",
+    "Job": "PLD",
+    "Stage": 0
+  },
+  {
+    "Id": 2570,
+    "Name": "Pièce de Résistance: Skullrender",
+    "Series": "shb",
+    "Job": "WAR",
+    "Stage": 0
+  },
+  {
+    "Id": 2571,
+    "Name": "Pièce de Résistance: Woeborn",
+    "Series": "shb",
+    "Job": "DRK",
+    "Stage": 0
+  },
+  {
+    "Id": 2572,
+    "Name": "Pièce de Résistance: Crownsblade",
+    "Series": "shb",
+    "Job": "GNB",
+    "Stage": 0
+  },
+  {
+    "Id": 2573,
+    "Name": "Pièce de Résistance: Dreizack",
+    "Series": "shb",
+    "Job": "DRG",
+    "Stage": 0
+  },
+  {
+    "Id": 2574,
+    "Name": "Pièce de Résistance: Samsara",
+    "Series": "shb",
+    "Job": "MNK",
+    "Stage": 0
+  },
+  {
+    "Id": 2575,
+    "Name": "Pièce de Résistance: Honeshirazu",
+    "Series": "shb",
+    "Job": "NIN",
+    "Stage": 0
+  },
+  {
+    "Id": 2576,
+    "Name": "Pièce de Résistance: Hoshikiri",
+    "Series": "shb",
+    "Job": "SAM",
+    "Stage": 0
+  },
+  {
+    "Id": 2577,
+    "Name": "Pièce de Résistance: Brilliance",
+    "Series": "shb",
+    "Job": "BRD",
+    "Stage": 0
+  },
+  {
+    "Id": 2578,
+    "Name": "Pièce de Résistance: Lawman",
+    "Series": "shb",
+    "Job": "MCH",
+    "Stage": 0
+  },
+  {
+    "Id": 2579,
+    "Name": "Pièce de Résistance: Enchufla",
+    "Series": "shb",
+    "Job": "DNC",
+    "Stage": 0
+  },
+  {
+    "Id": 2580,
+    "Name": "Pièce de Résistance: Soulscourge",
+    "Series": "shb",
+    "Job": "BLM",
+    "Stage": 0
+  },
+  {
+    "Id": 2581,
+    "Name": "Pièce de Résistance: Espiritus",
+    "Series": "shb",
+    "Job": "SMN",
+    "Stage": 0
+  },
+  {
+    "Id": 2582,
+    "Name": "Pièce de Résistance: Talekeeper",
+    "Series": "shb",
+    "Job": "RDM",
+    "Stage": 0
+  },
+  {
+    "Id": 2583,
+    "Name": "Pièce de Résistance: Ingrimm",
+    "Series": "shb",
+    "Job": "WHM",
+    "Stage": 0
+  },
+  {
+    "Id": 2584,
+    "Name": "Pièce de Résistance: Akademos",
+    "Series": "shb",
+    "Job": "SCH",
+    "Stage": 0
+  },
+  {
+    "Id": 2585,
+    "Name": "Pièce de Résistance: Solstice",
+    "Series": "shb",
+    "Job": "AST",
+    "Stage": 0
+  },
+  {
+    "Id": 2694,
+    "Name": "Pièce de Résistance: Honorbound & Tenacity Recollections",
+    "Series": "shb",
+    "Job": "PLD",
+    "Stage": 0
+  },
+  {
+    "Id": 2695,
+    "Name": "Pièce de Résistance: Skullrender Recollection",
+    "Series": "shb",
+    "Job": "WAR",
+    "Stage": 2
+  },
+  {
+    "Id": 2696,
+    "Name": "Pièce de Résistance: Woeborn Recollection",
+    "Series": "shb",
+    "Job": "DRK",
+    "Stage": 2
+  },
+  {
+    "Id": 2697,
+    "Name": "Pièce de Résistance: Crownsblade Recollection",
+    "Series": "shb",
+    "Job": "GNB",
+    "Stage": 2
+  },
+  {
+    "Id": 2698,
+    "Name": "Pièce de Résistance: Dreizack Recollection",
+    "Series": "shb",
+    "Job": "DRG",
+    "Stage": 2
+  },
+  {
+    "Id": 2699,
+    "Name": "Pièce de Résistance: Samsara Recollection",
+    "Series": "shb",
+    "Job": "MNK",
+    "Stage": 2
+  },
+  {
+    "Id": 2700,
+    "Name": "Pièce de Résistance: Honeshirazu Recollection",
+    "Series": "shb",
+    "Job": "NIN",
+    "Stage": 2
+  },
+  {
+    "Id": 2701,
+    "Name": "Pièce de Résistance: Hoshikiri Recollection",
+    "Series": "shb",
+    "Job": "SAM",
+    "Stage": 2
+  },
+  {
+    "Id": 2702,
+    "Name": "Pièce de Résistance: Brilliance Recollection",
+    "Series": "shb",
+    "Job": "BRD",
+    "Stage": 2
+  },
+  {
+    "Id": 2703,
+    "Name": "Pièce de Résistance: Lawman Recollection",
+    "Series": "shb",
+    "Job": "MCH",
+    "Stage": 2
+  },
+  {
+    "Id": 2704,
+    "Name": "Pièce de Résistance: Enchufla Recollection",
+    "Series": "shb",
+    "Job": "DNC",
+    "Stage": 2
+  },
+  {
+    "Id": 2705,
+    "Name": "Pièce de Résistance: Soulscourge Recollection",
+    "Series": "shb",
+    "Job": "BLM",
+    "Stage": 2
+  },
+  {
+    "Id": 2706,
+    "Name": "Pièce de Résistance: Espiritus Recollection",
+    "Series": "shb",
+    "Job": "SMN",
+    "Stage": 2
+  },
+  {
+    "Id": 2707,
+    "Name": "Pièce de Résistance: Talekeeper Recollection",
+    "Series": "shb",
+    "Job": "RDM",
+    "Stage": 2
+  },
+  {
+    "Id": 2708,
+    "Name": "Pièce de Résistance: Ingrimm Recollection",
+    "Series": "shb",
+    "Job": "WHM",
+    "Stage": 2
+  },
+  {
+    "Id": 2709,
+    "Name": "Pièce de Résistance: Akademos Recollection",
+    "Series": "shb",
+    "Job": "SCH",
+    "Stage": 2
+  },
+  {
+    "Id": 2710,
+    "Name": "Pièce de Résistance: Solstice Recollection",
+    "Series": "shb",
+    "Job": "AST",
+    "Stage": 2
+  },
+  {
+    "Id": 2768,
+    "Name": "Quick to Judge: Law's Order Bastard Sword & Kite Shield",
+    "Series": "shb",
+    "Job": "PLD",
+    "Stage": 4
+  },
+  {
+    "Id": 2769,
+    "Name": "Quick to Judge: Law's Order Labrys",
+    "Series": "shb",
+    "Job": "WAR",
+    "Stage": 4
+  },
+  {
+    "Id": 2770,
+    "Name": "Quick to Judge: Law's Order Zweihander",
+    "Series": "shb",
+    "Job": "DRK",
+    "Stage": 4
+  },
+  {
+    "Id": 2771,
+    "Name": "Quick to Judge: Law's Order Manatrigger",
+    "Series": "shb",
+    "Job": "GNB",
+    "Stage": 4
+  },
+  {
+    "Id": 2772,
+    "Name": "Quick to Judge: Law's Order Spear",
+    "Series": "shb",
+    "Job": "DRG",
+    "Stage": 4
+  },
+  {
+    "Id": 2773,
+    "Name": "Quick to Judge: Law's Order Knuckles",
+    "Series": "shb",
+    "Job": "MNK",
+    "Stage": 4
+  },
+  {
+    "Id": 2774,
+    "Name": "Quick to Judge: Law's Order Knives",
+    "Series": "shb",
+    "Job": "NIN",
+    "Stage": 4
+  },
+  {
+    "Id": 2775,
+    "Name": "Quick to Judge: Law's Order Samurai Blade",
+    "Series": "shb",
+    "Job": "SAM",
+    "Stage": 4
+  },
+  {
+    "Id": 2776,
+    "Name": "Quick to Judge: Law's Order Composite Bow",
+    "Series": "shb",
+    "Job": "BRD",
+    "Stage": 4
+  },
+  {
+    "Id": 2777,
+    "Name": "Quick to Judge: Law's Order Revolver",
+    "Series": "shb",
+    "Job": "MCH",
+    "Stage": 4
+  },
+  {
+    "Id": 2778,
+    "Name": "Quick to Judge: Law's Order Chakrams",
+    "Series": "shb",
+    "Job": "DNC",
+    "Stage": 4
+  },
+  {
+    "Id": 2779,
+    "Name": "Quick to Judge: Law's Order Rod",
+    "Series": "shb",
+    "Job": "BLM",
+    "Stage": 4
+  },
+  {
+    "Id": 2780,
+    "Name": "Quick to Judge: Law's Order Index",
+    "Series": "shb",
+    "Job": "SMN",
+    "Stage": 4
+  },
+  {
+    "Id": 2781,
+    "Name": "Quick to Judge: Law's Order Rapier",
+    "Series": "shb",
+    "Job": "RDM",
+    "Stage": 4
+  },
+  {
+    "Id": 2782,
+    "Name": "Quick to Judge: Law's Order Cane",
+    "Series": "shb",
+    "Job": "WHM",
+    "Stage": 4
+  },
+  {
+    "Id": 2783,
+    "Name": "Quick to Judge: Law's Order Codex",
+    "Series": "shb",
+    "Job": "SCH",
+    "Stage": 4
+  },
+  {
+    "Id": 2784,
+    "Name": "Quick to Judge: Law's Order Astrometer",
+    "Series": "shb",
+    "Job": "AST",
+    "Stage": 4
+  },
+  {
+    "Id": 2857,
+    "Name": "Fit for a Queen: Blade's Honor & Blade's Fortitude",
+    "Series": "shb",
+    "Job": "PLD",
+    "Stage": 5
+  },
+  {
+    "Id": 2858,
+    "Name": "Fit for a Queen: Blade's Valor",
+    "Series": "shb",
+    "Job": "WAR",
+    "Stage": 5
+  },
+  {
+    "Id": 2859,
+    "Name": "Fit for a Queen: Blade's Justice",
+    "Series": "shb",
+    "Job": "DRK",
+    "Stage": 5
+  },
+  {
+    "Id": 2860,
+    "Name": "Fit for a Queen: Blade's Resolve",
+    "Series": "shb",
+    "Job": "GNB",
+    "Stage": 5
+  },
+  {
+    "Id": 2861,
+    "Name": "Fit for a Queen: Blade's Glory",
+    "Series": "shb",
+    "Job": "DRG",
+    "Stage": 5
+  },
+  {
+    "Id": 2862,
+    "Name": "Fit for a Queen: Blade's Serenity",
+    "Series": "shb",
+    "Job": "MNK",
+    "Stage": 5
+  },
+  {
+    "Id": 2863,
+    "Name": "Fit for a Queen: Blade's Subtlety",
+    "Series": "shb",
+    "Job": "NIN",
+    "Stage": 5
+  },
+  {
+    "Id": 2864,
+    "Name": "Fit for a Queen: Blade's Fealty",
+    "Series": "shb",
+    "Job": "SAM",
+    "Stage": 5
+  },
+  {
+    "Id": 2865,
+    "Name": "Fit for a Queen: Blade's Muse",
+    "Series": "shb",
+    "Job": "BRD",
+    "Stage": 5
+  },
+  {
+    "Id": 2866,
+    "Name": "Fit for a Queen: Blade's Ingenuity",
+    "Series": "shb",
+    "Job": "MCH",
+    "Stage": 5
+  },
+  {
+    "Id": 2867,
+    "Name": "Fit for a Queen: Blade's Euphoria",
+    "Series": "shb",
+    "Job": "DNC",
+    "Stage": 5
+  },
+  {
+    "Id": 2868,
+    "Name": "Fit for a Queen: Blade's Fury",
+    "Series": "shb",
+    "Job": "BLM",
+    "Stage": 5
+  },
+  {
+    "Id": 2869,
+    "Name": "Fit for a Queen: Blade's Acumen",
+    "Series": "shb",
+    "Job": "SMN",
+    "Stage": 5
+  },
+  {
+    "Id": 2870,
+    "Name": "Fit for a Queen: Blade's Temperance",
+    "Series": "shb",
+    "Job": "RDM",
+    "Stage": 5
+  },
+  {
+    "Id": 2871,
+    "Name": "Fit for a Queen: Blade's Mercy",
+    "Series": "shb",
+    "Job": "WHM",
+    "Stage": 5
+  },
+  {
+    "Id": 2872,
+    "Name": "Fit for a Queen: Blade's Wisdom",
+    "Series": "shb",
+    "Job": "SCH",
+    "Stage": 5
+  },
+  {
+    "Id": 2873,
+    "Name": "Fit for a Queen: Blade's Providence",
+    "Series": "shb",
+    "Job": "AST",
+    "Stage": 5
+  },
+  {
+    "Id": 3128,
+    "Name": "Hamm(er)ing It Up: Manderville Sword & Shield",
+    "Series": "ew",
+    "Job": "PLD",
+    "Stage": 0
+  },
+  {
+    "Id": 3129,
+    "Name": "Hamm(er)ing It Up: Manderville Axe",
+    "Series": "ew",
+    "Job": "WAR",
+    "Stage": 0
+  },
+  {
+    "Id": 3130,
+    "Name": "Hamm(er)ing It Up: Manderville Zweihander",
+    "Series": "ew",
+    "Job": "DRK",
+    "Stage": 0
+  },
+  {
+    "Id": 3131,
+    "Name": "Hamm(er)ing It Up: Manderville Gunblade",
+    "Series": "ew",
+    "Job": "GNB",
+    "Stage": 0
+  },
+  {
+    "Id": 3132,
+    "Name": "Hamm(er)ing It Up: Manderville Spear",
+    "Series": "ew",
+    "Job": "DRG",
+    "Stage": 0
+  },
+  {
+    "Id": 3133,
+    "Name": "Hamm(er)ing It Up: Manderville Knuckles",
+    "Series": "ew",
+    "Job": "MNK",
+    "Stage": 0
+  },
+  {
+    "Id": 3134,
+    "Name": "Hamm(er)ing It Up: Manderville Knives",
+    "Series": "ew",
+    "Job": "NIN",
+    "Stage": 0
+  },
+  {
+    "Id": 3135,
+    "Name": "Hamm(er)ing It Up: Manderville Samurai Blade",
+    "Series": "ew",
+    "Job": "SAM",
+    "Stage": 0
+  },
+  {
+    "Id": 3136,
+    "Name": "Hamm(er)ing It Up: Manderville Scythe",
+    "Series": "ew",
+    "Job": "RPR",
+    "Stage": 0
+  },
+  {
+    "Id": 3137,
+    "Name": "Hamm(er)ing It Up: Manderville Harp Bow",
+    "Series": "ew",
+    "Job": "BRD",
+    "Stage": 0
+  },
+  {
+    "Id": 3138,
+    "Name": "Hamm(er)ing It Up: Manderville Revolver",
+    "Series": "ew",
+    "Job": "MCH",
+    "Stage": 0
+  },
+  {
+    "Id": 3139,
+    "Name": "Hamm(er)ing It Up: Manderville Chakrams",
+    "Series": "ew",
+    "Job": "DNC",
+    "Stage": 0
+  },
+  {
+    "Id": 3140,
+    "Name": "Hamm(er)ing It Up: Manderville Rod",
+    "Series": "ew",
+    "Job": "BLM",
+    "Stage": 0
+  },
+  {
+    "Id": 3141,
+    "Name": "Hamm(er)ing It Up: Manderville Index",
+    "Series": "ew",
+    "Job": "SMN",
+    "Stage": 0
+  },
+  {
+    "Id": 3142,
+    "Name": "Hamm(er)ing It Up: Manderville Rapier",
+    "Series": "ew",
+    "Job": "RDM",
+    "Stage": 0
+  },
+  {
+    "Id": 3143,
+    "Name": "Hamm(er)ing It Up: Manderville Cane",
+    "Series": "ew",
+    "Job": "WHM",
+    "Stage": 0
+  },
+  {
+    "Id": 3144,
+    "Name": "Hamm(er)ing It Up: Manderville Codex",
+    "Series": "ew",
+    "Job": "SCH",
+    "Stage": 0
+  },
+  {
+    "Id": 3145,
+    "Name": "Hamm(er)ing It Up: Manderville Torquetum",
+    "Series": "ew",
+    "Job": "AST",
+    "Stage": 0
+  },
+  {
+    "Id": 3146,
+    "Name": "Hamm(er)ing It Up: Manderville Milpreves",
+    "Series": "ew",
+    "Job": "SGE",
+    "Stage": 0
+  },
+  {
+    "Id": 3224,
+    "Name": "Well-oiled: Amazing Manderville Sword & Shield ",
+    "Series": "ew",
+    "Job": "PLD",
+    "Stage": 1
+  },
+  {
+    "Id": 3225,
+    "Name": "Well-oiled: Amazing Manderville Axe ",
+    "Series": "ew",
+    "Job": "WAR",
+    "Stage": 1
+  },
+  {
+    "Id": 3226,
+    "Name": "Well-oiled: Amazing Manderville Zweihander",
+    "Series": "ew",
+    "Job": "DRK",
+    "Stage": 1
+  },
+  {
+    "Id": 3227,
+    "Name": "Well-oiled: Amazing Manderville Gunblade",
+    "Series": "ew",
+    "Job": "GNB",
+    "Stage": 1
+  },
+  {
+    "Id": 3228,
+    "Name": "Well-oiled: Amazing Manderville Spear",
+    "Series": "ew",
+    "Job": "DRG",
+    "Stage": 1
+  },
+  {
+    "Id": 3229,
+    "Name": "Well-oiled: Amazing Manderville Knuckles",
+    "Series": "ew",
+    "Job": "MNK",
+    "Stage": 1
+  },
+  {
+    "Id": 3230,
+    "Name": "Well-oiled: Amazing Manderville Knives",
+    "Series": "ew",
+    "Job": "NIN",
+    "Stage": 1
+  },
+  {
+    "Id": 3231,
+    "Name": "Well-oiled: Amazing Manderville Samurai Blade",
+    "Series": "ew",
+    "Job": "SAM",
+    "Stage": 1
+  },
+  {
+    "Id": 3232,
+    "Name": "Well-oiled: Amazing Manderville Scythe",
+    "Series": "ew",
+    "Job": "RPR",
+    "Stage": 1
+  },
+  {
+    "Id": 3233,
+    "Name": "Well-oiled: Amazing Manderville Harp Bow",
+    "Series": "ew",
+    "Job": "BRD",
+    "Stage": 1
+  },
+  {
+    "Id": 3234,
+    "Name": "Well-oiled: Amazing Manderville Revolver",
+    "Series": "ew",
+    "Job": "MCH",
+    "Stage": 1
+  },
+  {
+    "Id": 3235,
+    "Name": "Well-oiled: Amazing Manderville Chakrams",
+    "Series": "ew",
+    "Job": "DNC",
+    "Stage": 1
+  },
+  {
+    "Id": 3236,
+    "Name": "Well-oiled: Amazing Manderville Rod",
+    "Series": "ew",
+    "Job": "BLM",
+    "Stage": 1
+  },
+  {
+    "Id": 3237,
+    "Name": "Well-oiled: Amazing Manderville Index",
+    "Series": "ew",
+    "Job": "SMN",
+    "Stage": 1
+  },
+  {
+    "Id": 3238,
+    "Name": "Well-oiled: Amazing Manderville Rapier",
+    "Series": "ew",
+    "Job": "RDM",
+    "Stage": 1
+  },
+  {
+    "Id": 3239,
+    "Name": "Well-oiled: Amazing Manderville Cane",
+    "Series": "ew",
+    "Job": "WHM",
+    "Stage": 1
+  },
+  {
+    "Id": 3240,
+    "Name": "Well-oiled: Amazing Manderville Codex",
+    "Series": "ew",
+    "Job": "SCH",
+    "Stage": 1
+  },
+  {
+    "Id": 3241,
+    "Name": "Well-oiled: Amazing Manderville Torquetum",
+    "Series": "ew",
+    "Job": "AST",
+    "Stage": 1
+  },
+  {
+    "Id": 3242,
+    "Name": "Well-oiled: Amazing Manderville Milpreves",
+    "Series": "ew",
+    "Job": "SGE",
+    "Stage": 1
+  },
+  {
+    "Id": 3285,
+    "Name": "Reforged: Majestic Manderville Sword & Shield",
+    "Series": "ew",
+    "Job": "PLD",
+    "Stage": 2
+  },
+  {
+    "Id": 3286,
+    "Name": "Reforged: Majestic Manderville Bardiche",
+    "Series": "ew",
+    "Job": "WAR",
+    "Stage": 2
+  },
+  {
+    "Id": 3287,
+    "Name": "Reforged: Majestic Manderville Greatsword",
+    "Series": "ew",
+    "Job": "DRK",
+    "Stage": 2
+  },
+  {
+    "Id": 3288,
+    "Name": "Reforged: Majestic Manderville Bayonet",
+    "Series": "ew",
+    "Job": "GNB",
+    "Stage": 2
+  },
+  {
+    "Id": 3289,
+    "Name": "Reforged: Majestic Manderville Spear",
+    "Series": "ew",
+    "Job": "DRG",
+    "Stage": 2
+  },
+  {
+    "Id": 3290,
+    "Name": "Reforged: Majestic Manderville Fists",
+    "Series": "ew",
+    "Job": "MNK",
+    "Stage": 2
+  },
+  {
+    "Id": 3291,
+    "Name": "Reforged: Majestic Manderville Knives",
+    "Series": "ew",
+    "Job": "NIN",
+    "Stage": 2
+  },
+  {
+    "Id": 3292,
+    "Name": "Reforged: Majestic Manderville Samurai Blade",
+    "Series": "ew",
+    "Job": "SAM",
+    "Stage": 2
+  },
+  {
+    "Id": 3293,
+    "Name": "Reforged: Majestic Manderville War Scythe",
+    "Series": "ew",
+    "Job": "RPR",
+    "Stage": 2
+  },
+  {
+    "Id": 3294,
+    "Name": "Reforged: Majestic Manderville Harp Bow",
+    "Series": "ew",
+    "Job": "BRD",
+    "Stage": 2
+  },
+  {
+    "Id": 3295,
+    "Name": "Reforged: Majestic Manderville Pistol",
+    "Series": "ew",
+    "Job": "MCH",
+    "Stage": 2
+  },
+  {
+    "Id": 3296,
+    "Name": "Reforged: Majestic Manderville Chakrams",
+    "Series": "ew",
+    "Job": "DNC",
+    "Stage": 2
+  },
+  {
+    "Id": 3297,
+    "Name": "Reforged: Majestic Manderville Staff",
+    "Series": "ew",
+    "Job": "BLM",
+    "Stage": 2
+  },
+  {
+    "Id": 3298,
+    "Name": "Reforged: Majestic Manderville Index",
+    "Series": "ew",
+    "Job": "SMN",
+    "Stage": 2
+  },
+  {
+    "Id": 3299,
+    "Name": "Reforged: Majestic Manderville Degen",
+    "Series": "ew",
+    "Job": "RDM",
+    "Stage": 2
+  },
+  {
+    "Id": 3300,
+    "Name": "Reforged: Majestic Manderville Wand",
+    "Series": "ew",
+    "Job": "WHM",
+    "Stage": 2
+  },
+  {
+    "Id": 3301,
+    "Name": "Reforged: Majestic Manderville Codex",
+    "Series": "ew",
+    "Job": "SCH",
+    "Stage": 2
+  },
+  {
+    "Id": 3302,
+    "Name": "Reforged: Majestic Manderville Orrery",
+    "Series": "ew",
+    "Job": "AST",
+    "Stage": 2
+  },
+  {
+    "Id": 3303,
+    "Name": "Reforged: Majestic Manderville Wings",
+    "Series": "ew",
+    "Job": "SGE",
+    "Stage": 2
+  },
+  {
+    "Id": 3380,
+    "Name": "Perfect: Mandervillous Falchion & Kite Shield",
+    "Series": "ew",
+    "Job": "PLD",
+    "Stage": 3
+  },
+  {
+    "Id": 3381,
+    "Name": "Perfect: Mandervillous Battleaxe",
+    "Series": "ew",
+    "Job": "WAR",
+    "Stage": 3
+  },
+  {
+    "Id": 3382,
+    "Name": "Perfect: Mandervillous Greatsword",
+    "Series": "ew",
+    "Job": "DRK",
+    "Stage": 3
+  },
+  {
+    "Id": 3383,
+    "Name": "Perfect: Mandervillous Gunblade",
+    "Series": "ew",
+    "Job": "GNB",
+    "Stage": 3
+  },
+  {
+    "Id": 3384,
+    "Name": "Perfect: Mandervillous Trident",
+    "Series": "ew",
+    "Job": "DRG",
+    "Stage": 3
+  },
+  {
+    "Id": 3385,
+    "Name": "Perfect: Mandervillous Fists",
+    "Series": "ew",
+    "Job": "MNK",
+    "Stage": 3
+  },
+  {
+    "Id": 3386,
+    "Name": "Perfect: Mandervillous Knives",
+    "Series": "ew",
+    "Job": "NIN",
+    "Stage": 3
+  },
+  {
+    "Id": 3387,
+    "Name": "Perfect: Mandervillous Samurai Blade",
+    "Series": "ew",
+    "Job": "SAM",
+    "Stage": 3
+  },
+  {
+    "Id": 3388,
+    "Name": "Perfect: Mandervillous Zaghnal",
+    "Series": "ew",
+    "Job": "RPR",
+    "Stage": 3
+  },
+  {
+    "Id": 3389,
+    "Name": "Perfect: Mandervillous Compound Bow",
+    "Series": "ew",
+    "Job": "BRD",
+    "Stage": 3
+  },
+  {
+    "Id": 3390,
+    "Name": "Perfect: Mandervillous Revolver",
+    "Series": "ew",
+    "Job": "MCH",
+    "Stage": 3
+  },
+  {
+    "Id": 3391,
+    "Name": "Perfect: Mandervillous Chakrams",
+    "Series": "ew",
+    "Job": "DNC",
+    "Stage": 3
+  },
+  {
+    "Id": 3392,
+    "Name": "Perfect: Mandervillous Rod",
+    "Series": "ew",
+    "Job": "BLM",
+    "Stage": 3
+  },
+  {
+    "Id": 3393,
+    "Name": "Perfect: Mandervillous Index",
+    "Series": "ew",
+    "Job": "SMN",
+    "Stage": 3
+  },
+  {
+    "Id": 3394,
+    "Name": "Perfect: Mandervillous Rapier",
+    "Series": "ew",
+    "Job": "RDM",
+    "Stage": 3
+  },
+  {
+    "Id": 3395,
+    "Name": "Perfect: Mandervillous Cane",
+    "Series": "ew",
+    "Job": "WHM",
+    "Stage": 3
+  },
+  {
+    "Id": 3396,
+    "Name": "Perfect: Mandervillous Codex",
+    "Series": "ew",
+    "Job": "SCH",
+    "Stage": 3
+  },
+  {
+    "Id": 3397,
+    "Name": "Perfect: Mandervillous Torquetum",
+    "Series": "ew",
+    "Job": "AST",
+    "Stage": 3
+  },
+  {
+    "Id": 3398,
+    "Name": "Perfect: Mandervillous Wings",
+    "Series": "ew",
+    "Job": "SGE",
+    "Stage": 3
+  },
+  {
+    "Id": 3638,
+    "Name": "The Might Phantastick: Sword & Kite Shield Penumbrae",
+    "Series": "dt",
+    "Job": "PLD",
+    "Stage": 0
+  },
+  {
+    "Id": 3639,
+    "Name": "The Might Phantastick: Bardiche Penumbrae",
+    "Series": "dt",
+    "Job": "WAR",
+    "Stage": 0
+  },
+  {
+    "Id": 3640,
+    "Name": "The Might Phantastick: Guillotine Penumbrae",
+    "Series": "dt",
+    "Job": "DRK",
+    "Stage": 0
+  },
+  {
+    "Id": 3641,
+    "Name": "The Might Phantastick: Bayonet Penumbrae",
+    "Series": "dt",
+    "Job": "GNB",
+    "Stage": 0
+  },
+  {
+    "Id": 3642,
+    "Name": "The Might Phantastick: Spear Penumbrae",
+    "Series": "dt",
+    "Job": "DRG",
+    "Stage": 0
+  },
+  {
+    "Id": 3643,
+    "Name": "The Might Phantastick: Knuckles Penumbrae",
+    "Series": "dt",
+    "Job": "MNK",
+    "Stage": 0
+  },
+  {
+    "Id": 3644,
+    "Name": "The Might Phantastick: Cleavers Penumbrae",
+    "Series": "dt",
+    "Job": "NIN",
+    "Stage": 0
+  },
+  {
+    "Id": 3645,
+    "Name": "The Might Phantastick: Twinfangs Penumbrae",
+    "Series": "dt",
+    "Job": "VPR",
+    "Stage": 0
+  },
+  {
+    "Id": 3646,
+    "Name": "The Might Phantastick: Blade Penumbrae",
+    "Series": "dt",
+    "Job": "SAM",
+    "Stage": 0
+  },
+  {
+    "Id": 3647,
+    "Name": "The Might Phantastick: War Scythe Penumbrae",
+    "Series": "dt",
+    "Job": "RPR",
+    "Stage": 0
+  },
+  {
+    "Id": 3648,
+    "Name": "The Might Phantastick: Harp Bow Penumbrae",
+    "Series": "dt",
+    "Job": "BRD",
+    "Stage": 0
+  },
+  {
+    "Id": 3649,
+    "Name": "The Might Phantastick: Arquebus Penumbrae",
+    "Series": "dt",
+    "Job": "MCH",
+    "Stage": 0
+  },
+  {
+    "Id": 3650,
+    "Name": "The Might Phantastick: Terpna Penumbrae",
+    "Series": "dt",
+    "Job": "DNC",
+    "Stage": 0
+  },
+  {
+    "Id": 3651,
+    "Name": "The Might Phantastick: Staff Penumbrae",
+    "Series": "dt",
+    "Job": "BLM",
+    "Stage": 0
+  },
+  {
+    "Id": 3652,
+    "Name": "The Might Phantastick: Index Penumbrae",
+    "Series": "dt",
+    "Job": "SMN",
+    "Stage": 0
+  },
+  {
+    "Id": 3653,
+    "Name": "The Might Phantastick: Rapier Penumbrae",
+    "Series": "dt",
+    "Job": "RDM",
+    "Stage": 0
+  },
+  {
+    "Id": 3654,
+    "Name": "The Might Phantastick: Flat Brush Penumbrae",
+    "Series": "dt",
+    "Job": "PCT",
+    "Stage": 0
+  },
+  {
+    "Id": 3655,
+    "Name": "The Might Phantastick: Crook Penumbrae",
+    "Series": "dt",
+    "Job": "WHM",
+    "Stage": 0
+  },
+  {
+    "Id": 3656,
+    "Name": "The Might Phantastick: Codex Penumbrae",
+    "Series": "dt",
+    "Job": "SCH",
+    "Stage": 0
+  },
+  {
+    "Id": 3657,
+    "Name": "The Might Phantastick: Star Globe Penumbrae",
+    "Series": "dt",
+    "Job": "AST",
+    "Stage": 0
+  },
+  {
+    "Id": 3658,
+    "Name": "The Might Phantastick: Pendulums Penumbrae",
+    "Series": "dt",
+    "Job": "SGE",
+    "Stage": 0
+  },
+  {
+    "Id": 3752,
+    "Name": "Phantom of the Umbra: Sword & Kite Shield Umbrae",
+    "Series": "dt",
+    "Job": "PLD",
+    "Stage": 1
+  },
+  {
+    "Id": 3753,
+    "Name": "Phantom of the Umbra: Bardiche Umbrae",
+    "Series": "dt",
+    "Job": "WAR",
+    "Stage": 1
+  },
+  {
+    "Id": 3754,
+    "Name": "Phantom of the Umbra: Guillotine Umbrae",
+    "Series": "dt",
+    "Job": "DRK",
+    "Stage": 1
+  },
+  {
+    "Id": 3755,
+    "Name": "Phantom of the Umbra: Bayonet Umbrae",
+    "Series": "dt",
+    "Job": "GNB",
+    "Stage": 1
+  },
+  {
+    "Id": 3756,
+    "Name": "Phantom of the Umbra: Spear Umbrae",
+    "Series": "dt",
+    "Job": "DRG",
+    "Stage": 1
+  },
+  {
+    "Id": 3757,
+    "Name": "Phantom of the Umbra: Knuckles Umbrae",
+    "Series": "dt",
+    "Job": "MNK",
+    "Stage": 1
+  },
+  {
+    "Id": 3758,
+    "Name": "Phantom of the Umbra: Cleavers Umbrae",
+    "Series": "dt",
+    "Job": "NIN",
+    "Stage": 1
+  },
+  {
+    "Id": 3759,
+    "Name": "Phantom of the Umbra: Twinfangs Umbrae",
+    "Series": "dt",
+    "Job": "VPR",
+    "Stage": 1
+  },
+  {
+    "Id": 3760,
+    "Name": "Phantom of the Umbra: Blade Umbrae",
+    "Series": "dt",
+    "Job": "SAM",
+    "Stage": 1
+  },
+  {
+    "Id": 3761,
+    "Name": "Phantom of the Umbra: War Scythe Umbrae",
+    "Series": "dt",
+    "Job": "RPR",
+    "Stage": 1
+  },
+  {
+    "Id": 3762,
+    "Name": "Phantom of the Umbra: Harp Bow Umbrae",
+    "Series": "dt",
+    "Job": "BRD",
+    "Stage": 1
+  },
+  {
+    "Id": 3763,
+    "Name": "Phantom of the Umbra: Arquebus Umbrae",
+    "Series": "dt",
+    "Job": "MCH",
+    "Stage": 1
+  },
+  {
+    "Id": 3764,
+    "Name": "Phantom of the Umbra: Terpna Umbrae",
+    "Series": "dt",
+    "Job": "DNC",
+    "Stage": 1
+  },
+  {
+    "Id": 3765,
+    "Name": "Phantom of the Umbra: Staff Umbrae",
+    "Series": "dt",
+    "Job": "BLM",
+    "Stage": 1
+  },
+  {
+    "Id": 3766,
+    "Name": "Phantom of the Umbra: Index Umbrae",
+    "Series": "dt",
+    "Job": "SMN",
+    "Stage": 1
+  },
+  {
+    "Id": 3767,
+    "Name": "Phantom of the Umbra: Rapier Umbrae",
+    "Series": "dt",
+    "Job": "RDM",
+    "Stage": 1
+  },
+  {
+    "Id": 3768,
+    "Name": "Phantom of the Umbra: Flat Brush Umbrae",
+    "Series": "dt",
+    "Job": "PCT",
+    "Stage": 1
+  },
+  {
+    "Id": 3769,
+    "Name": "Phantom of the Umbra: Crook Umbrae",
+    "Series": "dt",
+    "Job": "WHM",
+    "Stage": 1
+  },
+  {
+    "Id": 3770,
+    "Name": "Phantom of the Umbra: Codex Umbrae",
+    "Series": "dt",
+    "Job": "SCH",
+    "Stage": 1
+  },
+  {
+    "Id": 3771,
+    "Name": "Phantom of the Umbra: Star Globe Umbrae",
+    "Series": "dt",
+    "Job": "AST",
+    "Stage": 1
+  },
+  {
+    "Id": 3772,
+    "Name": "Phantom of the Umbra: Pendulums Umbrae",
+    "Series": "dt",
+    "Job": "SGE",
+    "Stage": 1
+  },
+  {
+    "Id": 3842,
+    "Name": "Clare Obscurum: Sword & Shield Obscurum",
+    "Series": "dt",
+    "Job": "PLD",
+    "Stage": 2
+  },
+  {
+    "Id": 3843,
+    "Name": "Clare Obscurum: Bardiche Obscurum",
+    "Series": "dt",
+    "Job": "WAR",
+    "Stage": 2
+  },
+  {
+    "Id": 3844,
+    "Name": "Clare Obscurum: Guillotine Obscurum",
+    "Series": "dt",
+    "Job": "DRK",
+    "Stage": 2
+  },
+  {
+    "Id": 3845,
+    "Name": "Clare Obscurum: Gunblade Obscurum",
+    "Series": "dt",
+    "Job": "GNB",
+    "Stage": 2
+  },
+  {
+    "Id": 3846,
+    "Name": "Clare Obscurum: Fork Obscurum",
+    "Series": "dt",
+    "Job": "DRG",
+    "Stage": 2
+  },
+  {
+    "Id": 3847,
+    "Name": "Clare Obscurum: Jamadhars Obscurum",
+    "Series": "dt",
+    "Job": "MNK",
+    "Stage": 2
+  },
+  {
+    "Id": 3848,
+    "Name": "Clare Obscurum: Khukuri Obscurum",
+    "Series": "dt",
+    "Job": "NIN",
+    "Stage": 2
+  },
+  {
+    "Id": 3849,
+    "Name": "Clare Obscurum: Twinfangs Obscurum",
+    "Series": "dt",
+    "Job": "VPR",
+    "Stage": 2
+  },
+  {
+    "Id": 3850,
+    "Name": "Clare Obscurum: Blade Obscurum",
+    "Series": "dt",
+    "Job": "SAM",
+    "Stage": 2
+  },
+  {
+    "Id": 3851,
+    "Name": "Clare Obscurum: War Scythe Obscurum",
+    "Series": "dt",
+    "Job": "RPR",
+    "Stage": 2
+  },
+  {
+    "Id": 3852,
+    "Name": "Clare Obscurum: Longbow Obscurum",
+    "Series": "dt",
+    "Job": "BRD",
+    "Stage": 2
+  },
+  {
+    "Id": 3853,
+    "Name": "Clare Obscurum: Musketoon Obscurum",
+    "Series": "dt",
+    "Job": "MCH",
+    "Stage": 2
+  },
+  {
+    "Id": 3854,
+    "Name": "Clare Obscurum: Tathlums Obscurum",
+    "Series": "dt",
+    "Job": "DNC",
+    "Stage": 2
+  },
+  {
+    "Id": 3855,
+    "Name": "Clare Obscurum: Longpole Obscurum",
+    "Series": "dt",
+    "Job": "BLM",
+    "Stage": 2
+  },
+  {
+    "Id": 3856,
+    "Name": "Clare Obscurum: Index Obscurum",
+    "Series": "dt",
+    "Job": "SMN",
+    "Stage": 2
+  },
+  {
+    "Id": 3857,
+    "Name": "Clare Obscurum: Hanger Obscurum",
+    "Series": "dt",
+    "Job": "RDM",
+    "Stage": 2
+  },
+  {
+    "Id": 3858,
+    "Name": "Clare Obscurum: Round Brush Obscurum",
+    "Series": "dt",
+    "Job": "PCT",
+    "Stage": 2
+  },
+  {
+    "Id": 3859,
+    "Name": "Clare Obscurum: Cane Obscurum",
+    "Series": "dt",
+    "Job": "WHM",
+    "Stage": 2
+  },
+  {
+    "Id": 3860,
+    "Name": "Clare Obscurum: Codex Obscurum",
+    "Series": "dt",
+    "Job": "SCH",
+    "Stage": 2
+  },
+  {
+    "Id": 3861,
+    "Name": "Clare Obscurum: Star Pendant Obscurum",
+    "Series": "dt",
+    "Job": "AST",
+    "Stage": 2
+  },
+  {
+    "Id": 3862,
+    "Name": "Clare Obscurum: Wings Obscurum",
+    "Series": "dt",
+    "Job": "SGE",
+    "Stage": 2
+  },
+  {
+    "Id": 3949,
+    "Name": "Cut Above the Rest: Sword & Shield Occultum",
+    "Series": "dt",
+    "Job": "PLD",
+    "Stage": 4
+  },
+  {
+    "Id": 3950,
+    "Name": "Cut Above the Rest: War Hammer Occultum",
+    "Series": "dt",
+    "Job": "WAR",
+    "Stage": 4
+  },
+  {
+    "Id": 3951,
+    "Name": "Cut Above the Rest: Guillotine Occultum",
+    "Series": "dt",
+    "Job": "DRK",
+    "Stage": 4
+  },
+  {
+    "Id": 3952,
+    "Name": "Cut Above the Rest: Gunblade Occultum",
+    "Series": "dt",
+    "Job": "GNB",
+    "Stage": 4
+  },
+  {
+    "Id": 3953,
+    "Name": "Cut Above the Rest: Spear Occultum",
+    "Series": "dt",
+    "Job": "DRG",
+    "Stage": 4
+  },
+  {
+    "Id": 3954,
+    "Name": "Cut Above the Rest: Tonfa Occultum",
+    "Series": "dt",
+    "Job": "MNK",
+    "Stage": 4
+  },
+  {
+    "Id": 3955,
+    "Name": "Cut Above the Rest: Knives Occultum",
+    "Series": "dt",
+    "Job": "NIN",
+    "Stage": 4
+  },
+  {
+    "Id": 3956,
+    "Name": "Cut Above the Rest: Twinfangs Occultum",
+    "Series": "dt",
+    "Job": "VPR",
+    "Stage": 4
+  },
+  {
+    "Id": 3957,
+    "Name": "Cut Above the Rest: Blade Occultum",
+    "Series": "dt",
+    "Job": "SAM",
+    "Stage": 4
+  },
+  {
+    "Id": 3958,
+    "Name": "Cut Above the Rest: War Scythe Occultum",
+    "Series": "dt",
+    "Job": "RPR",
+    "Stage": 4
+  },
+  {
+    "Id": 3959,
+    "Name": "Cut Above the Rest: Harp Bow Occultum",
+    "Series": "dt",
+    "Job": "BRD",
+    "Stage": 4
+  },
+  {
+    "Id": 3960,
+    "Name": "Cut Above the Rest: Revolver Occultum",
+    "Series": "dt",
+    "Job": "MCH",
+    "Stage": 4
+  },
+  {
+    "Id": 3961,
+    "Name": "Cut Above the Rest: Fans Occultum",
+    "Series": "dt",
+    "Job": "DNC",
+    "Stage": 4
+  },
+  {
+    "Id": 3962,
+    "Name": "Cut Above the Rest: Staff Occultum",
+    "Series": "dt",
+    "Job": "BLM",
+    "Stage": 4
+  },
+  {
+    "Id": 3963,
+    "Name": "Cut Above the Rest: Index Occultum",
+    "Series": "dt",
+    "Job": "SMN",
+    "Stage": 4
+  },
+  {
+    "Id": 3964,
+    "Name": "Cut Above the Rest: Degen Occultum",
+    "Series": "dt",
+    "Job": "RDM",
+    "Stage": 4
+  },
+  {
+    "Id": 3965,
+    "Name": "Cut Above the Rest: Round Brush Occultum",
+    "Series": "dt",
+    "Job": "PCT",
+    "Stage": 4
+  },
+  {
+    "Id": 3966,
+    "Name": "Cut Above the Rest: Cane Occultum",
+    "Series": "dt",
+    "Job": "WHM",
+    "Stage": 4
+  },
+  {
+    "Id": 3967,
+    "Name": "Cut Above the Rest: Codex Occultum",
+    "Series": "dt",
+    "Job": "SCH",
+    "Stage": 4
+  },
+  {
+    "Id": 3968,
+    "Name": "Cut Above the Rest: Star Globe Occultum",
+    "Series": "dt",
+    "Job": "AST",
+    "Stage": 4
+  },
+  {
+    "Id": 3969,
+    "Name": "Cut Above the Rest: Pendulums Occultum",
+    "Series": "dt",
+    "Job": "SGE",
+    "Stage": 4
+  }
+]

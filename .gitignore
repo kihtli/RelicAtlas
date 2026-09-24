@@ -1,0 +1,15 @@
+**/bin/
+**/obj/
+**/tests/
+**/artifacts/
+**/__pycache__/
+*.user
+*.suo
+*.pdb
+*.zip
+*.log
+.env
+.env.*
+.vs/
+.idea/
+.DS_Store

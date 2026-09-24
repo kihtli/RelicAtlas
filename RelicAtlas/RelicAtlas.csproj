@@ -1,0 +1,18 @@
+<Project Sdk="Dalamud.NET.Sdk/15.0.0">
+  <PropertyGroup>
+    <Version>0.1.0.20</Version>
+    <Authors>kihtli</Authors>
+    <Description>Every combat relic, every job, every next step.</Description>
+    <PathMap>$(MSBuildProjectDirectory)=/_/RelicAtlas</PathMap>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets/RelicAtlasLogo.png" LogicalName="RelicAtlas.Logo" />
+    <EmbeddedResource Include="Assets/AetherArchive.png" LogicalName="RelicAtlas.ArchiveArtwork" />
+    <EmbeddedResource Include="Assets/Atlas-Medium.ttf" LogicalName="RelicAtlas.HeadingFont" />
+    <EmbeddedResource Include="Data/catalog.json" LogicalName="RelicAtlas.Catalog.json" />
+    <EmbeddedResource Include="Data/achievements.json" LogicalName="RelicAtlas.Achievements.json" />
+    <Compile Remove="tests/**/*.cs" />
+    <Compile Remove="artifacts/**/*.cs" />
+  </ItemGroup>
+</Project>

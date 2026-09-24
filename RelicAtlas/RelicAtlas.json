@@ -1,0 +1,18 @@
+{
+  "Author": "kihtli",
+  "Name": "Relic Atlas",
+  "InternalName": "RelicAtlas",
+  "AssemblyVersion": "0.1.0.20",
+  "RepoUrl": "https://github.com/kihtli/RelicAtlas",
+  "Punchline": "Every combat relic, every job, every next step.",
+  "Description": "In-game relic progression from Zodiac to Phantom. Overview shows every eligible job and expansion, completion totals and next stages. Open a relic's checklist, track objectives and materials, and keep separate character profiles. Automatic detection plus manual corrections. Open with /relicatlas. Shopping list compares carried stock with optional Allagan Tools storage. /relicatlas atma shows an experimental ST farming schedule with optional Teleporter travel; automatic travel is opt-in for each session.",
+  "ApplicableVersion": "any",
+  "Tags": [
+    "relic",
+    "weapons",
+    "progress",
+    "checklist",
+    "inventory",
+    "materials"
+  ]
+}
