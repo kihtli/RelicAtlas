@@ -1,16 +1,22 @@
 # Relic Atlas for Umbra
 
+**The companion is now maintained in [kihtli/Umbra.RelicAtlas](https://github.com/kihtli/Umbra.RelicAtlas).**
+This directory preserves the original 0.1.0.0 source snapshot.
+
 An optional toolbar widget for Umbra **3.1.18.0**, Dalamud API 15 and Relic Atlas
 **0.1.0.16 or newer** (IPC v1).
 
 ## Install
 
 1. Install Relic Atlas through the repository in the [main guide](../README.md).
-2. Download and extract the separate `Umbra.RelicAtlas-0.1.0.0.zip` release asset
-   to a permanent folder.
-3. In **Umbra → Settings → Plugins**, choose **Install from file** and select
-   `Umbra.RelicAtlas.dll`.
-4. Restart Umbra when prompted and add the **Relic Atlas** toolbar widget.
+2. Open **Umbra → Settings → Plugins → Install from repository**.
+3. Enter **Author / owner:** `kihtli` and **Repository:** `Umbra.RelicAtlas`.
+4. Add the repository, confirm the release and restart Umbra when prompted.
+5. Add the **Relic Atlas** toolbar widget.
+
+If replacing a manually installed companion, remove its old entry from Umbra's
+Plugins list first. See the [current companion guide](https://github.com/kihtli/Umbra.RelicAtlas)
+for details and current builds.
 
 Load this DLL through Umbra, not Dalamud's Dev Plugin Locations.
 

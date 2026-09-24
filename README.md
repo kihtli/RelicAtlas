@@ -23,7 +23,8 @@ Relic Atlas plugin configuration to retain saved progress.
 
 Release downloads are also available on the [releases page](https://github.com/kihtli/RelicAtlas/releases).
 The main plugin ZIP contains the DLL and manifest at its root for Dalamud's
-installer. The Umbra extension is a separate download.
+installer. The Umbra extension is installed from its
+[own GitHub repository](https://github.com/kihtli/Umbra.RelicAtlas) through Umbra.
 
 ## Features
 
@@ -96,10 +97,32 @@ continue with the window closed. No FATE combat or reward collection is automate
 
 ## Umbra extension
 
-The optional extension targets Umbra **3.1.18.0** and Relic Atlas IPC v1. Install
-its DLL through **Umbra → Settings → Plugins → Install from file**, restart Umbra,
-then add the **Relic Atlas** widget. It is not a separate Dalamud plugin.
-See [the companion guide](Umbra.RelicAtlas/README.md).
+Install the optional toolbar widget directly from
+[kihtli/Umbra.RelicAtlas](https://github.com/kihtli/Umbra.RelicAtlas). It targets
+Umbra **3.1.18.0**, Dalamud API 15 and Relic Atlas **0.1.0.16 or newer** (IPC v1).
+
+1. Keep **Relic Atlas** and **Umbra** installed and enabled in Dalamud.
+2. Open **Umbra → Settings → Plugins** and enable custom plugins if prompted.
+3. Under **Install from repository**, enter:
+
+   | Field | Value |
+   | --- | --- |
+   | Author / owner | `kihtli` |
+   | Repository | `Umbra.RelicAtlas` |
+
+4. Add the repository and confirm the **Relic Atlas for Umbra** release.
+5. Restart Umbra when prompted, then choose **Add Widget → Relic Atlas** in the
+   toolbar configuration.
+
+Use those field values directly; this Umbra dialog does not need the Dalamud
+`repo.json` URL. If you previously installed the companion DLL manually, remove
+its old entry from Umbra's Plugins list before adding the repository to avoid
+loading two copies. Keep the main Relic Atlas plugin enabled.
+
+The dedicated repository supplies one companion package through a normal GitHub
+release, which Umbra can discover and update. See the
+[companion installation guide](https://github.com/kihtli/Umbra.RelicAtlas#install-directly-from-github)
+for manual installation and build instructions.
 
 ## Privacy
 
@@ -118,12 +141,9 @@ dotnet build RelicAtlas/RelicAtlas.csproj -c Release
 python3 tools/package_release.py
 ```
 
-The optional Umbra extension also requires the installed Umbra assemblies:
-
-```sh
-dotnet build Umbra.RelicAtlas/Umbra.RelicAtlas.csproj -c Release -p:UmbraLibPath="PATH_TO_UMBRA" -p:DalamudLibPath="PATH_TO_DALAMUD"
-python3 tools/package_release.py --include-umbra
-```
+Current Umbra companion builds and releases are maintained in
+[its standalone repository](https://github.com/kihtli/Umbra.RelicAtlas#build-and-package).
+The `Umbra.RelicAtlas/` directory here preserves the original 0.1.0.0 source snapshot.
 
 Packages and checksums are written to ignored `artifacts/`. Game, Dalamud and Umbra
 host assemblies are reference-only and are not redistributed. Local test suites
@@ -137,7 +157,7 @@ outstanding. Game patches can change the catalogue and detection interfaces.
 
 - [Catalogue and integration provenance](RelicAtlas/SOURCES.md)
 - [Relic Atlas IPC contract](RelicAtlas/IPC.md)
-- [Umbra integration references](Umbra.RelicAtlas/SOURCES.md)
+- [Umbra integration references](https://github.com/kihtli/Umbra.RelicAtlas/blob/main/SOURCES.md)
 
 Relic Atlas is MIT licensed. The optional Umbra extension is AGPL-3.0-or-later;
 its shared Relic Atlas contract remains MIT licensed. The embedded font uses
