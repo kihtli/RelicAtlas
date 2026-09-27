@@ -28,6 +28,8 @@ public sealed class RelicTrackSnapshot
 {
     public string SeriesId { get; set; } = "";
     public string SeriesName { get; set; } = "";
+    // Additive v1 field; old publishers/consumers default to weapons.
+    public string Kind { get; set; } = "weapon";
     public string Expansion { get; set; } = "";
     public string Job { get; set; } = "";
     public uint IconId { get; set; }

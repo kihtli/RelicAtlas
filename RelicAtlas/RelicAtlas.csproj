@@ -1,8 +1,8 @@
 <Project Sdk="Dalamud.NET.Sdk/15.0.0">
   <PropertyGroup>
-    <Version>0.1.0.20</Version>
+    <Version>0.1.0.21</Version>
     <Authors>kihtli</Authors>
-    <Description>Every combat relic, every job, every next step.</Description>
+    <Description>Relic weapons and tools, every job, every next step.</Description>
     <PathMap>$(MSBuildProjectDirectory)=/_/RelicAtlas</PathMap>
     <Deterministic>true</Deterministic>
   </PropertyGroup>

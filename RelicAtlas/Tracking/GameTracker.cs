@@ -30,6 +30,7 @@ public sealed class GameTracker : IDisposable
     private readonly Dictionary<uint, string> relicJobs = [];
     private readonly Dictionary<uint, List<BookObjective>> books = [];
     private readonly List<AchievementEvidence> achievements = [];
+    private readonly List<(Series Series, Stage Stage, Requirement Requirement)> objectiveAchievements = [];
     public bool AchievementsLoaded { get; private set; }
     private sealed record BookObjective(Requirement Requirement, string Kind, int Index);
     private readonly HashSet<string> materialNames = [];
@@ -87,6 +88,14 @@ public sealed class GameTracker : IDisposable
             if (achievementSheet.TryGetRow(evidence.Id, out var row) && Normalize(row.Name.ExtractText()) == Normalize(evidence.Name))
                 achievements.Add(evidence);
             else Unresolved.Add("Achievement: " + evidence.Name);
+        }
+        foreach (var series in catalog.Series)
+        foreach (var stage in series.Stages)
+        foreach (var requirement in stage.Requirements.Where(r => r.Achievement != 0))
+        {
+            if (achievementSheet.TryGetRow(requirement.Achievement, out var row) && Normalize(row.Name.ExtractText()) == Normalize(requirement.AchievementName))
+                objectiveAchievements.Add((series, stage, requirement));
+            else Unresolved.Add("Achievement: " + requirement.AchievementName);
         }
         try
         {
@@ -268,16 +277,31 @@ public sealed class GameTracker : IDisposable
                 changed |= Progress.Observe(character, series, job, owned);
                 // Possession proves prerequisites for the completed tier, never later tiers.
                 var completed = character.Weapon(series, job).ObservedStage;
-                foreach (var r in series.Stages.Take(completed + 1).SelectMany(s => s.Requirements))
+                foreach (var r in series.Stages.Take(completed + 1).SelectMany(s => s.Requirements).Where(r => r.Applies(job)))
                     if (r.Quest.Length > 0 && r.Shared.Length > 0) changed |= character.CompletedShared.Add(r.Shared);
+            }
+        if (AchievementsLoaded)
+            foreach (var (series, stage, requirement) in objectiveAchievements)
+            {
+                if (!achievementState->IsComplete((int)requirement.Achievement)) continue;
+                // An achievement reward may not have been claimed: complete only its objective.
+                foreach (var job in series.Jobs.Where(requirement.Applies))
+                {
+                    var key = Progress.Key(series, job, stage, requirement);
+                    if (character.DetectedCounters.GetValueOrDefault(key) == requirement.Count) continue;
+                    character.DetectedCounters[key] = requirement.Count; changed = true;
+                }
             }
         foreach (var (quest, keys) in sharedQuests)
             if (QuestManager.IsQuestComplete(quest))
                 foreach (var key in keys) changed |= character.CompletedShared.Add(key);
         changed |= ReadOpenBook(character);
+        var cosmic = FFXIVClientStructs.FFXIV.Client.Game.WKS.WKSManager.Instance();
+        if (cosmic != null && cosmic->IsLoaded && cosmic->ResearchModule != null && cosmic->ResearchModule->IsLoaded)
+            changed |= CosmicResearch.Apply(catalog, character, cosmic->ResearchModule->Analysis);
         inventory = counts; inventoryOwner = id; LastScan = DateTime.UtcNow;
         allagan.Update(id, materialIds);
-        Status = "Live: inventory, weapons, shared quests and open ARR books";
+        Status = "Live: inventory, relics, shared quests, open ARR books and loaded Cosmic research";
         if (changed) save();
     }
     public void Dispose() => framework.Update -= OnUpdate;

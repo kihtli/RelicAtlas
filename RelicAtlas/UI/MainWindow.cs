@@ -23,6 +23,8 @@ public sealed partial class MainWindow : Window
     private readonly CharacterProgress preview = new();
     private ulong selectedCharacter;
     private string expansion = "all";
+    private string relicKind = "weapon";
+    private System.Collections.Generic.IEnumerable<Series> VisibleSeries => catalog.Series.Where(s => s.Kind == relicKind);
     private string jobFilter = "All jobs";
     private string search = "";
     private string selectedSeries = "arr";
@@ -77,6 +79,8 @@ public sealed partial class MainWindow : Window
     {
         "PLD" or "WAR" or "DRK" or "GNB" => new(0.53f, 0.70f, 1f, 1),
         "WHM" or "SCH" or "AST" or "SGE" => Green,
+        "CRP" or "BSM" or "ARM" or "GSM" or "LTW" or "WVR" or "ALC" or "CUL" => Lavender,
+        "MIN" or "BTN" or "FSH" => Cyan,
         _ => new(0.94f, 0.62f, 0.57f, 1),
     };
 
@@ -90,6 +94,7 @@ public sealed partial class MainWindow : Window
         readOnly = ReferenceEquals(c, preview);
         if (openWeaponView) { page = AtlasPage.Collection; openWeaponView = false; }
         DrawMasthead(c, id);
+        if (page != AtlasPage.Atma) DrawRelicKindPicker();
         if (atmaTravel?.Active == true && id != tracker.CurrentId) atmaTravel.Stop();
         if (page == AtlasPage.Overview) DrawCollectionOverview(c, id);
         else if (page == AtlasPage.Shopping) DrawRemainingRequirements(c, id);
@@ -177,8 +182,8 @@ public sealed partial class MainWindow : Window
                 if (ImGui.Button("Stop Atma automatic travel")) atmaTravel.Stop();
             }
             ImGui.Separator();
-            ImGui.TextUnformatted("Reads carried weapons, materials, shared quests and supported achievements. Open the in-game Achievements window to load history. Open an ARR book to read its objectives.");
-            ImGui.TextUnformatted("The Shopping list tab optionally reads saddlebag and retainer storage through Allagan Tools. Its cache updates when you visit storage. Light and other unobservable objectives can be entered manually. Bag counts are shared stock, not reserved per weapon.");
+            ImGui.TextUnformatted("Reads carried weapons and tools, materials, shared quests and supported achievements. Open the in-game Achievements window to load history. Open an ARR book to read its objectives.");
+            ImGui.TextUnformatted("The Shopping list tab optionally reads saddlebag and retainer storage through Allagan Tools. Its cache updates when you visit storage. Light and other unobservable objectives can be entered manually. Bag counts are shared stock, not reserved per relic.");
             ImGui.TextColored(Muted, tracker.AchievementsLoaded ? "Achievement history loaded" : "Achievement history not loaded");
             if (tracker.Unresolved.Count > 0 && ImGui.TreeNode($"Detection notices ({tracker.Unresolved.Count})"))
             { foreach (var name in tracker.Unresolved) ImGui.TextUnformatted(name); ImGui.TreePop(); }
@@ -188,7 +193,10 @@ public sealed partial class MainWindow : Window
     }
 
     private void Select(string series, string job)
-    { selectedSeries = series; selectedJob = job; viewedStage = -1; resetDetailScroll = true; }
+    {
+        selectedSeries = series; selectedJob = job; viewedStage = -1; resetDetailScroll = true;
+        relicKind = catalog.Series.Single(s => s.Id == series).Kind;
+    }
 
     public void OpenRelic(string seriesId, string job)
     {
@@ -205,7 +213,7 @@ public sealed partial class MainWindow : Window
         SectionLabel("Your collection", "");
         DrawExpansionPicker();
         ImGui.SetNextItemWidth(-1);
-        ImGui.InputTextWithHint("##search", "Search weapons or objectives", ref search, 160);
+        ImGui.InputTextWithHint("##search", "Search relics or objectives", ref search, 160);
         var filterCount = (config.PinnedOnly ? 1 : 0) + (config.HideComplete ? 1 : 0) + (inProgressOnly ? 1 : 0) + (jobFilter != "All jobs" ? 1 : 0);
         if (ActionButton(filterCount == 0 ? "Filters" : $"Filters ({filterCount})", false, 100, 28)) ImGui.OpenPopup("collection-filters");
         if (ImGui.BeginPopup("collection-filters"))
@@ -213,12 +221,17 @@ public sealed partial class MainWindow : Window
             ImGui.SetNextItemWidth(210 * Scale);
             if (ImGui.BeginCombo("Job", jobFilter))
             {
-                foreach (var job in new[] { "All jobs" }.Concat(catalog.Series.SelectMany(s => s.Jobs).Distinct().Order()))
+                foreach (var job in new[] { "All jobs" }.Concat(VisibleSeries.SelectMany(s => s.Jobs).Distinct().Order()))
                     if (ImGui.Selectable(job, job == jobFilter)) jobFilter = job;
                 ImGui.EndCombo();
             }
             ImGui.BeginDisabled(tracker.CurrentJob.Length == 0);
-            if (ImGui.Button("Use my current job")) jobFilter = tracker.CurrentJob;
+            if (ImGui.Button("Use my current job"))
+            {
+                var current = catalog.Series.FirstOrDefault(s => s.Jobs.Contains(tracker.CurrentJob));
+                if (current != null) ChangeRelicKind(current.Kind);
+                jobFilter = tracker.CurrentJob;
+            }
             ImGui.EndDisabled();
             ImGui.Separator();
             var pinned = config.PinnedOnly;
@@ -230,7 +243,7 @@ public sealed partial class MainWindow : Window
         }
         var inventory = tracker.InventoryFor(id);
         var rows = new List<WeaponRow>();
-        foreach (var series in catalog.Series.Where(s => expansion == "all" || expansion == s.Id))
+        foreach (var series in VisibleSeries.Where(s => expansion == "all" || expansion == s.Id))
         foreach (var job in series.Jobs)
         {
             if (jobFilter != "All jobs" && job != jobFilter) continue;
@@ -257,7 +270,7 @@ public sealed partial class MainWindow : Window
         foreach (var row in rows) DrawWeaponRow(row);
         if (rows.Count == 0)
         {
-            Wrap("No weapons match these filters.");
+            Wrap("No relics match these filters.");
             if (ImGui.Button("Clear filters"))
             { search = ""; jobFilter = "All jobs"; inProgressOnly = false; config.PinnedOnly = false; config.HideComplete = false; save(); }
         }
@@ -291,11 +304,11 @@ public sealed partial class MainWindow : Window
             if (ImGui.Checkbox("Pin this relic", ref pinned)) { weapon.Pinned = pinned; save(); }
             ImGui.Separator();
             ImGui.BeginDisabled(stageIndex <= complete);
-            if (ImGui.Button("Record this weapon received")) { SetStage(c, series, weapon, stageIndex); ImGui.CloseCurrentPopup(); }
+            if (ImGui.Button("Record this relic received")) { SetStage(c, series, weapon, stageIndex); ImGui.CloseCurrentPopup(); }
             ImGui.EndDisabled();
-            Tip("Use after the actual weapon turn-in. Choose an earlier stage below to undo.");
+            Tip("Use after the actual relic turn-in. Choose an earlier stage below to undo.");
             ImGui.Separator();
-            ImGui.TextColored(Accent, "Last weapon stage received");
+            ImGui.TextColored(Accent, "Last relic stage received");
             if (ImGui.Selectable("Not started", complete == -1)) SetStage(c, series, weapon, -1);
             for (int i = 0; i < series.Stages.Count; i++)
                 if (ImGui.Selectable(series.Stages[i].Name, complete == i)) SetStage(c, series, weapon, i);
@@ -323,12 +336,12 @@ public sealed partial class MainWindow : Window
         }
         if (stageIndex == complete + 1 && upNext.Requirement != null)
             DrawNextAction(c, series, job, stage, upNext.Requirement, id);
-        else if (stageIndex <= complete) { ImGui.TextColored(Green, "Weapon acquired"); Wrap("Historic objectives may not have been recorded."); ImGui.Spacing(); }
+        else if (stageIndex <= complete) { ImGui.TextColored(Green, "Relic acquired"); Wrap("Historic objectives may not have been recorded."); ImGui.Spacing(); }
         else if (done == requirements.Length) { ImGui.TextColored(Green, "Ready for turn-in"); Wrap(stage.Npc); }
         if (stageIndex == complete + 1 && upNext.Requirement == null)
         {
             ImGui.BeginDisabled(readOnly);
-            if (ActionButton("Record weapon received", true, 215, 32)) SetStage(c, series, weapon, stageIndex);
+            if (ActionButton("Record relic received", true, 215, 32)) SetStage(c, series, weapon, stageIndex);
             ImGui.EndDisabled();
         }
         objectiveSummary = $"{done}/{requirements.Length} ready";
@@ -441,7 +454,7 @@ public sealed partial class MainWindow : Window
             ImGui.SameLine(); ImGui.TextUnformatted($"/ {r.Count:N0}"); ImGui.SameLine();
         }
         if (ActionButton(r.Count > 1 ? "Mark ready" : "Mark done", true, 100, 30)) SetCount(c, series, job, stage, r, r.Count);
-        Tip(r.Shared.Length > 0 ? "Shared across jobs" : r.Item.Length > 0 ? "Materials for this step" : "Objective for this weapon");
+        Tip(r.Shared.Length > 0 ? "Shared across jobs" : r.Item.Length > 0 ? "Materials for this step" : "Objective for this relic");
     }
 
     private void DrawRequirement(CharacterProgress c, Series series, string job, Stage stage, Requirement r, ulong id)
@@ -478,8 +491,8 @@ public sealed partial class MainWindow : Window
             if (r.Detail.Length > 0) ImGui.TextUnformatted(r.Detail);
             if (r.Shared.Length > 0) ImGui.TextUnformatted("Shared across this character's jobs.");
             if (status.SharedComplete) ImGui.TextColored(Green, "Character unlock complete");
-            else if (status.InBags.HasValue) ImGui.TextUnformatted($"On hand: {status.InBags.Value:N0}. This stock is shared between weapons.");
-            else if (c.DetectedCounters.ContainsKey(key)) ImGui.TextUnformatted("Recorded from the open in-game book.");
+            else if (status.InBags.HasValue) ImGui.TextUnformatted($"On hand: {status.InBags.Value:N0}. This stock is shared between relics.");
+            else if (c.DetectedCounters.ContainsKey(key)) ImGui.TextUnformatted("Recorded from game data.");
             else ImGui.TextUnformatted("No automatic progress available; record this objective manually.");
             if (hasOverride)
             {
@@ -507,7 +520,7 @@ public sealed partial class MainWindow : Window
     {
         if (readOnly) return;
         weapon.ManualStage = index;
-        foreach (var r in series.Stages.Take(index + 1).SelectMany(s => s.Requirements))
+        foreach (var r in series.Stages.Take(index + 1).SelectMany(s => s.Requirements).Where(r => r.Applies(selectedJob)))
             if (r.Quest.Length > 0 && r.Shared.Length > 0) c.SharedOverrides[r.Shared] = true;
         viewedStage = -1; resetDetailScroll = true; save();
     }

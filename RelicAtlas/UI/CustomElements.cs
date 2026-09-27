@@ -55,9 +55,32 @@ public sealed partial class MainWindow
         "PLD" => "Paladin", "WAR" => "Warrior", "DRK" => "Dark Knight", "GNB" => "Gunbreaker",
         "WHM" => "White Mage", "SCH" => "Scholar", "AST" => "Astrologian", "SGE" => "Sage",
         "MNK" => "Monk", "DRG" => "Dragoon", "NIN" => "Ninja", "SAM" => "Samurai", "RPR" => "Reaper", "VPR" => "Viper",
-        "BRD" => "Bard", "MCH" => "Machinist", "DNC" => "Dancer", "BLM" => "Black Mage", "SMN" => "Summoner", "RDM" => "Red Mage", "PCT" => "Pictomancer", _ => job,
+        "BRD" => "Bard", "MCH" => "Machinist", "DNC" => "Dancer", "BLM" => "Black Mage", "SMN" => "Summoner", "RDM" => "Red Mage", "PCT" => "Pictomancer",
+        "CRP" => "Carpenter", "BSM" => "Blacksmith", "ARM" => "Armorer", "GSM" => "Goldsmith", "LTW" => "Leatherworker",
+        "WVR" => "Weaver", "ALC" => "Alchemist", "CUL" => "Culinarian", "MIN" => "Miner", "BTN" => "Botanist", "FSH" => "Fisher", _ => job,
     };
     private static string ExpansionName(string id) => id == "arr" ? "A Realm Reborn" : ShortName(id);
+
+    private void ChangeRelicKind(string kind)
+    {
+        if (relicKind == kind) return;
+        relicKind = kind; expansion = "all"; jobFilter = planningJob = "All jobs";
+        overviewRole = "All roles"; overviewSearch = search = planningSearch = "";
+        overviewRefresh = planningRefresh = DateTime.MinValue;
+        var series = VisibleSeries.LastOrDefault(s => s.Jobs.Contains(tracker.CurrentJob)) ?? VisibleSeries.First();
+        Select(series.Id, series.Jobs.Contains(tracker.CurrentJob) ? tracker.CurrentJob : series.Jobs[0]);
+    }
+
+    private void DrawRelicKindPicker()
+    {
+        var p = ImGui.GetCursorScreenPos(); var width = ImGui.GetContentRegionAvail().X;
+        if (Navigation("weapons-kind", "Weapons", relicKind == "weapon", 106, true)) ChangeRelicKind("weapon");
+        ImGui.SameLine();
+        if (Navigation("tools-kind", "Crafting & gathering", relicKind == "tool", 207, true)) ChangeRelicKind("tool");
+        var note = relicKind == "tool" ? "11 classes · 5 tool collections" : "21 jobs · 6 weapon collections";
+        Label(p + new Vector2(width - ImGui.CalcTextSize(note).X * .85f - 8 * Scale, 10 * Scale), note, Muted, .85f);
+        ImGui.SetCursorScreenPos(p); ImGui.Dummy(new Vector2(width, 44 * Scale));
+    }
 
     private void DrawMasthead(CharacterProgress c, ulong id)
     {
@@ -127,11 +150,14 @@ public sealed partial class MainWindow
     private void DrawExpansionPicker(float width = -1)
     {
         ImGui.SetNextItemWidth(width);
-        if (ImGui.BeginCombo("##expansion", expansion == "all" ? "All expansions" : ExpansionName(expansion)))
+        var selected = catalog.Series.FirstOrDefault(s => s.Id == expansion);
+        if (ImGui.BeginCombo("##expansion", selected == null ? "All collections" : selected.IsTool ? selected.Name + " · " + selected.Expansion : ExpansionName(selected.ExpansionKey)))
         {
-            foreach (var value in new[] { "all" }.Concat(catalog.Series.Select(s => s.Id)))
+            foreach (var value in new[] { "all" }.Concat(VisibleSeries.Select(s => s.Id)))
             {
-                if (!ImGui.Selectable(value == "all" ? "All expansions" : ExpansionName(value), value == expansion)) continue;
+                var option = catalog.Series.FirstOrDefault(s => s.Id == value);
+                var label = option == null ? "All collections" : option.IsTool ? option.Name + " · " + option.Expansion : ExpansionName(option.ExpansionKey);
+                if (!ImGui.Selectable(label, value == expansion)) continue;
                 expansion = value;
                 if (value == "all") continue;
                 var series = catalog.Series.Single(s => s.Id == value);
@@ -175,7 +201,7 @@ public sealed partial class MainWindow
         d.AddRectFilled(p, p + size, Ink(new(.12f, .075f, .23f, 1)), 10 * Scale);
         artwork?.Backdrop(p, size);
         d.AddRectFilledMultiColor(p, p + size, Ink(new(.035f, .03f, .08f, .30f)), Ink(new(.035f, .03f, .08f, .06f)), Ink(new(.035f, .03f, .08f, .35f)), Ink(new(.035f, .03f, .08f, .5f)));
-        Label(p + new Vector2(21, 14) * Scale, $"{JobName(job)}  /  {ExpansionName(series.Id)}", Lavender, .95f);
+        Label(p + new Vector2(21, 14) * Scale, $"{JobName(job)}  /  {ExpansionName(series.ExpansionKey)}", Lavender, .95f);
         Label(p + new Vector2(19, compact ? 30 : 36) * Scale, Fit(series.Name, (w * .62f - 30 * Scale) / (compact ? 1.9f : 2.25f)), White, compact ? 1.9f : 2.25f);
         var weapon = series.Stages[current].Weapons[job].FirstOrDefault() ?? "";
         var hasIcon = artwork?.Weapon(weapon, p + new Vector2(21, compact ? 72 : 82) * Scale, new Vector2(compact ? 28 : 33) * Scale) == true;
@@ -191,6 +217,20 @@ public sealed partial class MainWindow
     }
     private void DrawStagePath(Series series, int complete, int current)
     {
+        if (series.Stages.Count > 12)
+        {
+            ImGui.SetNextItemWidth(-1);
+            if (ImGui.BeginCombo("##long-stage-path", $"Stage {current + 1:D2} / {series.Stages.Count}   ·   {series.Stages[current].Name}"))
+            {
+                for (var i = 0; i < series.Stages.Count; i++)
+                    if (ImGui.Selectable($"{i + 1:D2} · {series.Stages[i].Name}" + (i <= complete ? "   ✓" : i == complete + 1 ? "   · Next" : ""), i == current))
+                    { viewedStage = i; resetDetailScroll = true; }
+                ImGui.EndCombo();
+            }
+            Tip("Browse all tool stages. Selecting a stage does not change recorded progress.");
+            ImGui.Spacing();
+            return;
+        }
         var p = ImGui.GetCursorScreenPos(); var w = ImGui.GetContentRegionAvail().X; var cell = w / series.Stages.Count; var d = ImGui.GetWindowDrawList();
         for (int i = 0; i < series.Stages.Count; i++)
         {

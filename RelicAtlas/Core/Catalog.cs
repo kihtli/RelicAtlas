@@ -24,7 +24,8 @@ public sealed class Catalog
         var keys = new HashSet<string>();
         foreach (var series in Series)
         {
-            if (!keys.Add(series.Id) || series.Stages.Count == 0 || series.Jobs.Count == 0)
+            if (!keys.Add(series.Id) || series.Stages.Count == 0 || series.Jobs.Count == 0 ||
+                series.Kind is not ("weapon" or "tool") || series.Jobs.Distinct().Count() != series.Jobs.Count)
                 throw new InvalidDataException($"Invalid series: {series.Id}");
             var stages = new HashSet<string>();
             foreach (var stage in series.Stages)
@@ -34,7 +35,9 @@ public sealed class Catalog
                     throw new InvalidDataException($"Invalid stage: {series.Id}/{stage.Id}");
                 var requirements = new HashSet<string>();
                 foreach (var r in stage.Requirements)
-                    if (!requirements.Add(r.Id) || r.Count < 1 || r.Label.Length == 0)
+                    if (!requirements.Add(r.Id) || r.Count < 1 || r.Label.Length == 0 ||
+                        r.Jobs.Any(j => !series.Jobs.Contains(j)) ||
+                        r.CumulativeKey.Length > 0 && (r.Shared.Length > 0 || r.Item.Length > 0))
                         throw new InvalidDataException($"Invalid requirement: {stage.Id}/{r.Id}");
             }
         }
@@ -43,6 +46,11 @@ public sealed class Catalog
 public sealed class Series
 {
     public string Id { get; set; } = "";
+    public string Kind { get; set; } = "weapon";
+    public string ExpansionId { get; set; } = "";
+    public bool IsTool => Kind == "tool";
+    public string RelicNoun => IsTool ? "tool" : "weapon";
+    public string ExpansionKey => ExpansionId.Length > 0 ? ExpansionId : Id;
     public string Expansion { get; set; } = "";
     public string Name { get; set; } = "";
     public int Level { get; set; }
@@ -74,6 +82,12 @@ public sealed class Requirement
     public string Quest { get; set; } = "";
     // Shared keys belong to the character, never a job. Only one-time quests use Quest.
     public string Shared { get; set; } = "";
+    // Repeated milestones of one job-specific total, e.g. cumulative Cosmic research.
+    public string CumulativeKey { get; set; } = "";
+    // Currencies used by variable-yield recipes, for source filtering, not a fixed purchase quote.
+    public List<string> Currencies { get; set; } = [];
+    public uint Achievement { get; set; }
+    public string AchievementName { get; set; } = "";
     public List<string> Jobs { get; set; } = [];
     public bool Applies(string job) => Jobs.Count == 0 || Jobs.Contains(job);
 }

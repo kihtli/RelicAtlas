@@ -1155,6 +1155,83 @@
     "Stage": 0
   },
   {
+    "Id": 2659,
+    "Name": "Old and Improved: Skysung Saw",
+    "Series": "skysteel",
+    "Job": "CRP",
+    "Stage": 4
+  },
+  {
+    "Id": 2660,
+    "Name": "Old and Improved: Skysung Cross-pein Hammer",
+    "Series": "skysteel",
+    "Job": "BSM",
+    "Stage": 4
+  },
+  {
+    "Id": 2661,
+    "Name": "Old and Improved: Skysung Raising Hammer",
+    "Series": "skysteel",
+    "Job": "ARM",
+    "Stage": 4
+  },
+  {
+    "Id": 2662,
+    "Name": "Old and Improved: Skysung Lapidary Hammer",
+    "Series": "skysteel",
+    "Job": "GSM",
+    "Stage": 4
+  },
+  {
+    "Id": 2663,
+    "Name": "Old and Improved: Skysung Round Knife",
+    "Series": "skysteel",
+    "Job": "LTW",
+    "Stage": 4
+  },
+  {
+    "Id": 2664,
+    "Name": "Old and Improved: Skysung Needle",
+    "Series": "skysteel",
+    "Job": "WVR",
+    "Stage": 4
+  },
+  {
+    "Id": 2665,
+    "Name": "Old and Improved: Skysung Alembic",
+    "Series": "skysteel",
+    "Job": "ALC",
+    "Stage": 4
+  },
+  {
+    "Id": 2666,
+    "Name": "Old and Improved: Skysung Frypan",
+    "Series": "skysteel",
+    "Job": "CUL",
+    "Stage": 4
+  },
+  {
+    "Id": 2667,
+    "Name": "Old and Improved: Skysung Pickaxe",
+    "Series": "skysteel",
+    "Job": "MIN",
+    "Stage": 4
+  },
+  {
+    "Id": 2668,
+    "Name": "Old and Improved: Skysung Hatchet",
+    "Series": "skysteel",
+    "Job": "BTN",
+    "Stage": 4
+  },
+  {
+    "Id": 2669,
+    "Name": "Old and Improved: Skysung Fishing Rod",
+    "Series": "skysteel",
+    "Job": "FSH",
+    "Stage": 4
+  },
+  {
     "Id": 2694,
     "Name": "Pièce de Résistance: Honorbound & Tenacity Recollections",
     "Series": "shb",
@@ -1391,6 +1468,139 @@
     "Series": "shb",
     "Job": "AST",
     "Stage": 4
+  },
+  {
+    "Id": 2787,
+    "Name": "Tool Order: Skybuilders' Saw",
+    "Series": "skysteel",
+    "Job": "CRP",
+    "Stage": 5
+  },
+  {
+    "Id": 2788,
+    "Name": "Tool Order: Skybuilders' Cross-pein Hammer",
+    "Series": "skysteel",
+    "Job": "BSM",
+    "Stage": 5
+  },
+  {
+    "Id": 2789,
+    "Name": "Tool Order: Skybuilders' Raising Hammer",
+    "Series": "skysteel",
+    "Job": "ARM",
+    "Stage": 5
+  },
+  {
+    "Id": 2790,
+    "Name": "Tool Order: Skybuilders' Lapidary Hammer",
+    "Series": "skysteel",
+    "Job": "GSM",
+    "Stage": 5
+  },
+  {
+    "Id": 2791,
+    "Name": "Tool Order: Skybuilders' Round Knife",
+    "Series": "skysteel",
+    "Job": "LTW",
+    "Stage": 5
+  },
+  {
+    "Id": 2792,
+    "Name": "Tool Order: Skybuilders' Needle",
+    "Series": "skysteel",
+    "Job": "WVR",
+    "Stage": 5
+  },
+  {
+    "Id": 2793,
+    "Name": "Tool Order: Skybuilders' Alembic",
+    "Series": "skysteel",
+    "Job": "ALC",
+    "Stage": 5
+  },
+  {
+    "Id": 2794,
+    "Name": "Tool Order: Skybuilders' Frypan",
+    "Series": "skysteel",
+    "Job": "CUL",
+    "Stage": 5
+  },
+  {
+    "Id": 2795,
+    "Name": "Tool Order: Skybuilders' Pickaxe",
+    "Series": "skysteel",
+    "Job": "MIN",
+    "Stage": 5
+  },
+  {
+    "Id": 2796,
+    "Name": "Tool Order: Skybuilders' Hatchet",
+    "Series": "skysteel",
+    "Job": "BTN",
+    "Stage": 5
+  },
+  {
+    "Id": 2797,
+    "Name": "Tool Order: Skybuilders' Fishing Rod",
+    "Series": "skysteel",
+    "Job": "FSH",
+    "Stage": 5
+  },
+  {
+    "Id": 2821,
+    "Name": "Retooled: Resplendent Millfiend's Saw",
+    "Series": "resplendent",
+    "Job": "CRP",
+    "Stage": 0
+  },
+  {
+    "Id": 2822,
+    "Name": "Retooled: Resplendent Forgefiend's Hammer",
+    "Series": "resplendent",
+    "Job": "BSM",
+    "Stage": 0
+  },
+  {
+    "Id": 2823,
+    "Name": "Retooled: Resplendent Hammerfiend's Beetle",
+    "Series": "resplendent",
+    "Job": "ARM",
+    "Stage": 0
+  },
+  {
+    "Id": 2824,
+    "Name": "Retooled: Resplendent Gemfiend's Mallet",
+    "Series": "resplendent",
+    "Job": "GSM",
+    "Stage": 0
+  },
+  {
+    "Id": 2825,
+    "Name": "Retooled: Resplendent Boltfiend's Needle",
+    "Series": "resplendent",
+    "Job": "WVR",
+    "Stage": 0
+  },
+  {
+    "Id": 2826,
+    "Name": "Retooled: Resplendent Hidefiend's Knife",
+    "Series": "resplendent",
+    "Job": "LTW",
+    "Stage": 0
+  },
+  {
+    "Id": 2827,
+    "Name": "Retooled: Resplendent Cauldronfiend's Alembic",
+    "Series": "resplendent",
+    "Job": "ALC",
+    "Stage": 0
+  },
+  {
+    "Id": 2828,
+    "Name": "Retooled: Resplendent Galleyfiend's Frypan",
+    "Series": "resplendent",
+    "Job": "CUL",
+    "Stage": 0
   },
   {
     "Id": 2857,
@@ -1643,6 +1853,83 @@
     "Series": "ew",
     "Job": "SGE",
     "Stage": 0
+  },
+  {
+    "Id": 3193,
+    "Name": "Splendid: Crystalline Saw",
+    "Series": "splendorous",
+    "Job": "CRP",
+    "Stage": 2
+  },
+  {
+    "Id": 3194,
+    "Name": "Splendid: Crystalline Cross-pein Hammer",
+    "Series": "splendorous",
+    "Job": "BSM",
+    "Stage": 2
+  },
+  {
+    "Id": 3195,
+    "Name": "Splendid: Crystalline Raising Hammer",
+    "Series": "splendorous",
+    "Job": "ARM",
+    "Stage": 2
+  },
+  {
+    "Id": 3196,
+    "Name": "Splendid: Crystalline Mallet",
+    "Series": "splendorous",
+    "Job": "GSM",
+    "Stage": 2
+  },
+  {
+    "Id": 3197,
+    "Name": "Splendid: Crystalline Round Knife",
+    "Series": "splendorous",
+    "Job": "LTW",
+    "Stage": 2
+  },
+  {
+    "Id": 3198,
+    "Name": "Splendid: Crystalline Needle",
+    "Series": "splendorous",
+    "Job": "WVR",
+    "Stage": 2
+  },
+  {
+    "Id": 3199,
+    "Name": "Splendid: Crystalline Alembic",
+    "Series": "splendorous",
+    "Job": "ALC",
+    "Stage": 2
+  },
+  {
+    "Id": 3200,
+    "Name": "Splendid: Crystalline Frypan",
+    "Series": "splendorous",
+    "Job": "CUL",
+    "Stage": 2
+  },
+  {
+    "Id": 3201,
+    "Name": "Splendid: Crystalline Pickaxe",
+    "Series": "splendorous",
+    "Job": "MIN",
+    "Stage": 2
+  },
+  {
+    "Id": 3202,
+    "Name": "Splendid: Crystalline Hatchet",
+    "Series": "splendorous",
+    "Job": "BTN",
+    "Stage": 2
+  },
+  {
+    "Id": 3203,
+    "Name": "Splendid: Crystalline Fishing Rod",
+    "Series": "splendorous",
+    "Job": "FSH",
+    "Stage": 2
   },
   {
     "Id": 3224,
@@ -1909,6 +2196,160 @@
     "Series": "ew",
     "Job": "SGE",
     "Stage": 2
+  },
+  {
+    "Id": 3305,
+    "Name": "Resplendent: Brilliant Saw",
+    "Series": "splendorous",
+    "Job": "CRP",
+    "Stage": 4
+  },
+  {
+    "Id": 3306,
+    "Name": "Resplendent: Brilliant Cross-pein Hammer",
+    "Series": "splendorous",
+    "Job": "BSM",
+    "Stage": 4
+  },
+  {
+    "Id": 3307,
+    "Name": "Resplendent: Brilliant Raising Hammer",
+    "Series": "splendorous",
+    "Job": "ARM",
+    "Stage": 4
+  },
+  {
+    "Id": 3308,
+    "Name": "Resplendent: Brilliant Mallet",
+    "Series": "splendorous",
+    "Job": "GSM",
+    "Stage": 4
+  },
+  {
+    "Id": 3309,
+    "Name": "Resplendent: Brilliant Round Knife",
+    "Series": "splendorous",
+    "Job": "LTW",
+    "Stage": 4
+  },
+  {
+    "Id": 3310,
+    "Name": "Resplendent: Brilliant Needle",
+    "Series": "splendorous",
+    "Job": "WVR",
+    "Stage": 4
+  },
+  {
+    "Id": 3311,
+    "Name": "Resplendent: Brilliant Alembic",
+    "Series": "splendorous",
+    "Job": "ALC",
+    "Stage": 4
+  },
+  {
+    "Id": 3312,
+    "Name": "Resplendent: Brilliant Frypan",
+    "Series": "splendorous",
+    "Job": "CUL",
+    "Stage": 4
+  },
+  {
+    "Id": 3313,
+    "Name": "Resplendent: Brilliant Pickaxe",
+    "Series": "splendorous",
+    "Job": "MIN",
+    "Stage": 4
+  },
+  {
+    "Id": 3314,
+    "Name": "Resplendent: Brilliant Hatchet",
+    "Series": "splendorous",
+    "Job": "BTN",
+    "Stage": 4
+  },
+  {
+    "Id": 3315,
+    "Name": "Resplendent: Brilliant Fishing Rod",
+    "Series": "splendorous",
+    "Job": "FSH",
+    "Stage": 4
+  },
+  {
+    "Id": 3362,
+    "Name": "Vrandtastic: Lodestar Saw",
+    "Series": "splendorous",
+    "Job": "CRP",
+    "Stage": 6
+  },
+  {
+    "Id": 3363,
+    "Name": "Vrandtastic: Lodestar Cross-pein Hammer",
+    "Series": "splendorous",
+    "Job": "BSM",
+    "Stage": 6
+  },
+  {
+    "Id": 3364,
+    "Name": "Vrandtastic: Lodestar Raising Hammer",
+    "Series": "splendorous",
+    "Job": "ARM",
+    "Stage": 6
+  },
+  {
+    "Id": 3365,
+    "Name": "Vrandtastic: Lodestar Mallet",
+    "Series": "splendorous",
+    "Job": "GSM",
+    "Stage": 6
+  },
+  {
+    "Id": 3366,
+    "Name": "Vrandtastic: Lodestar Round Knife",
+    "Series": "splendorous",
+    "Job": "LTW",
+    "Stage": 6
+  },
+  {
+    "Id": 3367,
+    "Name": "Vrandtastic: Lodestar Needle",
+    "Series": "splendorous",
+    "Job": "WVR",
+    "Stage": 6
+  },
+  {
+    "Id": 3368,
+    "Name": "Vrandtastic: Lodestar Alembic",
+    "Series": "splendorous",
+    "Job": "ALC",
+    "Stage": 6
+  },
+  {
+    "Id": 3369,
+    "Name": "Vrandtastic: Lodestar Frypan",
+    "Series": "splendorous",
+    "Job": "CUL",
+    "Stage": 6
+  },
+  {
+    "Id": 3370,
+    "Name": "Vrandtastic: Lodestar Pickaxe",
+    "Series": "splendorous",
+    "Job": "MIN",
+    "Stage": 6
+  },
+  {
+    "Id": 3371,
+    "Name": "Vrandtastic: Lodestar Hatchet",
+    "Series": "splendorous",
+    "Job": "BTN",
+    "Stage": 6
+  },
+  {
+    "Id": 3372,
+    "Name": "Vrandtastic: Lodestar Fishing Rod",
+    "Series": "splendorous",
+    "Job": "FSH",
+    "Stage": 6
   },
   {
     "Id": 3380,
@@ -2191,6 +2632,83 @@
     "Stage": 0
   },
   {
+    "Id": 3691,
+    "Name": "R&D: Cosmic Saw",
+    "Series": "cosmic",
+    "Job": "CRP",
+    "Stage": 8
+  },
+  {
+    "Id": 3692,
+    "Name": "R&D: Cosmic Cross-pein Hammer",
+    "Series": "cosmic",
+    "Job": "BSM",
+    "Stage": 8
+  },
+  {
+    "Id": 3693,
+    "Name": "R&D: Cosmic Raising Hammer",
+    "Series": "cosmic",
+    "Job": "ARM",
+    "Stage": 8
+  },
+  {
+    "Id": 3694,
+    "Name": "R&D: Cosmic Mallet",
+    "Series": "cosmic",
+    "Job": "GSM",
+    "Stage": 8
+  },
+  {
+    "Id": 3695,
+    "Name": "R&D: Cosmic Round Knife",
+    "Series": "cosmic",
+    "Job": "LTW",
+    "Stage": 8
+  },
+  {
+    "Id": 3696,
+    "Name": "R&D: Cosmic Needle",
+    "Series": "cosmic",
+    "Job": "WVR",
+    "Stage": 8
+  },
+  {
+    "Id": 3697,
+    "Name": "R&D: Cosmic Alembic",
+    "Series": "cosmic",
+    "Job": "ALC",
+    "Stage": 8
+  },
+  {
+    "Id": 3698,
+    "Name": "R&D: Cosmic Frypan",
+    "Series": "cosmic",
+    "Job": "CUL",
+    "Stage": 8
+  },
+  {
+    "Id": 3699,
+    "Name": "R&D: Cosmic Pickaxe",
+    "Series": "cosmic",
+    "Job": "MIN",
+    "Stage": 8
+  },
+  {
+    "Id": 3700,
+    "Name": "R&D: Cosmic Hatchet",
+    "Series": "cosmic",
+    "Job": "BTN",
+    "Stage": 8
+  },
+  {
+    "Id": 3701,
+    "Name": "R&D: Cosmic Fishing Rod",
+    "Series": "cosmic",
+    "Job": "FSH",
+    "Stage": 8
+  },
+  {
     "Id": 3752,
     "Name": "Phantom of the Umbra: Sword & Kite Shield Umbrae",
     "Series": "dt",
@@ -2338,6 +2856,83 @@
     "Stage": 1
   },
   {
+    "Id": 3792,
+    "Name": "R&D: Stellar Saw",
+    "Series": "cosmic",
+    "Job": "CRP",
+    "Stage": 13
+  },
+  {
+    "Id": 3793,
+    "Name": "R&D: Stellar Cross-pein Hammer",
+    "Series": "cosmic",
+    "Job": "BSM",
+    "Stage": 13
+  },
+  {
+    "Id": 3794,
+    "Name": "R&D: Stellar Raising Hammer",
+    "Series": "cosmic",
+    "Job": "ARM",
+    "Stage": 13
+  },
+  {
+    "Id": 3795,
+    "Name": "R&D: Stellar Mallet",
+    "Series": "cosmic",
+    "Job": "GSM",
+    "Stage": 13
+  },
+  {
+    "Id": 3796,
+    "Name": "R&D: Stellar Round Knife",
+    "Series": "cosmic",
+    "Job": "LTW",
+    "Stage": 13
+  },
+  {
+    "Id": 3797,
+    "Name": "R&D: Stellar Needle",
+    "Series": "cosmic",
+    "Job": "WVR",
+    "Stage": 13
+  },
+  {
+    "Id": 3798,
+    "Name": "R&D: Stellar Alembic",
+    "Series": "cosmic",
+    "Job": "ALC",
+    "Stage": 13
+  },
+  {
+    "Id": 3799,
+    "Name": "R&D: Stellar Frypan",
+    "Series": "cosmic",
+    "Job": "CUL",
+    "Stage": 13
+  },
+  {
+    "Id": 3800,
+    "Name": "R&D: Stellar Pickaxe",
+    "Series": "cosmic",
+    "Job": "MIN",
+    "Stage": 13
+  },
+  {
+    "Id": 3801,
+    "Name": "R&D: Stellar Hatchet",
+    "Series": "cosmic",
+    "Job": "BTN",
+    "Stage": 13
+  },
+  {
+    "Id": 3802,
+    "Name": "R&D: Stellar Fishing Rod",
+    "Series": "cosmic",
+    "Job": "FSH",
+    "Stage": 13
+  },
+  {
     "Id": 3842,
     "Name": "Clare Obscurum: Sword & Shield Obscurum",
     "Series": "dt",
@@ -2483,6 +3078,160 @@
     "Series": "dt",
     "Job": "SGE",
     "Stage": 2
+  },
+  {
+    "Id": 3877,
+    "Name": "R&D: Hypersaw",
+    "Series": "cosmic",
+    "Job": "CRP",
+    "Stage": 16
+  },
+  {
+    "Id": 3878,
+    "Name": "R&D: Cross-pein Hyperhammer",
+    "Series": "cosmic",
+    "Job": "BSM",
+    "Stage": 16
+  },
+  {
+    "Id": 3879,
+    "Name": "R&D: Raising Hyperhammer",
+    "Series": "cosmic",
+    "Job": "ARM",
+    "Stage": 16
+  },
+  {
+    "Id": 3880,
+    "Name": "R&D: Hypermallet",
+    "Series": "cosmic",
+    "Job": "GSM",
+    "Stage": 16
+  },
+  {
+    "Id": 3881,
+    "Name": "R&D: Round Hyperknife",
+    "Series": "cosmic",
+    "Job": "LTW",
+    "Stage": 16
+  },
+  {
+    "Id": 3882,
+    "Name": "R&D: Hyperneedle",
+    "Series": "cosmic",
+    "Job": "WVR",
+    "Stage": 16
+  },
+  {
+    "Id": 3883,
+    "Name": "R&D: Hyperalembic",
+    "Series": "cosmic",
+    "Job": "ALC",
+    "Stage": 16
+  },
+  {
+    "Id": 3884,
+    "Name": "R&D: Hyperfrypan",
+    "Series": "cosmic",
+    "Job": "CUL",
+    "Stage": 16
+  },
+  {
+    "Id": 3885,
+    "Name": "R&D: Hyperpickaxe",
+    "Series": "cosmic",
+    "Job": "MIN",
+    "Stage": 16
+  },
+  {
+    "Id": 3886,
+    "Name": "R&D: Hyperhatchet",
+    "Series": "cosmic",
+    "Job": "BTN",
+    "Stage": 16
+  },
+  {
+    "Id": 3887,
+    "Name": "R&D: Fishing Hyperrod",
+    "Series": "cosmic",
+    "Job": "FSH",
+    "Stage": 16
+  },
+  {
+    "Id": 3914,
+    "Name": "R&D: Saw of Stars",
+    "Series": "cosmic",
+    "Job": "CRP",
+    "Stage": 19
+  },
+  {
+    "Id": 3915,
+    "Name": "R&D: Cross-pein Hammer of Stars",
+    "Series": "cosmic",
+    "Job": "BSM",
+    "Stage": 19
+  },
+  {
+    "Id": 3916,
+    "Name": "R&D: Raising Hammer of Stars",
+    "Series": "cosmic",
+    "Job": "ARM",
+    "Stage": 19
+  },
+  {
+    "Id": 3917,
+    "Name": "R&D: Mallet of Stars",
+    "Series": "cosmic",
+    "Job": "GSM",
+    "Stage": 19
+  },
+  {
+    "Id": 3918,
+    "Name": "R&D: Round Knife of Stars",
+    "Series": "cosmic",
+    "Job": "LTW",
+    "Stage": 19
+  },
+  {
+    "Id": 3919,
+    "Name": "R&D: Needle of Stars",
+    "Series": "cosmic",
+    "Job": "WVR",
+    "Stage": 19
+  },
+  {
+    "Id": 3920,
+    "Name": "R&D: Alembic of Stars",
+    "Series": "cosmic",
+    "Job": "ALC",
+    "Stage": 19
+  },
+  {
+    "Id": 3921,
+    "Name": "R&D: Frypan of Stars",
+    "Series": "cosmic",
+    "Job": "CUL",
+    "Stage": 19
+  },
+  {
+    "Id": 3922,
+    "Name": "R&D: Pickaxe of Stars",
+    "Series": "cosmic",
+    "Job": "MIN",
+    "Stage": 19
+  },
+  {
+    "Id": 3923,
+    "Name": "R&D: Hatchet of Stars",
+    "Series": "cosmic",
+    "Job": "BTN",
+    "Stage": 19
+  },
+  {
+    "Id": 3924,
+    "Name": "R&D: Fishing Rod of Stars",
+    "Series": "cosmic",
+    "Job": "FSH",
+    "Stage": 19
   },
   {
     "Id": 3949,

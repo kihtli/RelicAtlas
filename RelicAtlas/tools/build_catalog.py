@@ -189,6 +189,8 @@ for series in SERIES:
  for s in series['Stages']:
   ids=[r['Id'] for r in s['Requirements']]
   assert len(ids)==len(set(ids)),(series['Id'],s['Name'],'duplicate IDs')
-output=dict(Reviewed='2026-09-21',Series=SERIES)
+from build_tools_catalog import build as build_tools
+SERIES += build_tools()
+output=dict(Reviewed='2026-09-27',Series=SERIES)
 (ROOT/'Data/catalog.json').write_text(json.dumps(output,ensure_ascii=False,indent=2)+'\n')
 print('Series:',len(SERIES),'job/series tracks:',sum(len(s['Jobs']) for s in SERIES),'stage definitions:',sum(len(s['Stages']) for s in SERIES),'objectives:',sum(len(st['Requirements']) for s in SERIES for st in s['Stages']))

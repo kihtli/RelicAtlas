@@ -111,3 +111,21 @@ names. Only entries in the current character's unlocked teleport list are used.
 Zenith main-hand IDs come from exact catalogue names in the English Item sheet.
 FFXIVClientStructs `FateManager.GetCurrentFateId` guards active FATEs. All calls
 that request travel execute on the framework thread; there are no runtime HTTP calls.
+
+## Relic tools (0.1.0.21, checked 27 September 2026)
+
+- [Mastercraft / Supra / Lucis](https://ffxiv.consolegameswiki.com/wiki/Mastercraft_Tools)
+- [Skysteel](https://ffxiv.consolegameswiki.com/wiki/Skysteel_Tools), [Flintstrike](https://ffxiv.consolegameswiki.com/wiki/Flintstrike), [Pickled Pom](https://ffxiv.consolegameswiki.com/wiki/Pickled_Pom)
+- [Resplendent](https://ffxiv.consolegameswiki.com/wiki/Resplendent_Tools)
+- [Splendorous](https://ffxiv.consolegameswiki.com/wiki/Splendorous_Tools)
+- [Cosmic](https://ffxiv.consolegameswiki.com/wiki/Cosmic_Tool)
+- [Game sheets, revision d71de329](https://github.com/xivapi/ffxiv-datamining/tree/d71de329cc6ed30c6fb16b9108cdf7d29c653302/csv/en): Item, Quest, Achievement, WKSCosmoToolClass and WKSCosmoToolDataAmount. Cosmic names and cumulative thresholds come directly from these sheets; the reference wiki's obsolete Needle/Round Knife prototype names are not used. The Crystalline Weaver high collectability tier is 1100, correcting the wiki summary's inconsistent 660 entry.
+- [WKSResearchModule](https://github.com/aers/FFXIVClientStructs/blob/6adf262b97e61506b3c7d35edb0e081d4b4e1bd2/FFXIVClientStructs/FFXIV/Client/Game/WKS/WKSResearchModule.cs) and [WKSManager](https://github.com/aers/FFXIVClientStructs/blob/6adf262b97e61506b3c7d35edb0e081d4b4e1bd2/FFXIVClientStructs/FFXIV/Client/Game/WKS/WKSManager.cs): loaded-state guards and the 11-class × 7-data-type analysis layout. No signature scans or custom memory layouts are added.
+
+`tools/build_tools_catalog.py` lists its cached input names and validates every
+tool/material name, HQ eligibility and shared quest name against the game sheets.
+It can rebuild only tool collections without altering combat save keys. Raw
+reference HTML/CSV files are not distributed. Instructions are authored from
+factual exchanges, not copied guide prose. Shopping lists direct turn-in items;
+recipe ingredients and variable yields remain source guidance, not additive
+mandatory requirements. Generic ARR Lucis achievements never complete all jobs.

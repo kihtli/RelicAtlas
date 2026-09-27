@@ -46,15 +46,18 @@ public static class ShoppingList
         ["Ut'ohmu Siderite"] = [new("Bicolor Gemstones", 600)],
         ["Umbral Clay"] = [new("Gil", 500000)],
         ["Monarch Whetstone"] = [new("Gil", 500000)],
+        ["Moonstone"] = [new("Company Seals", 4000)],
     };
     public const string AllCurrencies = "All currencies";
     public const string NoFixedCurrency = "No fixed currency";
     public static readonly string[] CurrencyFilters = new[] { AllCurrencies }
-        .Concat(Prices.Values.SelectMany(p => p).Select(p => p.Currency).Distinct().Order())
+        .Concat(Prices.Values.SelectMany(p => p).Select(p => p.Currency)
+            .Concat(["Purple Crafters' Scrips", "Skybuilders' Scrips"]).Distinct().Order())
         .Append(NoFixedCurrency).ToArray();
     public static bool MatchesCurrency(MaterialNeed material, string currency) => currency == AllCurrencies ||
-        (Prices.TryGetValue(material.Item, out var prices)
-            ? prices.Any(p => p.Currency == currency) : currency == NoFixedCurrency);
+        (Prices.TryGetValue(material.Item, out var prices) && prices.Any(p => p.Currency == currency)) ||
+        material.Objectives.SelectMany(o => o.Uses).Any(u => u.Requirement.Currencies.Contains(currency)) ||
+        currency == NoFixedCurrency && !Prices.ContainsKey(material.Item);
     public static string Source(MaterialNeed material) => string.Join(" / ", material.Objectives
         .SelectMany(o => o.Uses).Select(u => u.Requirement.Detail).Where(s => !string.IsNullOrWhiteSpace(s)).Distinct());
     public static string Cost(MaterialNeed material, string currency = AllCurrencies)
@@ -62,7 +65,8 @@ public static class ShoppingList
         if (material.Missing == 0) return "No purchase needed";
         return Prices.TryGetValue(material.Item, out var prices)
             ? string.Join(" OR ", prices.Where(p => currency == AllCurrencies || p.Currency == currency).Select(p => $"{(long)p.Each * material.Missing:N0} {p.Currency} ({p.Each:N0} each)"))
-            : "No fixed currency estimate; see source";
+            : material.Objectives.SelectMany(o => o.Uses).Any(u => u.Requirement.Currencies.Count > 0)
+                ? "Craft / exchange; variable scrip inputs — see source" : "No fixed currency estimate; see source";
     }
     public static SortedDictionary<string, long> Budget(IEnumerable<MaterialNeed> materials, string currency = AllCurrencies)
     {

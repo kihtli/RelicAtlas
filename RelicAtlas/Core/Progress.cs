@@ -38,7 +38,8 @@ public readonly record struct RequirementStatus(int Done, int Required, int? InB
 public static class Progress
 {
     public static string Key(Series series, string job, Stage stage, Requirement r) =>
-        r.Shared.Length > 0 ? $"shared/{r.Shared}/{r.Id}" : $"{series.Id}/{job}/{stage.Id}/{r.Id}";
+        r.Shared.Length > 0 ? $"shared/{r.Shared}/{r.Id}" : r.CumulativeKey.Length > 0 ?
+            $"{series.Id}/{job}/cumulative/{r.CumulativeKey}" : $"{series.Id}/{job}/{stage.Id}/{r.Id}";
 
     public static bool SharedDone(CharacterProgress c, string key) =>
         key.Length > 0 && (c.SharedOverrides.TryGetValue(key, out var manual) ? manual : c.CompletedShared.Contains(key));
@@ -51,6 +52,13 @@ public static class Progress
         int? bags = r.Item.Length > 0 && inventory != null && inventory.TryGetValue(r.Item + (r.Hq ? "|HQ" : ""), out var held) ? held : null;
         // A recorded objective is authoritative; inventory is a live hint, never a permanent completion event.
         var done = c.Counters.TryGetValue(key, out var manual) ? manual : bags ?? c.DetectedCounters.GetValueOrDefault(key);
+        if (r.CumulativeKey.Length > 0 && !c.Counters.ContainsKey(key))
+        {
+            var completed = c.Weapon(series, job).CompletedIndex(series.Stages.Count);
+            var minimum = series.Stages.Take(completed + 1).SelectMany(s => s.Requirements)
+                .Where(p => p.Applies(job) && p.CumulativeKey == r.CumulativeKey).Select(p => p.Count).DefaultIfEmpty(0).Max();
+            done = Math.Max(done, minimum);
+        }
         return new(Math.Clamp(done, 0, r.Count), r.Count, bags, false);
     }
 

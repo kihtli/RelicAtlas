@@ -22,7 +22,8 @@ public sealed record RelicTotals(int NotStarted, int InProgress, int Ready, int 
 public sealed class CollectionOverview
 {
     private static readonly string[] JobOrder = ["PLD", "WAR", "DRK", "GNB", "WHM", "SCH", "AST", "SGE",
-        "MNK", "DRG", "NIN", "SAM", "RPR", "VPR", "BRD", "MCH", "DNC", "BLM", "SMN", "RDM", "PCT"];
+        "MNK", "DRG", "NIN", "SAM", "RPR", "VPR", "BRD", "MCH", "DNC", "BLM", "SMN", "RDM", "PCT",
+        "CRP", "BSM", "ARM", "GSM", "LTW", "WVR", "ALC", "CUL", "MIN", "BTN", "FSH"];
     public Dictionary<(string Series, string Job), RelicTrackSnapshot> Tracks { get; }
     public string[] Jobs { get; }
     public RelicTotals Total { get; }
@@ -30,9 +31,9 @@ public sealed class CollectionOverview
     public Dictionary<string, RelicTotals> ByExpansion { get; }
     private readonly HashSet<(string Series, string Job)> started = [];
 
-    public CollectionOverview(Catalog catalog, CharacterProgress character, IReadOnlyDictionary<string, int>? inventory)
+    public CollectionOverview(Catalog catalog, CharacterProgress character, IReadOnlyDictionary<string, int>? inventory, string kind = "all")
     {
-        var tracks = RelicBarProgress.BuildTracks(catalog, character, inventory);
+        var tracks = RelicBarProgress.BuildTracks(catalog, character, inventory).Where(r => kind == "all" || r.Kind == kind).ToList();
         Tracks = tracks.ToDictionary(r => (r.SeriesId, r.Job));
         foreach (var series in catalog.Series)
         foreach (var job in series.Jobs)
@@ -61,6 +62,8 @@ public sealed class CollectionOverview
         "MNK" or "DRG" or "NIN" or "SAM" or "RPR" or "VPR" => "Melee",
         "BRD" or "MCH" or "DNC" => "Physical ranged",
         "BLM" or "SMN" or "RDM" or "PCT" => "Casters",
+        "CRP" or "BSM" or "ARM" or "GSM" or "LTW" or "WVR" or "ALC" or "CUL" => "Crafters",
+        "MIN" or "BTN" or "FSH" => "Gatherers",
         _ => "Other",
     };
 }

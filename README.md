@@ -1,7 +1,7 @@
 # Relic Atlas
 
-A Dalamud plugin for tracking every combat relic weapon, every eligible job and
-the next step in each relic's progression, from ARR through Dawntrail.
+A Dalamud plugin for tracking relic weapons and crafting/gathering tools, every
+eligible job and the next step in each relic’s progression, from ARR through Dawntrail.
 
 ## Install
 
@@ -28,9 +28,9 @@ installer. The Umbra extension is installed from its
 
 ## Features
 
-- **Overview:** a job-by-expansion grid covering 95 eligible relic tracks across
-  21 jobs and six expansions. Select a cell to open its checklist.
-- **Collection:** weapon stages, next objectives, material quantities, quests,
+- **Overview:** separate weapon and tool grids covering 150 eligible relic tracks
+  across 32 jobs/classes. Select a cell to open its checklist.
+- **Collection:** weapon/tool stages, next objectives, material quantities, quests,
   NPCs, all nine ARR books, manual corrections, pins and notes.
 - **Shopping list:** remaining materials across jobs, with currency/source
   filters, purchase estimates and optional Allagan Tools storage counts.
@@ -42,12 +42,36 @@ installer. The Umbra extension is installed from its
   job or a fixed job/expansion.
 
 Progress is saved separately for each character. The interface uses a custom
-purple/cyan theme with original embedded artwork. Crafting/gathering tools and
-relic armour are outside this release.
+purple/cyan theme with original embedded artwork. Relic armour is outside this release.
+
+## Crafting and gathering tools
+
+Use **Crafting & gathering** below the main navigation to switch Overview,
+Collection and Shopping list to the 55 tool tracks across all 11 classes.
+Collections: Mastercraft (base/Supra/Lucis), Skysteel (six stages), Resplendent,
+Splendorous (seven stages), and Cosmic (20 stages through Tools of Stars).
+
+Tools use inventory and explicit job-specific achievement evidence, with manual
+corrections. Cosmic research is read while Cosmic Exploration and its research
+module are loaded; otherwise the last recorded totals remain available. Research
+counters are cumulative per class/type. Partial Resplendent gathering-log counts
+can be entered manually; loaded completed achievements mark the objective ready,
+but the reward tool still needs to be claimed.
+
+Shopping compares **turn-in products and exchanged components** with carried stock
+and optional Allagan Tools saddlebag/retainer stock. It does not expand crafting
+recipes into a second ingredient shopping list. Source details explain exchanges,
+collectability tiers and scrip ingredients. Purple Crafters’ Scrips and Skybuilders’
+Scrips can be filtered; variable recipe costs are excluded from fixed purchase
+budgets. Unexchanged collectables do not count as components.
+
+Umbra companion **0.1.0.2** adds every crafting/gathering class and tool series to
+its selectors. Automatic mode follows your current class; click opens the tool
+checklist. Update the main plugin and companion for the complete feature.
 
 ## Tracking and corrections
 
-Weapon detection uses carried/equipped/armoury items and explicit job-specific
+Weapon/tool detection uses carried/equipped/armoury items and explicit job-specific
 achievements. Open the game's Achievements window to load its history. Paladin
 sword and shield evidence is tracked separately. Generic achievements do not
 complete every job's relic. Historical and partial progress can be corrected
@@ -56,7 +80,7 @@ from the relic's checklist.
 Materials come from live carried inventory. Shared inventory is counted once in
 planning totals; it is not reserved for every job. Manual entries take precedence
 in individual checklists. Material planning uses the larger of recorded credit
-or known owned stock, because those amounts may overlap. Acquiring a weapon
+or known owned stock, because those amounts may overlap. Acquiring a weapon or tool
 completes its stage; collecting its materials alone does not.
 
 Allagan Tools is optional. Open saddlebags and retainers to refresh its cache.

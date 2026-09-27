@@ -37,15 +37,15 @@ public static class RelicBarProgress
             var nextStatus = next == null ? default : Progress.Status(character, series, relicJob, stage, next, stock);
             result.Add(new()
             {
-                SeriesId = series.Id, SeriesName = series.Name, Expansion = series.Expansion, Job = relicJob,
+                SeriesId = series.Id, SeriesName = series.Name, Kind = series.Kind, Expansion = series.Expansion, Job = relicJob,
                 Pinned = weapon.Pinned, AcquiredStages = acquired, TotalStages = series.Stages.Count,
                 Complete = nextStage == null, ReadyForTurnIn = nextStage != null && next == null,
                 StageName = stage.Name, WeaponName = string.Join(" + ", stage.Weapons[relicJob]), Npc = stage.Npc,
                 ReadyObjectives = statuses.Count(s => s.Complete), TotalObjectives = statuses.Length,
                 StageProgress = nextStage == null || statuses.Length == 0 ? 10000 :
                     (int)Math.Clamp(Math.Floor(statuses.Average(s => (double)s.Done / s.Required) * 10000), 0, 10000),
-                NextLabel = next?.Label ?? (nextStage == null ? "Relic complete" : "Receive the weapon"),
-                NextDetail = next?.Detail ?? (nextStage == null ? "All weapon stages acquired." : stage.Npc),
+                NextLabel = next?.Label ?? (nextStage == null ? "Relic complete" : $"Receive the {series.RelicNoun}"),
+                NextDetail = next?.Detail ?? (nextStage == null ? $"All {series.RelicNoun} stages acquired." : stage.Npc),
                 NextDone = nextStatus.Done, NextRequired = nextStatus.Required,
             });
         }

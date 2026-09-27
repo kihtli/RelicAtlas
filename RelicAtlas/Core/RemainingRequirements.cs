@@ -35,11 +35,11 @@ public static class RemainingRequirements
     public static RemainingPlan Build(Catalog catalog, CharacterProgress character,
         string expansion = "all", string job = "All jobs", bool pinnedOnly = false, bool startedOnly = false,
         IReadOnlyDictionary<string, int>? bags = null, IReadOnlyDictionary<string, int>? saddlebag = null,
-        IReadOnlyDictionary<string, int>? retainers = null)
+        IReadOnlyDictionary<string, int>? retainers = null, string kind = "all")
     {
         var entries = new Dictionary<string, RemainingObjective>();
         var weapons = 0;
-        foreach (var series in catalog.Series.Where(s => expansion == "all" || s.Id == expansion))
+        foreach (var series in catalog.Series.Where(s => (expansion == "all" || s.Id == expansion) && (kind == "all" || s.Kind == kind)))
         foreach (var j in series.Jobs.Where(j => job == "All jobs" || j == job))
         {
             var weapon = character.Weapon(series, j);
@@ -55,8 +55,7 @@ public static class RemainingRequirements
                     entries[key] = entry = new RemainingObjective { Key = key, Requirement = r };
                 // Shared cumulative milestones (e.g. 10/20/30 Logos actions) require the maximum, not their sum.
                 if (r.Count >= entry.Required) { entry.Required = r.Count; entry.Requirement = r; }
-                entry.Recorded = Math.Clamp(character.Counters.TryGetValue(key, out var manual)
-                    ? manual : character.DetectedCounters.GetValueOrDefault(key), 0, entry.Required);
+                entry.Recorded = Math.Max(entry.Recorded, Progress.Status(character, series, j, stage, r, null).Done);
                 entry.Uses.Add(new(series, j, stage, r));
             }
         }

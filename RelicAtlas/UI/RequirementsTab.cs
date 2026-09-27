@@ -26,7 +26,7 @@ public sealed partial class MainWindow
         ImGui.SetNextItemWidth(112 * Scale);
         if (ImGui.BeginCombo("##planning-job", planningJob))
         {
-            foreach (var job in new[] { "All jobs" }.Concat(catalog.Series.SelectMany(s => s.Jobs).Distinct().Order()))
+            foreach (var job in new[] { "All jobs" }.Concat(VisibleSeries.SelectMany(s => s.Jobs).Distinct().Order()))
                 if (ImGui.Selectable(job, job == planningJob)) planningJob = job;
             ImGui.EndCombo();
         }
@@ -54,12 +54,12 @@ public sealed partial class MainWindow
         if (ActionButton("Refresh", false, 80, 28)) { tracker.Rescan(); planningRefresh = DateTime.MinValue; }
         var stock = includeStorage ? tracker.StorageFor(id) : null;
         var bags = tracker.InventoryFor(id);
-        var cacheKey = $"{id}/{expansion}/{planningJob}/{planningPinned}/{planningStarted}/{includeStorage}/{config.Automatic}/{tracker.CurrentId}";
+        var cacheKey = $"{id}/{relicKind}/{expansion}/{planningJob}/{planningPinned}/{planningStarted}/{includeStorage}/{config.Automatic}/{tracker.CurrentId}";
         if (planningCache == null || planningCacheKey != cacheKey || DateTime.UtcNow >= planningRefresh)
         {
             planningCache = RemainingRequirements.Build(catalog, c, expansion, planningJob, planningPinned, planningStarted,
                 bags, stock?.SaddlebagRecorded == true ? stock.Saddlebag : null,
-                stock?.RecordedRetainers > 0 ? stock.Retainers : null);
+                stock?.RecordedRetainers > 0 ? stock.Retainers : null, relicKind);
             planningCacheKey = cacheKey;
             planningRefresh = DateTime.UtcNow.AddMilliseconds(500);
         }
