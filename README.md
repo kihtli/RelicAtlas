@@ -36,7 +36,8 @@ installer. The Umbra extension is installed from its
   filters, purchase estimates and optional Allagan Tools storage counts.
 - **Atma farming:** per-type Required, Owned and Remaining counts alongside the
   zone and both suggested Server Time windows. Hover quantities for bags,
-  saddlebag, retainer and recorded-progress details.
+  saddlebag, retainer and recorded-progress details. An independent compact
+  tracker hides completed types and highlights the current suggestion.
 - **Optional travel:** Teleporter buttons and a manually started Atma route.
 - **Umbra companion:** relic progress on an Umbra toolbar, following the current
   job or a fixed job/expansion.
@@ -113,6 +114,23 @@ and links the sources.
 
 Per-type totals include all ARR jobs still awaiting their Atma stage, including
 unstarted jobs. A surplus of one Atma type cannot cover a different type.
+
+For a small window to leave open while farming, choose **Open popout** on this
+page or enter `/relicatlas atma popout`. It follows your logged-in character and
+shows the remaining quantity of each type across all unfinished ARR jobs,
+including known Allagan Tools saddlebag/retainer stock and recorded checklist
+credit. Covered types disappear automatically. The current suggested type is
+highlighted with a countdown; if it is covered, the header shows the next type
+still needed and time until its window. Highlights follow the actual ST hour,
+independently of the early-travel setting.
+
+Click an Atma row to teleport to its zone through **Teleporter**. Hover for its
+zone, stock breakdown, destination, estimated fee or reason travel is unavailable.
+Manual travel stops any automatic route and uses the existing readiness checks.
+The popout stays open independently of the main window and ignores Escape. Drag
+its header to move it, lock its position with the padlock, and use the cross to
+close it. Open and lock state are remembered across reloads. **Farming page**
+returns to the full view; **Stop auto travel** appears while a route is active.
 
 Enable **Teleporter** to use the travel buttons. Automatic travel must be started
 explicitly for each session, on the selected current job with its Zenith weapon

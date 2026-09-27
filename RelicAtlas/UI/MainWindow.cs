@@ -20,6 +20,7 @@ public sealed partial class MainWindow : Window
     private readonly IFontHandle? headingFont;
     private readonly IAtlasArtwork? artwork;
     private readonly IAtmaTravel? atmaTravel;
+    private readonly Action? openAtmaPopout;
     private readonly CharacterProgress preview = new();
     private ulong selectedCharacter;
     private string expansion = "all";
@@ -53,11 +54,12 @@ public sealed partial class MainWindow : Window
     private readonly Dictionary<string, bool> openGroups = new();
     private sealed record WeaponRow(Series Series, string Job, WeaponProgress Weapon, int Completed, Stage? Next, Requirement? Objective);
 
-    public MainWindow(Configuration config, Catalog catalog, GameTracker tracker, Action save, IFontHandle? headingFont = null, IAtlasArtwork? artwork = null, IAtmaTravel? atmaTravel = null)
+    public MainWindow(Configuration config, Catalog catalog, GameTracker tracker, Action save, IFontHandle? headingFont = null, IAtlasArtwork? artwork = null, IAtmaTravel? atmaTravel = null, Action? openAtmaPopout = null)
         : base("Relic Atlas###RelicAtlas", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoTitleBar)
     {
         this.config = config; this.catalog = catalog; this.tracker = tracker; this.save = save; this.headingFont = headingFont; this.artwork = artwork;
         this.atmaTravel = atmaTravel;
+        this.openAtmaPopout = openAtmaPopout;
         Size = new Vector2(1160, 760); SizeCondition = ImGuiCond.FirstUseEver;
         SizeConstraints = new WindowSizeConstraints { MinimumSize = new Vector2(900, 640), MaximumSize = new Vector2(float.MaxValue) };
     }

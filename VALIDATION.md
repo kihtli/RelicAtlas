@@ -1,9 +1,11 @@
 # Release validation
 
-Relic Atlas 0.1.0.22 / compatible standalone Umbra companion 0.1.0.2 — 27 September 2026.
+Relic Atlas 0.1.0.23 / compatible standalone Umbra companion 0.1.0.2 — 27 September 2026.
 
 - Release builds: .NET 10, Dalamud.NET.Sdk/API 15; companion targets Umbra 3.1.18.0.
-- 161 regression cases passed, including achievement query pacing, response targets,
+- 173 regression cases passed, including Atma shortage filtering, shared stock,
+  current/next suggested windows, timezones, midnight/year rollover, unknown
+  inventory, manual credit, character isolation, achievement query pacing, response targets,
   timeouts, stale replies, character changes, reward-bit mappings, HQ requirements, exchanged components,
   class/character isolation, cumulative research, manual overrides, shopping stock,
   tool overview scopes, Umbra class/series selection and backward-compatible IPC v1.
@@ -11,6 +13,12 @@ Relic Atlas 0.1.0.22 / compatible standalone Umbra companion 0.1.0.2 — 27 Sept
   1,161 distinct tool/weapon names, 300 material names and 483 explicit acquisition
   achievement mappings. New names, HQ eligibility and shared quests are checked
   against extracted game sheets; Cosmic thresholds come directly from game data.
+- Atma popout: 42 native ImGui scenarios passed across normal and 150% scale,
+  covering row travel/disabled travel, locking, dragging, closing, page navigation,
+  stopping auto travel, character changes/logout, inventory changes, clock
+  rollover, complete/unknown/paused states and the main page entry button.
+  Rendered previews reviewed with all 12 types, partial stock, all types covered,
+  the next-needed header at 150%, and the main page button at 900×640.
 - Previous 0.1.0.21 native previews checked at 1160×760, 900×640 and 150% scale, including the tool
   overview, compact Cosmic stage selector and shopping list.
 - Previous 0.1.0.21 native interaction checks: 30 scenarios passed: tool category switching, tool overview

@@ -15,5 +15,7 @@ public sealed class Configuration : IPluginConfiguration
     public bool ShoppingShowSources { get; set; } = true;
     public bool AtmaArriveEarly { get; set; }
     public bool AtmaSkipCollected { get; set; } = true;
+    public bool AtmaPopoutOpen { get; set; }
+    public bool AtmaPopoutLocked { get; set; }
     public Dictionary<ulong, CharacterProgress> Characters { get; set; } = [];
 }

@@ -16,6 +16,7 @@ public sealed class Plugin : IDalamudPlugin
     private readonly ICommandManager commands;
     private readonly WindowSystem windows = new("RelicAtlas");
     private readonly MainWindow window;
+    private readonly AtmaPopoutWindow atmaPopout;
     private readonly AtlasFonts fonts;
     private readonly GameTracker tracker;
     private readonly Configuration config;
@@ -32,10 +33,13 @@ public sealed class Plugin : IDalamudPlugin
             new AllaganToolsInventory(pluginInterface), scanner);
         fonts = new(pluginInterface);
         atmaTravel = new(config, catalog, tracker, pluginInterface, client, condition, framework, objects, aetherytes, data, log);
-        window = new(config, catalog, tracker, Save, fonts.Heading, new AtlasArtwork(textures, data, catalog), atmaTravel);
+        atmaPopout = new(config, catalog, tracker, atmaTravel, Save);
+        window = new(config, catalog, tracker, Save, fonts.Heading, new AtlasArtwork(textures, data, catalog), atmaTravel, atmaPopout.Show);
+        atmaPopout.OpenFarmingPage = () => window.OpenAtma();
         api = new(pluginInterface, framework, data, log, config, catalog, tracker, window);
         windows.AddWindow(window);
-        commands.AddHandler("/relicatlas", new CommandInfo(OnCommand) { HelpMessage = "Open Relic Atlas. /relicatlas atma opens farming; /relicatlas atma stop stops automatic travel." });
+        windows.AddWindow(atmaPopout);
+        commands.AddHandler("/relicatlas", new CommandInfo(OnCommand) { HelpMessage = "Open Relic Atlas. /relicatlas atma opens farming; /relicatlas atma popout opens the compact tracker; /relicatlas atma stop stops automatic travel." });
         pluginInterface.UiBuilder.Draw += windows.Draw;
         pluginInterface.UiBuilder.OpenMainUi += Open;
         pluginInterface.UiBuilder.OpenConfigUi += Open;
@@ -43,6 +47,7 @@ public sealed class Plugin : IDalamudPlugin
     private void OnCommand(string command, string arguments)
     {
         var arg = arguments.Trim();
+        if (arg.Equals("atma popout", StringComparison.OrdinalIgnoreCase)) { atmaPopout.Show(); return; }
         if (arg.Equals("atma stop", StringComparison.OrdinalIgnoreCase)) atmaTravel.Stop();
         if (arg.StartsWith("atma", StringComparison.OrdinalIgnoreCase)) window.OpenAtma();
         else Open();

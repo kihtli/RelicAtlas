@@ -63,6 +63,12 @@ public sealed partial class MainWindow
             if (ImGui.Button("Copy official ST explanation URL")) ImGui.SetClipboardText(AtmaSchedule.ClockUrl);
             ImGui.PopTextWrapPos(); ImGui.EndPopup();
         }
+        if (openAtmaPopout != null)
+        {
+            ImGui.SameLine();
+            if (ActionButton("Open popout", false, 113, 28)) openAtmaPopout();
+            Tip("Compact tracker for your logged-in character across all unfinished ARR jobs. It stays open independently of this page.");
+        }
         ImGui.Spacing();
         var available = ImGui.GetContentRegionAvail();
         var side = available.X < 1030 * Scale ? 256 * Scale : 292 * Scale;
