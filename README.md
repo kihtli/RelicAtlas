@@ -54,9 +54,20 @@ Splendorous (seven stages), and Cosmic (20 stages through Tools of Stars).
 Tools use inventory and explicit job-specific achievement evidence, with manual
 corrections. Cosmic research is read while Cosmic Exploration and its research
 module are loaded; otherwise the last recorded totals remain available. Research
-counters are cumulative per class/type. Partial Resplendent gathering-log counts
-can be entered manually; loaded completed achievements mark the objective ready,
-but the reward tool still needs to be claimed.
+counters are cumulative per class/type. Resplendent discovery totals refresh
+from achievement progress for Fisher (I Caught That VII, 1,140), Miner (220) and
+Botanist (340). Queries are spaced out and each unfinished achievement is refreshed
+about once a minute; new queries pause while the Achievements window is open.
+Manual corrections take priority; clear a correction to use the detected count.
+
+Open the game's Achievements window once to load completed and claimed-reward
+history. Completed discovery achievements mark their objectives ready. A separate
+reward-claimed check marks achievement-awarded tools acquired even when they are
+in storage or no longer owned. This applies to every matching tool reward in the
+catalogue (currently the three Resplendent gathering tools). The reader never
+claims rewards for you. If its optional native check is unavailable, inventory
+and manual tracking remain available. Existing Umbra 0.1.0.2 receives both the
+updated count and acquired-tool status; no companion update is required.
 
 Shopping compares **turn-in products and exchanged components** with carried stock
 and optional Allagan Tools saddlebag/retainer stock. It does not expand crafting

@@ -129,3 +129,24 @@ reference HTML/CSV files are not distributed. Instructions are authored from
 factual exchanges, not copied guide prose. Shopping lists direct turn-in items;
 recipe ingredients and variable yields remain source guidance, not additive
 mandatory requirements. Generic ARR Lucis achievements never complete all jobs.
+
+## Achievement progress and claimed tool rewards — 0.1.0.22
+
+- [Achievement progress API](https://github.com/aers/FFXIVClientStructs/blob/6adf262b97e61506b3c7d35edb0e081d4b4e1bd2/FFXIVClientStructs/FFXIV/Client/Game/UI/Achievement.cs): request state, response ID/current/maximum and completion-history readiness.
+- [Upstream reward-state discussion](https://github.com/aers/FFXIVClientStructs/pull/1890#discussion_r3725453350) and [named functions](https://github.com/aers/FFXIVClientStructs/blob/6adf262b97e61506b3c7d35edb0e081d4b4e1bd2/ida/data.yml): the unmerged reward-map description was independently checked against client 2026.09.15.0000.0000 before use.
+- [Official achievement reward guide](https://na.finalfantasyxiv.com/uiguide/faq/faq-other/achieve_exchange.html): completion permits a separate reward claim in the Achievements window.
+
+The native `MatchesAgentState` getter checks one bit of the 26-byte reward map.
+Both Achievement agent call sites use Achievement.Unknown1 as an unclaimed-when-set
+index or Unknown2 as an unclaimed-when-clear index, with 255 meaning absent.
+The resulting UI flag is separate from achievement completion; the addon disables
+the reward icon when completed and no longer unclaimed. The optional reader matches
+the full getter signature and calls it read-only, after checking loaded history
+and completion. Ambiguous or out-of-range indices are rejected. No game binaries,
+disassembly, player data or third-party source copies are distributed.
+
+Reward items are matched to catalogue tools from the live sheet: achievements
+2830/2831/2832 reward items 33356/33357/33358 respectively, with Unknown2 bits
+172/173/174. This is independent of the 483 achievements which prove acquisition
+by requiring an explicitly named tool or weapon. Partial discovery queries apply
+to the three objective achievements and never establish reward collection.

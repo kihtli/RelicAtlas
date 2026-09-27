@@ -23,13 +23,13 @@ public sealed class Plugin : IDalamudPlugin
     private readonly AtmaTravel atmaTravel;
     public Plugin(IDalamudPluginInterface pluginInterface, ICommandManager commands, IClientState client,
         IPlayerState player, ICondition condition, IFramework framework, IDataManager data, IPluginLog log, IGameGui gui,
-        ITextureProvider textures, IObjectTable objects, IAetheryteList aetherytes)
+        ITextureProvider textures, IObjectTable objects, IAetheryteList aetherytes, ISigScanner scanner)
     {
         this.pluginInterface = pluginInterface; this.commands = commands;
         config = pluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
         var catalog = Catalog.Load();
         tracker = new(config, catalog, client, player, condition, framework, data, log, gui, Save,
-            new AllaganToolsInventory(pluginInterface));
+            new AllaganToolsInventory(pluginInterface), scanner);
         fonts = new(pluginInterface);
         atmaTravel = new(config, catalog, tracker, pluginInterface, client, condition, framework, objects, aetherytes, data, log);
         window = new(config, catalog, tracker, Save, fonts.Heading, new AtlasArtwork(textures, data, catalog), atmaTravel);

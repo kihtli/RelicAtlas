@@ -31,6 +31,9 @@ public sealed class GameTracker : IDisposable
     private readonly Dictionary<uint, List<BookObjective>> books = [];
     private readonly List<AchievementEvidence> achievements = [];
     private readonly List<(Series Series, Stage Stage, Requirement Requirement)> objectiveAchievements = [];
+    private readonly AchievementProgress achievementProgress;
+    private readonly AchievementRewards achievementRewards;
+    private DateTime nextAchievementAttempt;
     public bool AchievementsLoaded { get; private set; }
     private sealed record BookObjective(Requirement Requirement, string Kind, int Index);
     private readonly HashSet<string> materialNames = [];
@@ -51,7 +54,7 @@ public sealed class GameTracker : IDisposable
 
     public GameTracker(Configuration config, Catalog catalog, IClientState client, IPlayerState player,
         ICondition condition, IFramework framework, IDataManager data, IPluginLog log, IGameGui gui, Action save,
-        AllaganToolsInventory allagan)
+        AllaganToolsInventory allagan, ISigScanner scanner)
     {
         this.config = config; this.catalog = catalog; this.client = client; this.player = player;
         this.condition = condition; this.framework = framework; this.log = log; this.save = save;
@@ -97,6 +100,8 @@ public sealed class GameTracker : IDisposable
                 objectiveAchievements.Add((series, stage, requirement));
             else Unresolved.Add("Achievement: " + requirement.AchievementName);
         }
+        achievementProgress = new(objectiveAchievements);
+        achievementRewards = new(catalog, data, scanner, log);
         try
         {
             ResolveBooks(data);
@@ -192,6 +197,7 @@ public sealed class GameTracker : IDisposable
         {
             inventory = null; inventoryOwner = 0;
             allagan.Reset();
+            achievementProgress.Reset(DateTime.UtcNow);
             lastCharacter = 0;
             AchievementsLoaded = false;
             Status = "Waiting for character data";
@@ -203,7 +209,11 @@ public sealed class GameTracker : IDisposable
             character.Name = player.CharacterName + " @ " + player.HomeWorld.Value.Name.ExtractText();
             save();
         }
-        if (!config.Automatic) { inventory = null; allagan.Reset(); Status = "Automatic detection paused"; return; }
+        if (!config.Automatic)
+        {
+            inventory = null; allagan.Reset(); achievementProgress.Reset(DateTime.UtcNow);
+            Status = "Automatic detection paused"; return;
+        }
         if (lastCharacter != id) { inventory = null; nextScan = DateTime.MinValue; lastCharacter = id; }
         if (DateTime.UtcNow < nextScan) return;
         nextScan = DateTime.UtcNow.AddSeconds(2);
@@ -271,6 +281,7 @@ public sealed class GameTracker : IDisposable
                 foreach (var name in series.Stages[evidence.Stage].Weapons[evidence.Job]) weapon.ObservedWeapons.Add(name);
                 changed = true;
             }
+        achievementRewards.AddClaimedTools(owned);
         foreach (var series in catalog.Series)
             foreach (var job in series.Jobs)
             {
@@ -292,6 +303,7 @@ public sealed class GameTracker : IDisposable
                     character.DetectedCounters[key] = requirement.Count; changed = true;
                 }
             }
+        changed |= ReadAchievementProgress(id, character);
         foreach (var (quest, keys) in sharedQuests)
             if (QuestManager.IsQuestComplete(quest))
                 foreach (var key in keys) changed |= character.CompletedShared.Add(key);
@@ -301,8 +313,42 @@ public sealed class GameTracker : IDisposable
             changed |= CosmicResearch.Apply(catalog, character, cosmic->ResearchModule->Analysis);
         inventory = counts; inventoryOwner = id; LastScan = DateTime.UtcNow;
         allagan.Update(id, materialIds);
-        Status = "Live: inventory, relics, shared quests, open ARR books and loaded Cosmic research";
+        Status = "Live: inventory, relics, achievements, quests, ARR books and loaded Cosmic research";
         if (changed) save();
+    }
+
+    private unsafe bool ReadAchievementProgress(ulong id, CharacterProgress character)
+    {
+        var now = DateTime.UtcNow;
+        if (now < nextAchievementAttempt) return false;
+        try
+        {
+            var state = FFXIVClientStructs.FFXIV.Client.Game.UI.Achievement.Instance();
+            if (state == null) { achievementProgress.Reset(now); return false; }
+            var reading = new AchievementProgressReading(state->ProgressAchievementId,
+                state->ProgressCurrent, state->ProgressMax,
+                state->ProgressRequestState == FFXIVClientStructs.FFXIV.Client.Game.UI.Achievement.AchievementState.Requested,
+                state->ProgressRequestState == FFXIVClientStructs.FFXIV.Client.Game.UI.Achievement.AchievementState.Loaded);
+            // The game's UI and other plugins share this slot. Never replace a pending query
+            // or request while the player is browsing the Achievements window.
+            var addon = gui.GetAddonByName("Achievement");
+            var changed = achievementProgress.Update(id, character, now, reading,
+                addon.Address == 0 || !addon.IsVisible, out var request);
+            if (request != 0)
+            {
+                state->RequestAchievementProgress(request);
+                achievementProgress.ObserveRequest(state->ProgressRequestState ==
+                    FFXIVClientStructs.FFXIV.Client.Game.UI.Achievement.AchievementState.Requested);
+            }
+            return changed;
+        }
+        catch (Exception ex)
+        {
+            achievementProgress.Reset(now);
+            nextAchievementAttempt = now.AddMinutes(1);
+            log.Warning(ex, "Relic Atlas could not refresh achievement objectives; recorded and manual progress is retained.");
+            return false;
+        }
     }
     public void Dispose() => framework.Update -= OnUpdate;
 }

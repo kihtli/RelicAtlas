@@ -11037,7 +11037,7 @@
               "Id": "unique-discoveries-min",
               "Label": "Unique discoveries",
               "Count": 220,
-              "Detail": "I Found That: Miner VII: record 220 unique items for this gathering class. Items from later expansions also count. Enter partial progress from Achievements; completed achievements are detected when history is loaded. Claim the reward tool after completion.",
+              "Detail": "I Found That: Miner VII: record 220 unique items for this gathering class. Items from later expansions also count. Discovery totals refresh automatically from achievement progress, with manual corrections available. Open Achievements to load completed and claimed-reward history. Claim the reward tool after completion.",
               "Item": "",
               "Hq": false,
               "Jobs": [
@@ -11051,7 +11051,7 @@
               "Id": "unique-discoveries-btn",
               "Label": "Unique discoveries",
               "Count": 340,
-              "Detail": "I Found That: Botanist VII: record 340 unique items for this gathering class. Items from later expansions also count. Enter partial progress from Achievements; completed achievements are detected when history is loaded. Claim the reward tool after completion.",
+              "Detail": "I Found That: Botanist VII: record 340 unique items for this gathering class. Items from later expansions also count. Discovery totals refresh automatically from achievement progress, with manual corrections available. Open Achievements to load completed and claimed-reward history. Claim the reward tool after completion.",
               "Item": "",
               "Hq": false,
               "Jobs": [
@@ -11065,7 +11065,7 @@
               "Id": "unique-discoveries-fsh",
               "Label": "Unique discoveries",
               "Count": 1140,
-              "Detail": "I Caught That VII: record 1,140 unique fish. Items from later expansions also count. Enter partial progress from Achievements; completed achievements are detected when history is loaded. Claim the reward tool after completion.",
+              "Detail": "I Caught That VII: record 1,140 unique fish. Items from later expansions also count. Discovery totals refresh automatically from achievement progress, with manual corrections available. Open Achievements to load completed and claimed-reward history. Claim the reward tool after completion.",
               "Item": "",
               "Hq": false,
               "Jobs": [
