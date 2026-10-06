@@ -29,6 +29,7 @@ public static class ShoppingList
         ["Titanium Alloy Mirror"] = [new("Company Seals", 5000)],
         ["Dispelling Arrow"] = [new("Company Seals", 5000)],
         ["Kingcake"] = [new("Company Seals", 5000)],
+        ["Umbrite"] = [new("Poetics", 75)],
         ["Aether Oil"] = [new("Poetics", 350)],
         ["Singing Cluster"] = [new("Poetics", 40)],
         ["Pneumite"] = [new("Poetics", 100), new("Company Seals", 4000)],
@@ -66,7 +67,7 @@ public static class ShoppingList
         return Prices.TryGetValue(material.Item, out var prices)
             ? string.Join(" OR ", prices.Where(p => currency == AllCurrencies || p.Currency == currency).Select(p => $"{(long)p.Each * material.Missing:N0} {p.Currency} ({p.Each:N0} each)"))
             : material.Objectives.SelectMany(o => o.Uses).Any(u => u.Requirement.Currencies.Count > 0)
-                ? "Craft / exchange; variable scrip inputs — see source" : "No fixed currency estimate; see source";
+                ? "Craft / exchange; variable inputs — see source" : "No fixed currency estimate; see source";
     }
     public static SortedDictionary<string, long> Budget(IEnumerable<MaterialNeed> materials, string currency = AllCurrencies)
     {
@@ -96,9 +97,10 @@ public static class ShoppingList
             foreach (var (name, amount) in Budget(rows, currency)) text.AppendLine($"{name}: {amount:N0}");
             text.AppendLine(BudgetNote).AppendLine();
         }
+        if (rows.Any(m => m.IsEstimate)) text.AppendLine(AnimaEnhancementMaterials.Note).AppendLine();
         foreach (var m in rows)
         {
-            text.AppendLine($"{m.Item}{(m.Hq ? " (HQ)" : "")}: need {m.Missing:N0}; required {m.Required:N0}; recorded {m.Recorded:N0}; bags {Number(m.Bags)}; saddlebag {Number(m.Saddlebag)}; retainers {Number(m.Retainers)}");
+            text.AppendLine($"{m.Item}{(m.Hq ? " (HQ)" : "")}{(m.IsEstimate ? " (estimate)" : "")}: need {m.Missing:N0}; required {m.Required:N0}; recorded {m.Recorded:N0}; bags {Number(m.Bags)}; saddlebag {Number(m.Saddlebag)}; retainers {Number(m.Retainers)}");
             if (!showSources) continue;
             text.AppendLine("  Purchase: " + Cost(m, currency));
             text.AppendLine("  Source: " + Source(m));

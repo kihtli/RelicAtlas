@@ -150,3 +150,114 @@ Reward items are matched to catalogue tools from the live sheet: achievements
 172/173/174. This is independent of the 483 achievements which prove acquisition
 by requiring an explicitly named tool or weapon. Partial discovery queries apply
 to the three objective achievements and never establish reward collection.
+
+## Background ARR book tracking (0.1.0.24)
+
+Reviewed 30 September 2026 against the installed game sheets and API 15 SDK.
+`Relic.ItemAtma` maps the native relic ID to the catalogue job (including separate
+Paladin sword/shield IDs). `RelicNote.EventItem` corroborates the held key item;
+its monster, dungeon, FATE and leve references bind the native slots to the
+existing requirement IDs. All nine books have 20 unambiguous bindings, including
+purchase, and all monster targets require three kills. Thirty catalogue labels
+include an exact `x3` suffix; matching accepts that suffix without changing saved
+keys or relying on catalogue order.
+
+[FFXIVClientStructs RelicNote](https://github.com/aers/FFXIVClientStructs/blob/main/FFXIVClientStructs/FFXIV/Client/Game/UI/RelicNote.cs)
+defines the book/relic IDs, ten monster counters and dungeon/FATE/leve completion
+bits. [UIState](https://github.com/aers/FFXIVClientStructs/blob/main/FFXIVClientStructs/FFXIV/Client/Game/UI/UIState.cs)
+holds this state independently of the book addon. There is no documented native
+owner or loaded flag for this structure. The reader therefore uses the loaded
+player identity, loaded inventory, matching key item and two consecutive identity
+observations, resetting its session checks on logout, transitions and paused
+detection. Runtime lifecycle timing still requires live-client verification.
+
+## Zodiac book destinations and travel (0.1.0.25)
+
+The embedded `Data/book-locations.json` preserves the catalogue's existing
+monster and FATE coordinates. Dungeon destinations are overworld entrance
+markers from the installed game's Map/MapMarker sheets, not dungeon interior
+coordinates. Leve destinations use Leve.LevelLevemete → Level → ENpcResident
+to identify the actual issuer. The book vendor uses the game's Level placement.
+The 180 entries cover 90 monster, 27 dungeon, 27 FATE, 27 leve and nine purchase
+requirements. Only the 171 activity objectives appear in the held-book guide.
+
+All destinations were checked against the installed TerritoryType/Map sheets
+and the runtime aetheryte resolver: the English zone name, territory and map
+match, and every destination map has at least one resolvable aetheryte (20
+aetherytes across 15 maps). Actual availability comes from the character's
+unlocked aetherytes, not that static coverage check. Level coordinates use
+Dalamud's MapUtil.WorldToMap; MapMarker positions use the documented
+[map texture coordinate conversion](https://github.com/xivapi/ffxiv-datamining/blob/master/docs/MapCoordinates.md).
+Closest destinations use straight-line map distance and do not calculate terrain
+or walking paths. MapLinkPayload plus IGameGui.OpenMapWithMapLink places flags;
+Teleporter's existing `Teleport(uint, byte) → bool` IPC requests teleportation.
+
+The guide reads detected objective counters independently of manual checklist
+corrections. Travel uses only a currently confirmed held-book snapshot and
+revalidates the character, relic ID, book ID and objective at execution.
+Mounted, riding-pillion (the current name for Mounted2) and InFlight condition
+flags are allowed by the shared Atma/book teleport gate; other busy flags remain
+blocking. Native cast acceptance, arrival flag behaviour and in-game rendering
+still require client validation.
+
+
+## ARR objective readers (2 October 2026)
+
+- Installed English `Relic3` rows map all 11 sphere-scroll items to their Novus
+  weapons and capacities (75, or 53/22 for Paladin). The native
+  `RelicSphereScroll` arguments provide inventory container and slot at 4/5,
+  the item name at 3, and infusion count/capacity at 10/11. Container/slot,
+  held item, localized title, numeric types and capacity are checked. A live
+  Bravura observation confirmed 72/75; the counter is retained after closing.
+- Installed client relic checks read `InventoryItem.GetFlags()`'s Relic bit
+  and `GetSpiritbondOrCollectability()`. Novus uses 0–2000; the flag is its
+  soulglaze state. Zodiac/Mahatma work uses an index stride of 500 and an
+  80-unit current stone, finishing at 5580. The UI normalizes the native
+  current-stone value to the catalogue's existing 40-point scale. Only exact
+  catalogue weapon names in the corresponding tiers are eligible. Ordinary
+  spiritbond and other relic families are not treated as ARR light.
+- Structure access follows the installed
+  [FFXIVClientStructs InventoryItem](https://github.com/aers/FFXIVClientStructs/blob/main/FFXIVClientStructs/FFXIV/Client/Game/InventoryItem.cs)
+  and QuestManager definitions. No fixed executable addresses are used at runtime.
+- All ten non-repeatable A Relic Reborn quests were matched by job, title and
+  verified ToDoCompleteSeq layout. Only passed journal milestones are credited;
+  group kills are not estimated. The four repeatable Zodiac material quests
+  use their verified delivery sequences and held rewards: Book of Skylight,
+  Zodium, Zodiac Scroll and Flawless Alexandrite. Their historical completion
+  flags are deliberately not used as fresh progress.
+- Soulglazing duty notes were checked against the
+  [Nexus quest reference](https://ffxiv.consolegameswiki.com/wiki/Nexus_Zodiac_Weapons/Quest)
+  and [Icy Veins Nexus guide](https://www.icy-veins.com/ffxiv/nexus-relic-weapons).
+  Recommendations distinguish normal yields and observed two-hour bonuses;
+  they do not predict which duty is currently on bonus.
+
+## Anima progress audit — 3 October 2026
+
+The installed Quest sheet and quest scripts were used to validate accepted-job
+objectives and sequence boundaries for Toughening Up (67749), A Dream Fulfilled
+(67864), Born Again Anima (67932) and Best Friends Forever (67940). Runtime
+validates names, repeatability and expected objective sequences before binding.
+Item rows validate the seven exchange products. Private-use quest icons are
+removed for name matching. Generational Bonding is quest 70255.
+
+Exchange quantities were cross-checked against the [Anima quest guide](https://ffxiv.consolegameswiki.com/wiki/Anima_Weapons/Quest)
+and [Complete Anima guide](https://ffxiv.consolegameswiki.com/wiki/Complete_Anima_Weapons/Quest).
+The native Relic2Glass display was inspected locally to identify density and
+inventory-slot arguments; the reader validates the visible window, value types,
+held weapon, localized title and active quest owner. No executable addresses,
+game binaries or extracted quest text are distributed.
+
+Anima shopping estimates use the 60-item maximum in the official [patch 6.0 notes](https://na.finalfantasyxiv.com/lodestone/topics/detail/bdd208b52ddababad086dc9679e96a8412962edf) and the conversion/Umbrite cost in the [Reconditioned quest guide](https://ffxiv.consolegameswiki.com/wiki/Reconditioned_Anima_Weapons/Quest), checked 3 October 2026.
+
+The live AWMakingSpiritGrow window uses the Relic2Growth layout and a 111-value
+allocation payload. Proposed/committed totals (29/30), limit (31) and per-stat
+pairs (42/43 with stride seven, a second group for PLD) were checked against the
+native layout reader and the live 36/180 display. The production reader uses SDK
+AtkValue fields and active-quest ownership, with no raw executable addresses.
+
+The 4 October density reader traces the installed client’s GetAnimaWeapon7EnhancePoint
+Lua binding to the same ushort state getter used by the Anima Glass. Native
+character-data initialization and server updates write that state even when the
+glass is closed. A unique glass call-site signature and exact getter-body check
+validate the field layout; only the shared value is read. Runtime quest/job and
+weapon checks prevent attributing it to a different relic.

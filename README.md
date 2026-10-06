@@ -26,6 +26,22 @@ The main plugin ZIP contains the DLL and manifest at its root for Dalamud's
 installer. The Umbra extension is installed from its
 [own GitHub repository](https://github.com/kihtli/Umbra.RelicAtlas) through Umbra.
 
+## New in 0.1.0.34
+
+- Automatic ARR book/job tracking, scroll infusions, Nexus light and Mahatmas.
+- Resizable Zodiac book tracker with hide-completed, current-zone suggestions,
+  teleport and map flags; shrinks to 320×360 before UI scaling.
+- Automatic HW quest duty tracking, confirmed Anima stat allocations and
+  aetheric density without opening the glass. Density is read only during
+  Born Again Anima’s light-gathering phase, for its accepted job and held weapon.
+- Crystal Sand/Umbrite shopping estimates and a readable, scrolling Budget popup.
+- HHE-style compact main layouts down to 600×440 and mounted travel support.
+
+Manual corrections remain available and take precedence until **Use game progress**
+is selected. Detection uses available game evidence; unsupported objectives still
+need manual input. The new density reader has native-code and regression validation;
+a live post-duty increase has not yet been verified.
+
 ## Features
 
 - **Overview:** separate weapon and tool grids covering 150 eligible relic tracks
@@ -42,8 +58,8 @@ installer. The Umbra extension is installed from its
 - **Umbra companion:** relic progress on an Umbra toolbar, following the current
   job or a fixed job/expansion.
 
-Progress is saved separately for each character. The interface uses a custom
-purple/cyan theme with original embedded artwork. Relic armour is outside this release.
+Progress is saved separately for each character. The interface uses a
+Graphite palette inspired by HuntHelperEvolved, with blue accents and compact layouts. Relic armour is outside this release.
 
 ## Crafting and gathering tools
 

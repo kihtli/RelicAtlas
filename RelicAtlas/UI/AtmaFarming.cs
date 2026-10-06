@@ -9,6 +9,7 @@ namespace RelicAtlas.UI;
 
 public sealed partial class MainWindow
 {
+    private bool atmaScheduleView;
     private string atmaJob = "PLD";
 
     public void OpenAtma(string? job = null, bool followCurrent = true)
@@ -32,7 +33,7 @@ public sealed partial class MainWindow
         var missing = AtmaSchedule.Missing(catalog, character, atmaJob, bags);
         var arr = catalog.Series.Single(s => s.Id == "arr");
         SectionLabel("Atma farming", $"{now:HH:mm:ss} ST / UTC");
-        ImGui.TextColored(Muted, "Unverified player theory · assumes JST. No confirmed time-based drop bonus.");
+        Wrap("Unverified player theory · assumes JST. No confirmed time-based drop bonus.");
         if (ActionButton("Back to checklist", false, 155, 28))
         {
             page = AtlasPage.Collection; expansion = "arr"; Select("arr", atmaJob);
@@ -47,7 +48,7 @@ public sealed partial class MainWindow
             ImGui.EndCombo();
         }
         ImGui.SameLine(); ImGui.AlignTextToFramePadding(); ImGui.TextColored(Muted, $"{12 - missing.Count}/12 collected");
-        ImGui.SameLine();
+        if (!compactLayout) ImGui.SameLine();
         if (ActionButton("About this theory", false, 147, 28, true)) ImGui.OpenPopup("atma-theory");
         if (ImGui.BeginPopup("atma-theory"))
         {
@@ -70,9 +71,17 @@ public sealed partial class MainWindow
             Tip("Compact tracker for your logged-in character across all unfinished ARR jobs. It stays open independently of this page.");
         }
         ImGui.Spacing();
+        if (compactLayout)
+        {
+            if (Navigation("atma-travel","Travel",!atmaScheduleView,0,true)) atmaScheduleView=false;
+            ImGui.SameLine();
+            if (Navigation("atma-schedule-tab","Schedule",atmaScheduleView,0,true)) atmaScheduleView=true;
+        }
         var available = ImGui.GetContentRegionAvail();
         var side = available.X < 1030 * Scale ? 256 * Scale : 292 * Scale;
-        ImGui.BeginChild("atma-route-controls", new Vector2(side, available.Y), false);
+        if (!compactLayout || !atmaScheduleView)
+        {
+        ImGui.BeginChild("atma-route-controls", new Vector2(compactLayout ? 0 : side, available.Y), false);
         DrawAtmaWindow("CURRENT WINDOW", current, now, id, missing, true);
         ImGui.Spacing();
         DrawAtmaWindow("UP NEXT", next, now, id, missing, false);
@@ -105,7 +114,10 @@ public sealed partial class MainWindow
         if (atmaTravel?.HasServerTime != true) { ImGui.Spacing(); Wrap("Using computer UTC for display. Automatic travel waits for the game's ST clock."); }
         ImGui.PopStyleColor();
         ImGui.EndChild();
-        ImGui.SameLine();
+        }
+        if (!compactLayout) ImGui.SameLine();
+        if (!compactLayout || atmaScheduleView)
+        {
         ImGui.BeginChild("atma-schedule", new Vector2(0, available.Y), true, ImGuiWindowFlags.NoScrollbar);
         DrawAtmaTotals(totals);
         ImGui.PushStyleVar(ImGuiStyleVar.CellPadding, new Vector2(8, 7) * Scale);
@@ -153,6 +165,7 @@ public sealed partial class MainWindow
             ImGui.EndTable();
         }
         ImGui.PopStyleVar(); ImGui.EndChild();
+        }
     }
 
     private void DrawAtmaTotals(AtmaTotals totals)

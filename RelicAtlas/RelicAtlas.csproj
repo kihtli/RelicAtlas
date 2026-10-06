@@ -1,6 +1,6 @@
 <Project Sdk="Dalamud.NET.Sdk/15.0.0">
   <PropertyGroup>
-    <Version>0.1.0.23</Version>
+    <Version>0.1.0.34</Version>
     <Authors>kihtli</Authors>
     <Description>Relic weapons and tools, every job, every next step.</Description>
     <PathMap>$(MSBuildProjectDirectory)=/_/RelicAtlas</PathMap>
@@ -12,6 +12,7 @@
     <EmbeddedResource Include="Assets/Atlas-Medium.ttf" LogicalName="RelicAtlas.HeadingFont" />
     <EmbeddedResource Include="Data/catalog.json" LogicalName="RelicAtlas.Catalog.json" />
     <EmbeddedResource Include="Data/achievements.json" LogicalName="RelicAtlas.Achievements.json" />
+    <EmbeddedResource Include="Data/book-locations.json" LogicalName="RelicAtlas.BookLocations.json" />
     <Compile Remove="tests/**/*.cs" />
     <Compile Remove="artifacts/**/*.cs" />
   </ItemGroup>

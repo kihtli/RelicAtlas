@@ -74,8 +74,8 @@ public sealed class AtmaTravel : IAtmaTravel, IDisposable
         var player = objects.LocalPlayer;
         if (!client.IsLoggedIn || player == null) return "Waiting for your character.";
         var flags = condition.AsReadOnlySet();
-        if (client.IsPvP || player.IsDead || player.IsCasting || flags.Count == 0 || flags.Any(f => f != ConditionFlag.NormalConditions))
-            return "Waiting until you're free to teleport. Finish your current activity and dismount.";
+        if (client.IsPvP || player.IsDead || player.IsCasting || !TeleportConditions.Allow(flags))
+            return "Waiting until you're free to teleport. Finish your current activity.";
         var fate = FFXIVClientStructs.FFXIV.Client.Game.Fate.FateManager.Instance();
         if (fate != null && fate->GetCurrentFateId() != 0) return "Finish or leave the current FATE before teleporting.";
         if (Environment.TickCount64 - movedAt < 2500) return "Waiting until you've stood still for a moment.";

@@ -29,6 +29,7 @@ public sealed partial class MainWindow
             overviewRefresh = DateTime.UtcNow.AddMilliseconds(500);
         }
         var data = overview;
+        if (compactLayout) { DrawCompactOverview(data); return; }
         var collections = VisibleSeries.ToArray();
         var compact = ImGui.GetContentRegionAvail().X < 1030 * Scale;
         DrawOverviewSummary(data, id);
@@ -108,8 +109,8 @@ public sealed partial class MainWindow
         var p = ImGui.GetCursorScreenPos(); var width = ImGui.GetContentRegionAvail().X;
         var size = new Vector2(width, 96 * Scale); var d = ImGui.GetWindowDrawList();
         d.AddRectFilled(p, p + size, Ink(Surface), 9 * Scale);
-        artwork?.Backdrop(p, size);
-        d.AddRectFilled(p, p + size, Ink(new(.035f, .03f, .075f, .82f)), 9 * Scale);
+
+        d.AddRectFilled(p, p + size, Ink(Surface), 9 * Scale);
         Label(p + new Vector2(20, 18) * Scale, relicKind == "tool" ? "Tool collection" : "Collection overview", White, 1.55f);
         var note = readOnly ? "Catalogue preview · log in to save" : id != tracker.CurrentId ? "Saved profile · live inventory unavailable" :
             !config.Automatic ? "Automatic tracking paused" : $"{data.Total.Total} relics · {data.Jobs.Length} jobs · {VisibleSeries.Select(s => s.ExpansionKey).Distinct().Count()} expansions";
@@ -166,8 +167,8 @@ public sealed partial class MainWindow
             Select(relic.SeriesId, relic.Job);
         }
         var d = ImGui.GetWindowDrawList();
-        var surface = status == RelicCollectionStatus.NotStarted ? new Vector4(.07f, .073f, .115f, 1) : new(.125f, .105f, .20f, 1);
-        d.AddRectFilled(p, p + size, Ink(hover ? new(.19f, .16f, .29f, 1) : surface), 6 * Scale);
+        var surface = status == RelicCollectionStatus.NotStarted ? AtlasTheme.Rgb(0x181a1c) : AtlasTheme.Rgb(0x293b58);
+        d.AddRectFilled(p, p + size, Ink(hover ? AtlasTheme.Rgb(0x354b6b) : surface), 6 * Scale);
         if (focus || hover) d.AddRect(p, p + size, Ink(Cyan), 6 * Scale);
         var stages = $"{relic.AcquiredStages}/{relic.TotalStages}";
         var countWidth = ImGui.CalcTextSize(stages).X * .75f;

@@ -8,10 +8,10 @@ namespace RelicAtlas.UI;
 
 public sealed partial class MainWindow
 {
-    private static readonly Vector4 Surface = new(.075f, .082f, .13f, 1);
-    private static readonly Vector4 Edge = new(.21f, .23f, .34f, 1);
-    private static readonly Vector4 White = new(.94f, .95f, 1, 1);
-    private static readonly Vector4 Violet = new(.64f, .48f, .99f, 1);
+    private static readonly Vector4 Surface = AtlasTheme.Rgb(0x222426);
+    private static readonly Vector4 Edge = AtlasTheme.Rgb(0x41464a);
+    private static readonly Vector4 White = AtlasTheme.Rgb(0xedf0f2);
+    private static readonly Vector4 Violet = AtlasTheme.Rgb(0x81aaff);
     private static uint Ink(Vector4 color)
     {
         color.W *= ImGui.GetStyle().Alpha;
@@ -38,7 +38,9 @@ public sealed partial class MainWindow
         ImGui.PushStyleColor(ImGuiCol.ButtonHovered, Vector4.Zero);
         ImGui.PushStyleColor(ImGuiCol.ButtonActive, Vector4.Zero);
         // Keep ImGui's keyboard navigation and hit testing without drawing a second label.
+        ImGui.PushStyleVar(ImGuiStyleVar.FrameBorderSize, 0f);
         var click = ImGui.Button("###" + id, size);
+        ImGui.PopStyleVar();
         hover = ImGui.IsItemHovered(); focus = ImGui.IsItemFocused();
         ImGui.PopStyleColor(3);
         return click;
@@ -73,49 +75,33 @@ public sealed partial class MainWindow
 
     private void DrawRelicKindPicker()
     {
-        var p = ImGui.GetCursorScreenPos(); var width = ImGui.GetContentRegionAvail().X;
-        if (Navigation("weapons-kind", "Weapons", relicKind == "weapon", 106, true)) ChangeRelicKind("weapon");
+        if (Navigation("weapons-kind","Weapons",relicKind == "weapon",0,true)) ChangeRelicKind("weapon");
         ImGui.SameLine();
-        if (Navigation("tools-kind", "Crafting & gathering", relicKind == "tool", 207, true)) ChangeRelicKind("tool");
-        var note = relicKind == "tool" ? "11 classes · 5 tool collections" : "21 jobs · 6 weapon collections";
-        Label(p + new Vector2(width - ImGui.CalcTextSize(note).X * .85f - 8 * Scale, 10 * Scale), note, Muted, .85f);
-        ImGui.SetCursorScreenPos(p); ImGui.Dummy(new Vector2(width, 44 * Scale));
+        if (Navigation("tools-kind","Crafting & gathering",relicKind == "tool",0,true)) ChangeRelicKind("tool");
+        ImGui.Spacing();
     }
 
     private void DrawMasthead(CharacterProgress c, ulong id)
     {
-        var p = ImGui.GetCursorScreenPos(); var w = ImGui.GetContentRegionAvail().X; var d = ImGui.GetWindowDrawList();
-        if (artwork?.Logo(p + new Vector2(-3, -1) * Scale, new Vector2(215, 66) * Scale) != true)
-            Label(p + new Vector2(3, 21) * Scale, "Relic Atlas", White, 1.55f);
-        var tabWidth = w < 1000 * Scale ? 104f : 124f;
-        var navSize = new Vector2(tabWidth * 3 + 16, 46) * Scale;
-        var nav = p + new Vector2((w - navSize.X) / 2, 10 * Scale);
-        d.AddRectFilled(nav, nav + navSize, Ink(new(.075f, .075f, .12f, 1)), 9 * Scale);
-        d.AddRect(nav, nav + navSize, Ink(new(.22f, .20f, .31f, .8f)), 9 * Scale);
-        var pages = new[] { (AtlasPage.Overview, "Overview"), (AtlasPage.Collection, "Collection"), (AtlasPage.Shopping, "Shopping list") };
-        for (var i = 0; i < pages.Length; i++)
+        if (compactLayout) DrawToolbar(c,id,ImGui.GetContentRegionAvail().X / Scale);
+        else
         {
-            ImGui.SetCursorScreenPos(nav + new Vector2(4 + i * (tabWidth + 4), 4) * Scale);
-            if (HeaderTab(pages[i].Item1.ToString(), pages[i].Item2, page == pages[i].Item1 || page == AtlasPage.Atma && pages[i].Item1 == AtlasPage.Collection, tabWidth))
-            { page = pages[i].Item1; if (page == AtlasPage.Overview) overviewRefresh = DateTime.MinValue; }
+        ImGui.BeginGroup();
+        ImGui.TextColored(Accent, "Relic Atlas");
+        ImGui.TextColored(Muted, "Relic progress");
+        ImGui.EndGroup();
+        ImGui.SameLine();
+        var profileWidth = Math.Min(260 * Scale, ImGui.GetWindowWidth() * .52f);
+        ImGui.SetCursorPosX(ImGui.GetCursorPosX() + ImGui.GetContentRegionAvail().X - profileWidth);
+        ImGui.BeginGroup(); DrawToolbar(c,id,profileWidth / Scale); ImGui.EndGroup();
         }
-        var profile = p + new Vector2(w - 258 * Scale, 1 * Scale);
-        ImGui.SetCursorScreenPos(profile);
-        ImGui.BeginGroup(); DrawToolbar(c, id, 220); ImGui.EndGroup();
-        var close = p + new Vector2(w - 28 * Scale, 17 * Scale);
-        ImGui.SetCursorScreenPos(close);
-        if (CanvasButton("close-window", new Vector2(28, 32) * Scale, out var hover, out var focus)) IsOpen = false;
-        if (hover || focus) d.AddRectFilled(close, close + new Vector2(28, 32) * Scale, Ink(Surface), 5 * Scale);
-        if (focus) d.AddRect(close, close + new Vector2(28, 32) * Scale, Ink(Cyan), 5 * Scale);
-        var center = close + new Vector2(14, 16) * Scale;
-        Line(center + new Vector2(-4, -4) * Scale, center + new Vector2(4, 4) * Scale, hover || focus ? White : Muted, 1.5f);
-        Line(center + new Vector2(4, -4) * Scale, center + new Vector2(-4, 4) * Scale, hover || focus ? White : Muted, 1.5f);
-        Tip("Close Relic Atlas");
-        // Explicit drag targets keep the header movable even with title-bar-only dragging enabled.
-        HeaderDrag("logo", p, new Vector2(nav.X - p.X - 8 * Scale, 66 * Scale));
-        HeaderDrag("gap", new Vector2(nav.X + navSize.X + 8 * Scale, p.Y), new Vector2(profile.X - nav.X - navSize.X - 16 * Scale, 66 * Scale));
-        Line(p + new Vector2(0, 66) * Scale, p + new Vector2(w, 66 * Scale), new(.17f, .18f, .28f, 1));
-        ImGui.SetCursorScreenPos(p); ImGui.Dummy(new Vector2(w, 77 * Scale));
+        foreach (var tab in new[] { (AtlasPage.Overview,"Overview"), (AtlasPage.Collection,"Collection"), (AtlasPage.Shopping,"Shopping list") })
+        {
+            if (tab.Item1 != AtlasPage.Overview) ImGui.SameLine();
+            if (Navigation(tab.Item1.ToString(),tab.Item2,page == tab.Item1 || page == AtlasPage.Atma && tab.Item1 == AtlasPage.Collection,0,true))
+            { page = tab.Item1; overviewRefresh = DateTime.MinValue; }
+        }
+        ImGui.Separator();
     }
     private bool HeaderTab(string id, string title, bool selected, float width)
     {
@@ -138,13 +124,15 @@ public sealed partial class MainWindow
     }
     private bool Navigation(string id, string title, bool selected, float width, bool compact = false)
     {
-        var p = ImGui.GetCursorScreenPos(); var size = new Vector2(width, compact ? 34 : 41) * Scale;
-        var clicked = CanvasButton("##" + id, size, out var hover, out var focus);
-        var d = ImGui.GetWindowDrawList();
-        if (hover || selected && !compact) d.AddRectFilled(p, p + size, Ink(selected ? new(.20f, .16f, .33f, 1) : Surface), 8 * Scale);
-        if (focus) d.AddRect(p, p + size, Ink(Cyan), 8 * Scale);
-        Label(p + (size - ImGui.CalcTextSize(title)) / 2, title, selected ? White : Muted);
-        if (selected) Line(p + new Vector2((compact ? 12 : 22) * Scale, size.Y), p + new Vector2(size.X - (compact ? 12 : 22) * Scale, size.Y), compact ? Violet : Cyan, 2);
+        ImGui.PushID(id);
+        ImGui.PushStyleColor(ImGuiCol.Button,Vector4.Zero);
+        ImGui.PushStyleColor(ImGuiCol.Text,selected ? White : Muted);
+        ImGui.PushStyleVar(ImGuiStyleVar.FrameBorderSize,0);
+        var clicked = ImGui.Button(title);
+        ImGui.PopStyleVar();
+        var min = ImGui.GetItemRectMin(); var max = ImGui.GetItemRectMax();
+        if (selected) Line(new(min.X,max.Y),max,Accent,2);
+        ImGui.PopStyleColor(2); ImGui.PopID();
         return clicked;
     }
     private void DrawExpansionPicker(float width = -1)
@@ -174,8 +162,8 @@ public sealed partial class MainWindow
         if (CanvasButton("##relic", size, out var hover, out var focus)) Select(row.Series.Id, row.Job);
         Tip($"{JobName(row.Job)} / {row.Series.Name}\nNext stage: {row.Next?.Name ?? "Complete"}\n{row.Objective?.Label ?? ""}");
         var d = ImGui.GetWindowDrawList();
-        if (selected || hover) d.AddRectFilled(p, p + size, Ink(selected ? new(.18f, .145f, .285f, 1) : Surface), 7 * Scale);
-        if (selected) d.AddRect(p, p + size, Ink(new(.39f, .31f, .56f, .6f)), 7 * Scale);
+        if (selected || hover) d.AddRectFilled(p, p + size, Ink(selected ? AtlasTheme.Rgb(0x293b58) : Surface), 7 * Scale);
+        if (selected) d.AddRect(p, p + size, Ink(Edge), 7 * Scale);
         if (selected) d.AddRectFilled(p + new Vector2(0, 16) * Scale, p + new Vector2(3, 57) * Scale, Ink(Cyan), 2 * Scale);
         if (focus) d.AddRect(p, p + size, Ink(Cyan), 7 * Scale);
         var badge = p + new Vector2(11, 17) * Scale;
@@ -194,30 +182,15 @@ public sealed partial class MainWindow
     }
     private void DrawRelicHeading(Series series, string job, int complete, int current)
     {
-        var p = ImGui.GetCursorScreenPos(); var w = ImGui.GetContentRegionAvail().X; var d = ImGui.GetWindowDrawList();
-        var compact = w < 640 * Scale;
-        var height = compact ? 130f : 154f;
-        var size = new Vector2(w, height * Scale);
-        d.AddRectFilled(p, p + size, Ink(new(.12f, .075f, .23f, 1)), 10 * Scale);
-        artwork?.Backdrop(p, size);
-        d.AddRectFilledMultiColor(p, p + size, Ink(new(.035f, .03f, .08f, .30f)), Ink(new(.035f, .03f, .08f, .06f)), Ink(new(.035f, .03f, .08f, .35f)), Ink(new(.035f, .03f, .08f, .5f)));
-        Label(p + new Vector2(21, 14) * Scale, $"{JobName(job)}  /  {ExpansionName(series.ExpansionKey)}", Lavender, .95f);
-        Label(p + new Vector2(19, compact ? 30 : 36) * Scale, Fit(series.Name, (w * .62f - 30 * Scale) / (compact ? 1.9f : 2.25f)), White, compact ? 1.9f : 2.25f);
-        var weapon = series.Stages[current].Weapons[job].FirstOrDefault() ?? "";
-        var hasIcon = artwork?.Weapon(weapon, p + new Vector2(21, compact ? 72 : 82) * Scale, new Vector2(compact ? 28 : 33) * Scale) == true;
-        var textX = (hasIcon ? 65 : 21) * Scale;
-        var weaponNames = string.Join(" + ", series.Stages[current].Weapons[job]);
-        Label(p + new Vector2(textX, (compact ? 74 : 85) * Scale), Fit(weaponNames, (w * .63f - textX) / .95f), White, .95f);
-        if (ImGui.IsMouseHoveringRect(p + new Vector2(textX, (compact ? 72 : 82) * Scale), p + new Vector2(w * .64f, (compact ? 102 : 116) * Scale)))
-            ImGui.SetTooltip(weaponNames);
-        Label(p + new Vector2(21, height - 26) * Scale, $"Stage {current + 1:D2}  ·  {series.Stages[current].Name}", Cyan, .9f);
-        var progress = $"{complete + 1} / {series.Stages.Count} acquired";
-        Label(p + new Vector2(w - ImGui.CalcTextSize(progress).X * .9f - 19 * Scale, (height - 26) * Scale), progress, White, .9f);
-        ImGui.Dummy(size);
+        var width = Math.Max(1,ImGui.GetContentRegionAvail().X - 114 * Scale);
+        ImGui.TextColored(Accent,Fit($"{JobName(job)} · {series.Name}",width));
+        var names = string.Join(" + ",series.Stages[current].Weapons[job]);
+        ImGui.TextUnformatted(Fit(names,width)); Tip(names);
+        ImGui.Spacing();
     }
     private void DrawStagePath(Series series, int complete, int current)
     {
-        if (series.Stages.Count > 12)
+        if (compactLayout || series.Stages.Count > 12)
         {
             ImGui.SetNextItemWidth(-1);
             if (ImGui.BeginCombo("##long-stage-path", $"Stage {current + 1:D2} / {series.Stages.Count}   ·   {series.Stages[current].Name}"))
@@ -247,14 +220,12 @@ public sealed partial class MainWindow
     }
     private bool ActionButton(string title, bool primary, float width, float height, bool quiet = false)
     {
-        var p = ImGui.GetCursorScreenPos(); var size = new Vector2(width, height) * Scale;
-        var click = CanvasButton(title, size, out var hover, out var focus); var d = ImGui.GetWindowDrawList();
-        if (!quiet || hover || focus)
-            d.AddRectFilled(p, p + size, Ink(primary ? (hover ? new(.62f,.94f,.98f,1) : Cyan) : (hover ? new(.22f,.18f,.33f,1) : new(.13f,.12f,.22f,.96f))), 5 * Scale);
-        if (!primary && !quiet) d.AddRect(p, p + size, Ink(new(.34f,.30f,.45f,.55f)), 5 * Scale);
-        if (focus) d.AddRect(p - new Vector2(2) * Scale, p + size + new Vector2(2) * Scale, Ink(Lavender), 6 * Scale);
-        Label(p + (size - ImGui.CalcTextSize(title) * .94f) / 2, title, primary ? new(.025f,.09f,.12f,1) : quiet && !hover ? Muted : White, .94f);
-        return click;
+        if (quiet) ImGui.PushStyleColor(ImGuiCol.Button,Vector4.Zero);
+        if (primary) ImGui.PushStyleColor(ImGuiCol.Button,new Vector4(.16f,.23f,.35f,1));
+        var clicked = ImGui.Button(title,new Vector2(Math.Max(width * Scale,ImGui.CalcTextSize(title).X + ImGui.GetStyle().FramePadding.X * 2),ImGui.GetFrameHeight()));
+        if (primary) ImGui.PopStyleColor();
+        if (quiet) ImGui.PopStyleColor();
+        return clicked;
     }
     private static bool ObjectiveCheck(ref bool value)
     {
@@ -268,59 +239,31 @@ public sealed partial class MainWindow
     }
     private void DrawNextAction(CharacterProgress c, Series series, string job, Stage stage, Requirement r, ulong id)
     {
-        var p = ImGui.GetCursorScreenPos(); var w = ImGui.GetContentRegionAvail().X;
-        var textWidth = w - 34 * Scale;
-        var d = ImGui.GetWindowDrawList();
-        // Measure real content first, then paint its background in a lower draw channel.
-        d.ChannelsSplit(2); d.ChannelsSetCurrent(1);
-        ImGui.SetCursorScreenPos(p + new Vector2(17, 12) * Scale);
-        ImGui.BeginGroup();
-        Label(ImGui.GetCursorScreenPos(), "Up next", Cyan, .95f);
-        ImGui.Dummy(new Vector2(textWidth, 24 * Scale));
-        Label(ImGui.GetCursorScreenPos(), Fit(r.Label, textWidth / 1.2f), White, 1.2f);
-        ImGui.Dummy(new Vector2(textWidth, 22 * Scale)); Tip(r.Label);
-        if (r.Detail.Length > 0)
-        {
-            ImGui.PushTextWrapPos(ImGui.GetCursorPosX() + textWidth);
-            ImGui.PushStyleColor(ImGuiCol.Text, Muted); ImGui.TextUnformatted(r.Detail); ImGui.PopStyleColor(); ImGui.PopTextWrapPos();
-        }
-        ImGui.EndGroup();
-        var height = ImGui.GetItemRectMax().Y - p.Y + 14 * Scale;
-        ImGui.SetCursorScreenPos(p + new Vector2(w - (r.Count > 1 ? 290 : 115) * Scale, 10 * Scale));
+        Wrap("Next: " + r.Label);
         ImGui.BeginDisabled(readOnly); ImGui.PushID("next-action"); ImGui.PushID(r.Id);
-        DrawQuickAction(c, series, job, stage, r, id);
+        DrawQuickAction(c,series,job,stage,r,id);
         ImGui.PopID(); ImGui.PopID(); ImGui.EndDisabled();
-        d.ChannelsSetCurrent(0);
-        d.AddRectFilled(p, p + new Vector2(w, height), Ink(new(.105f, .13f, .195f, 1)), 9 * Scale);
-        Line(p + new Vector2(17, 0) * Scale, p + new Vector2(81, 0) * Scale, Cyan, 2);
-        d.ChannelsMerge();
-        ImGui.SetCursorScreenPos(p); ImGui.Dummy(new Vector2(w, height + 3 * Scale));
+        if (r.Detail.Length > 0) { ImGui.TextColored(Muted,"Step guidance"); Tip(r.Detail); }
+        ImGui.Separator();
     }
     private void DrawMissionSwitch()
     {
-        var p = ImGui.GetCursorScreenPos(); var w = ImGui.GetContentRegionAvail().X;
-        for (int i = 0; i < 2; i++)
-        {
-            var start = p + new Vector2(i * 124, 0) * Scale; ImGui.SetCursorScreenPos(start);
-            var selected = guideView == (i == 1);
-            if (CanvasButton("##mission-mode" + i, new Vector2(117, 35) * Scale, out var hover, out var focus)) guideView = i == 1;
-            Label(start + new Vector2(0, 5) * Scale, i == 0 ? "Objectives" : "Guide & notes", selected || hover ? White : Muted);
-            if (selected || focus) Line(start + new Vector2(0, 33) * Scale, start + new Vector2(100, 33) * Scale, Violet, 2);
-        }
+        if (Navigation("objectives","Objectives",!guideView,0,true)) guideView = false;
+        ImGui.SameLine();
+        if (Navigation("guide","Guide & notes",guideView,0,true)) guideView = true;
         if (!guideView)
         {
-            Label(p + new Vector2(w - 180 * Scale, 5 * Scale), objectiveSummary, Muted, .9f);
-            ImGui.SetCursorScreenPos(p + new Vector2(w - 54 * Scale, 3 * Scale));
-            if (ActionButton("View", false, 51, 26)) ImGui.OpenPopup("objective-view");
+            ImGui.SameLine();
+            if (ImGui.Button("View")) ImGui.OpenPopup("objective-view");
             if (ImGui.BeginPopup("objective-view"))
             {
-                ImGui.Checkbox("Hide ready objectives", ref hideReady);
+                ImGui.Checkbox("Hide ready objectives",ref hideReady);
                 if (ImGui.Button(expandGroups ? "Collapse all groups" : "Expand all groups"))
                 { expandGroups = !expandGroups; groupExpansion = expandGroups; ImGui.CloseCurrentPopup(); }
                 ImGui.EndPopup();
             }
+            ImGui.TextColored(Muted,objectiveSummary);
         }
-        ImGui.SetCursorScreenPos(p); ImGui.Dummy(new Vector2(w, 42 * Scale));
     }
     private bool MissionGroup(string title, int done, int total, bool open, float trailing = 0)
     {
@@ -337,19 +280,6 @@ public sealed partial class MainWindow
     }
     private void DrawSupplyStats(RemainingPlan plan)
     {
-        var p = ImGui.GetCursorScreenPos(); var w = ImGui.GetContentRegionAvail().X; var cell = w / 3; var d = ImGui.GetWindowDrawList();
-        var values = new[] { (plan.Weapons, "Relics in scope"), (plan.Materials.Count(m => m.Missing > 0), "Materials to collect"), (plan.Objectives.Count, "Duties & unlocks") };
-        var size = new Vector2(w, 88 * Scale);
-        d.AddRectFilled(p, p + size, Ink(Surface), 10 * Scale);
-        artwork?.Backdrop(p, size);
-        d.AddRectFilled(p, p + size, Ink(new(.04f, .035f, .095f, .7f)), 9 * Scale);
-        for (int i = 0; i < 3; i++)
-        {
-            var start = p + new Vector2(i * cell + 20 * Scale, 12 * Scale);
-            Label(start, values[i].Item1.ToString("N0"), i == 1 ? Cyan : White, 1.8f);
-            Label(start + new Vector2(0, 41) * Scale, values[i].Item2, Muted);
-            if (i > 0) Line(start + new Vector2(-20, 5) * Scale, start + new Vector2(-20, 62) * Scale, Edge);
-        }
-        ImGui.Dummy(new Vector2(w, 94 * Scale));
+        Wrap($"{plan.Weapons} relics · {plan.Materials.Count(m => m.Missing > 0)} materials needed · {plan.Objectives.Count} duties & unlocks");
     }
 }

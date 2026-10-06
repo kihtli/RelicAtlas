@@ -21,6 +21,7 @@ public sealed partial class MainWindow : Window
     private readonly IAtlasArtwork? artwork;
     private readonly IAtmaTravel? atmaTravel;
     private readonly Action? openAtmaPopout;
+    private readonly Action? openBookPopout;
     private readonly CharacterProgress preview = new();
     private ulong selectedCharacter;
     private string expansion = "all";
@@ -40,28 +41,30 @@ public sealed partial class MainWindow : Window
     private string checklistKey = "";
     private bool readOnly;
     private static float Scale => ImGuiHelpers.GlobalScale;
-    private static readonly Vector4 Accent = new(0.68f, 0.53f, 0.96f, 1);
-    private static readonly Vector4 Lavender = new(0.77f, 0.65f, 1.0f, 1);
-    private static readonly Vector4 Green = new(0.48f, 0.82f, 0.60f, 1);
-    private static readonly Vector4 Muted = new(0.65f, 0.66f, 0.76f, 1);
-    private static readonly Vector4 Cyan = new(0.36f, 0.86f, 0.94f, 1);
+    private static readonly Vector4 Accent = AtlasTheme.Rgb(0x81aaff);
+    private static readonly Vector4 Lavender = AtlasTheme.Rgb(0x81aaff);
+    private static readonly Vector4 Green = AtlasTheme.Rgb(0x87c9a1);
+    private static readonly Vector4 Muted = AtlasTheme.Rgb(0xb0b8c0);
+    private static readonly Vector4 Cyan = AtlasTheme.Rgb(0x68d4dc);
     private AtlasTheme? theme;
     private enum AtlasPage { Overview, Collection, Shopping, Atma }
     private AtlasPage page = AtlasPage.Overview;
     private Vector2? headerMove;
+    private bool compactLayout;
     private bool guideView;
     private string objectiveSummary = "";
     private readonly Dictionary<string, bool> openGroups = new();
     private sealed record WeaponRow(Series Series, string Job, WeaponProgress Weapon, int Completed, Stage? Next, Requirement? Objective);
 
-    public MainWindow(Configuration config, Catalog catalog, GameTracker tracker, Action save, IFontHandle? headingFont = null, IAtlasArtwork? artwork = null, IAtmaTravel? atmaTravel = null, Action? openAtmaPopout = null)
-        : base("Relic Atlas###RelicAtlas", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoTitleBar)
+    public MainWindow(Configuration config, Catalog catalog, GameTracker tracker, Action save, IFontHandle? headingFont = null, IAtlasArtwork? artwork = null, IAtmaTravel? atmaTravel = null, Action? openAtmaPopout = null, Action? openBookPopout = null)
+        : base("Relic Atlas###RelicAtlas", ImGuiWindowFlags.NoScrollbar)
     {
         this.config = config; this.catalog = catalog; this.tracker = tracker; this.save = save; this.headingFont = headingFont; this.artwork = artwork;
         this.atmaTravel = atmaTravel;
         this.openAtmaPopout = openAtmaPopout;
-        Size = new Vector2(1160, 760); SizeCondition = ImGuiCond.FirstUseEver;
-        SizeConstraints = new WindowSizeConstraints { MinimumSize = new Vector2(900, 640), MaximumSize = new Vector2(float.MaxValue) };
+        this.openBookPopout = openBookPopout;
+        Size = new Vector2(880, 600); SizeCondition = ImGuiCond.FirstUseEver;
+        SizeConstraints = new WindowSizeConstraints { MinimumSize = new Vector2(600, 440), MaximumSize = new Vector2(float.MaxValue) };
     }
 
     private static void Wrap(string text)
@@ -95,6 +98,7 @@ public sealed partial class MainWindow : Window
         var c = config.Characters.GetValueOrDefault(id) ?? preview;
         readOnly = ReferenceEquals(c, preview);
         if (openWeaponView) { page = AtlasPage.Collection; openWeaponView = false; }
+        compactLayout = ImGui.GetWindowWidth() < 860 * Scale || ImGui.GetWindowHeight() < 620 * Scale;
         DrawMasthead(c, id);
         if (page != AtlasPage.Atma) DrawRelicKindPicker();
         if (atmaTravel?.Active == true && id != tracker.CurrentId) atmaTravel.Stop();
@@ -122,6 +126,7 @@ public sealed partial class MainWindow : Window
 
     private void DrawWeaponWorkspace(CharacterProgress c, ulong id)
     {
+        if (compactLayout) { DrawCompactCollection(c,id); return; }
         var available = ImGui.GetContentRegionAvail();
         // The action pane gets most of the space, including at the minimum width.
         var leftWidth = Math.Clamp(available.X * 0.27f, 262 * Scale, 310 * Scale);
@@ -129,7 +134,7 @@ public sealed partial class MainWindow : Window
         DrawCollectionList(c, id);
         ImGui.EndChild();
         ImGui.SameLine();
-        ImGui.PushStyleVar(ImGuiStyleVar.WindowPadding, new Vector2(22, 16) * Scale);
+        ImGui.PushStyleVar(ImGuiStyleVar.WindowPadding, new Vector2(10, 8) * Scale);
         ImGui.BeginChild("action-panel", new Vector2(0, available.Y), true, ImGuiWindowFlags.NoScrollbar);
         DrawDetails(c, id);
         ImGui.EndChild();
@@ -139,7 +144,8 @@ public sealed partial class MainWindow : Window
 
     private void DrawToolbar(CharacterProgress c, ulong id, float width)
     {
-        ImGui.SetNextItemWidth(width * Scale);
+        var settingsWidth = Math.Max(77 * Scale,ImGui.CalcTextSize("Settings").X + ImGui.GetStyle().FramePadding.X * 2);
+        ImGui.SetNextItemWidth(compactLayout ? width * Scale - settingsWidth - ImGui.GetStyle().ItemSpacing.X : width * Scale);
         var characterLabel = readOnly ? "Browse catalogue" : c.Name;
         if (ImGui.BeginCombo("##character", characterLabel))
         {
@@ -153,6 +159,8 @@ public sealed partial class MainWindow : Window
         var current = id != 0 && id == tracker.CurrentId;
         var atmaActive = atmaTravel?.Active == true;
         var status = atmaActive ? "Atma auto · " + atmaTravel!.Job : readOnly ? "Preview" : !current ? "Saved profile" : config.Automatic ? "Auto tracking" : "Paused";
+        if (!compactLayout)
+        {
         var p = ImGui.GetCursorScreenPos();
         ImGui.GetWindowDrawList().AddCircleFilled(p + new Vector2(4, 11) * Scale, 3 * Scale, Ink(current && config.Automatic ? Cyan : Muted));
         Label(p + new Vector2(15, 3) * Scale, status, Muted, .9f);
@@ -162,8 +170,12 @@ public sealed partial class MainWindow : Window
         }
         else ImGui.Dummy(new Vector2(width - 87, 24) * Scale);
         Tip(atmaActive ? "Atma automatic travel is active. Click to review or stop it." : current ? tracker.Status : readOnly ? "Log in to save progress. You can browse every checklist now." : "Showing saved progress. Live inventory belongs to your logged-in character.");
+        }
+        else Tip(status + " — " + (current ? tracker.Status : "Saved character progress"));
         ImGui.SameLine();
         if (ActionButton("Settings", false, 77, 24, true)) ImGui.OpenPopup("settings");
+        ImGui.SetNextWindowSize(new Vector2(Math.Min(460 * Scale,ImGui.GetWindowViewport().WorkSize.X - 24 * Scale),0));
+        ImGui.SetNextWindowSizeConstraints(Vector2.Zero, new Vector2(float.MaxValue, Math.Max(1, ImGui.GetWindowViewport().WorkSize.Y - 24 * Scale)));
         if (ImGui.BeginPopup("settings"))
         {
             ImGui.PushTextWrapPos(ImGui.GetCursorPosX() + 410 * Scale);
@@ -184,8 +196,10 @@ public sealed partial class MainWindow : Window
                 if (ImGui.Button("Stop Atma automatic travel")) atmaTravel.Stop();
             }
             ImGui.Separator();
-            ImGui.TextUnformatted("Reads carried weapons and tools, materials, shared quests and supported achievements. Open the in-game Achievements window to load history. Open an ARR book to read its objectives.");
-            ImGui.TextUnformatted("The Shopping list tab optionally reads saddlebag and retainer storage through Allagan Tools. Its cache updates when you visit storage. Light and other unobservable objectives can be entered manually. Bag counts are shared stock, not reserved per relic.");
+            ImGui.TextUnformatted("Reads carried weapons and tools, materials, shared quests and supported achievements. Open the in-game Achievements window to load history. ARR books are tracked automatically, including their owning job and objective progress, while their game data is available.");
+            ImGui.TextColored(Muted, tracker.BookStatus);
+            if (openBookPopout != null && ImGui.Button("Open Zodiac book tracker")) openBookPopout();
+            ImGui.TextUnformatted("ARR scroll infusions are read from the open scroll window. Nexus soulglazing, light and Zeta Mahatmas are read from carried weapons. Initial relic quest milestones and current Zodiac material hand-ins are detected automatically. Heavensward duties follow the accepted job's quest journal; aetheric density updates automatically from game data. Held Anima exchange products credit their ingredients. Other unobservable objectives can still be entered manually. Shopping optionally reads storage through Allagan Tools; bag stock and Zodiac material batches are shared between jobs.");
             ImGui.TextColored(Muted, tracker.AchievementsLoaded ? "Achievement history loaded" : "Achievement history not loaded");
             if (tracker.Unresolved.Count > 0 && ImGui.TreeNode($"Detection notices ({tracker.Unresolved.Count})"))
             { foreach (var name in tracker.Unresolved) ImGui.TextUnformatted(name); ImGui.TreePop(); }
@@ -297,7 +311,7 @@ public sealed partial class MainWindow : Window
         var headingWidth = ImGui.GetContentRegionAvail().X;
         DrawRelicHeading(series, job, complete, stageIndex);
         var afterHeading = ImGui.GetCursorScreenPos();
-        ImGui.SetCursorScreenPos(heading + new Vector2(headingWidth - 110 * Scale, 13 * Scale));
+        ImGui.SetCursorScreenPos(heading + new Vector2(headingWidth - 110 * Scale, 0));
         ImGui.BeginDisabled(readOnly);
         if (ActionButton("Manage", false, 92, 28)) ImGui.OpenPopup("progress");
         if (ImGui.BeginPopup("progress"))
@@ -338,7 +352,7 @@ public sealed partial class MainWindow : Window
         }
         if (stageIndex == complete + 1 && upNext.Requirement != null)
             DrawNextAction(c, series, job, stage, upNext.Requirement, id);
-        else if (stageIndex <= complete) { ImGui.TextColored(Green, "Relic acquired"); Wrap("Historic objectives may not have been recorded."); ImGui.Spacing(); }
+        else if (stageIndex <= complete) { ImGui.TextColored(Green, "Relic acquired"); Wrap("Acquiring this tier completes its prerequisites. Your manual corrections still take priority."); ImGui.Spacing(); }
         else if (done == requirements.Length) { ImGui.TextColored(Green, "Ready for turn-in"); Wrap(stage.Npc); }
         if (stageIndex == complete + 1 && upNext.Requirement == null)
         {
@@ -386,13 +400,74 @@ public sealed partial class MainWindow : Window
     private void DrawChecklist(CharacterProgress c, Series series, string job, Stage stage, Requirement[] requirements, ulong id, bool fresh, string? nextGroup)
     {
         var inventory = tracker.InventoryFor(id);
+        var isBook = series.Id == "arr" && stage.Id == "animus";
+        if (isBook) DrawBookTracking(c, id);
+        if (series.Id == "hw")
+        {
+            Wrap(stage.Id switch
+            {
+                "awoken" or "lux" => "Duties update from the active quest journal, for the job that accepted the quest. Earlier groups stay complete as the quest advances.",
+                "complete" => "Dungeons update from the active quest journal. Aetheric density updates automatically after the game awards it; the glass window can stay closed. A held Newborn Soulstone also credits the Pneumite exchange.",
+                "reconditioned" => "Open Ulan's enhancement window to record allocated points automatically. Confirm the allocation in game; unconfirmed slider changes do not count. The saved total also updates the Crystal Sand and Umbrite shopping estimates.",
+                "animated" or "anima" => "Materials update from your bags. Held exchange products also credit their ingredients; shopping totals count this shared stock once.",
+                _ => "Materials update from your bags. Acquiring the upgraded weapon completes its prerequisites, including materials already handed in."
+            });
+            if (requirements.Any(r => c.Counters.ContainsKey(Progress.Key(series,job,stage,r))))
+            {
+                ImGui.BeginDisabled(readOnly);
+                if (ImGui.SmallButton("Use game progress for this stage"))
+                { foreach (var r in requirements) c.Counters.Remove(Progress.Key(series,job,stage,r)); save(); }
+                ImGui.EndDisabled();
+                Tip("Clear manual counts for this stage and use inventory and recorded quest progress. Open Ulan's enhancement window to read allocated points.");
+            }
+            ImGui.Spacing();
+        }
+        if (series.Id == "arr" && stage.Id is "nexus" or "zeta" or "relic" or "zodiac-braves")
+        {
+            Wrap(stage.Id switch
+            {
+                "nexus" => "Soulglazing and light update automatically from the Novus weapon in your bags, armoury or equipment. Paladin shows progress shared by both components.",
+                "zeta" => "Mahatmas update automatically from the Zodiac weapon. Completed stones and the current stone are recorded on the checklist's 40-point scale.",
+                "relic" => "Duty and delivery milestones complete automatically as the job's quest journal advances. Enemy groups complete when the quest advances past all three groups; partial kill counts remain manual.",
+                _ => "Current quest hand-ins and held quest rewards credit the Zodiac material batch automatically. These ingredients are shared stock for any job; shopping totals count the batch once."
+            });
+            if (requirements.Any(r => c.Counters.ContainsKey(Progress.Key(series,job,stage,r))))
+            {
+                ImGui.BeginDisabled(readOnly);
+                if (ImGui.SmallButton("Use game progress for this stage"))
+                { foreach (var r in requirements) c.Counters.Remove(Progress.Key(series,job,stage,r)); save(); }
+                ImGui.EndDisabled();
+                Tip("Clear this stage's manual objective counts and use recorded game data. Unobserved objectives return to zero.");
+            }
+            if (stage.Id == "nexus" && ImGui.CollapsingHeader("Light farming: duties and bonus windows")) Wrap(stage.Notes);
+            ImGui.Spacing();
+        }
+        if (series.Id == "arr" && stage.Id == "novus")
+        {
+            Wrap("Scroll pickup is detected from your bags. Open the sphere scroll in game for a few seconds to read its infusions; the count is saved after closing it. Paladin: open both sword and shield scrolls.");
+            if (id == tracker.CurrentId) Wrap(config.Automatic ? tracker.ScrollStatus : "Automatic detection is paused.");
+            if (requirements.Any(r => c.Counters.ContainsKey(Progress.Key(series, job, stage, r))))
+            {
+                ImGui.BeginDisabled(readOnly);
+                if (ImGui.SmallButton("Use game progress for Novus"))
+                {
+                    foreach (var r in requirements) c.Counters.Remove(Progress.Key(series, job, stage, r));
+                    save();
+                }
+                ImGui.EndDisabled();
+                Tip("Clear manual Novus entries and use inventory and saved infusion counts. Open each scroll first to capture its current progress.");
+            }
+            ImGui.Spacing();
+        }
         var visibleCount = 0;
         foreach (var group in requirements.GroupBy(r => r.Group))
         {
             var all = group.ToArray();
             var finished = all.Count(r => Progress.Status(c, series, job, stage, r, inventory).Complete);
             var visible = hideReady ? all.Where(r => !Progress.Status(c, series, job, stage, r, inventory).Complete).ToArray() : all;
-            if (visible.Length == 0) continue;
+            var manualBookEntries = isBook ? all.Count(r => c.Counters.ContainsKey(Progress.Key(series, job, stage, r))) : 0;
+            // Keep the reset available when old manual ticks hide every objective in a book.
+            if (visible.Length == 0 && manualBookEntries == 0) continue;
             visibleCount += visible.Length;
             ImGui.PushID(group.Key);
             if (group.Key.Length > 0)
@@ -401,7 +476,6 @@ public sealed partial class MainWindow : Window
                 if (groupExpansion.HasValue) openGroups[groupId] = groupExpansion.Value;
                 else if (fresh || !openGroups.ContainsKey(groupId)) openGroups[groupId] = group.Key == nextGroup;
                 var isOpen = openGroups.GetValueOrDefault(groupId);
-                var isBook = series.Id == "arr" && stage.Id == "animus";
                 var groupPos = ImGui.GetCursorScreenPos();
                 var groupWidth = ImGui.GetContentRegionAvail().X;
                 if (MissionGroup(group.Key, finished, all.Length, isOpen, isBook ? 108 : 0))
@@ -409,24 +483,39 @@ public sealed partial class MainWindow : Window
                 if (isBook)
                 {
                     ImGui.SetCursorScreenPos(groupPos + new Vector2(groupWidth - 101 * Scale, 3 * Scale));
-                    if (c.ActiveBooks.GetValueOrDefault(job) == group.Key)
+                    var pickedUp = c.DetectedBook is { } book && book.Job == job && book.Group == group.Key;
+                    if (pickedUp || c.ActiveBooks.GetValueOrDefault(job) == group.Key)
                     {
-                        Label(ImGui.GetCursorScreenPos() + new Vector2(7, 6) * Scale, "Active book", Cyan, .9f);
+                        Label(ImGui.GetCursorScreenPos() + new Vector2(7, 6) * Scale, pickedUp ? "Picked up" : "Focused", pickedUp ? Cyan : Muted, .9f);
                         ImGui.Dummy(new Vector2(97, 28) * Scale);
+                        Tip(pickedUp ? "This book was observed in game for " + job + ". See the tracking status above for freshness."
+                            : "Your preferred checklist. Book pickup and its owning job are detected separately from game data.");
                     }
                     else
                     {
                         ImGui.BeginDisabled(readOnly);
-                        if (ActionButton("Set active", false, 97, 28, true))
+                        if (ActionButton("Focus book", false, 97, 28, true))
                         { c.ActiveBooks[job] = group.Key; openGroups[groupId] = isOpen = true; save(); }
-                        Tip("Make this book your next objective group.");
+                        Tip("Prefer this checklist when no picked-up book is tracked for this job. This does not record a book pickup.");
                         ImGui.EndDisabled();
                     }
                     ImGui.SetCursorScreenPos(groupPos);
                     ImGui.Dummy(new Vector2(groupWidth, 38 * Scale));
                 }
+                if (manualBookEntries > 0)
+                {
+                    ImGui.BeginDisabled(readOnly);
+                    if (ImGui.SmallButton("Use game progress"))
+                    {
+                        foreach (var r in all) c.Counters.Remove(Progress.Key(series, job, stage, r));
+                        save();
+                    }
+                    ImGui.EndDisabled();
+                    Tip($"Clear {manualBookEntries} manual entries for this book and use recorded game progress. Objectives not yet observed return to zero.");
+                }
                 if (!isOpen) { ImGui.PopID(); continue; }
             }
+            if (visible.Length == 0) { ImGui.PopID(); continue; }
             if (ImGui.BeginTable("objectives", 4, ImGuiTableFlags.SizingStretchProp | ImGuiTableFlags.PadOuterX))
             {
                 ImGui.TableSetupColumn("Done", ImGuiTableColumnFlags.WidthFixed, 22 * Scale);
@@ -445,9 +534,38 @@ public sealed partial class MainWindow : Window
         }
     }
 
+    private void DrawBookTracking(CharacterProgress c, ulong id)
+    {
+        var current = id != 0 && id == tracker.CurrentId;
+        if (c.DetectedBook is { } book)
+        {
+            Wrap($"Last recorded pickup: {book.Group} · {book.Job}");
+            Tip($"Observed {book.LastSeenUtc.ToUniversalTime():yyyy-MM-dd HH:mm} UTC. Book pickup and objective progress are saved for their owning job.");
+        }
+        else if (!current) Wrap(readOnly ? "Log in to detect your picked-up book and its owning job." : "Saved profile · No book pickup recorded.");
+        ImGui.PushStyleColor(ImGuiCol.Text, Muted);
+        if (current) Wrap(config.Automatic ? tracker.BookStatus : "Automatic tracking paused. Showing recorded book progress.");
+        else if (c.DetectedBook is { } savedBook) Wrap($"Saved profile · Observed {savedBook.LastSeenUtc.ToUniversalTime():yyyy-MM-dd HH:mm} UTC.");
+        ImGui.PopStyleColor();
+        if (openBookPopout != null)
+        {
+            if (ActionButton("Zodiac book tracker", false, 170, 28, true)) openBookPopout();
+            Tip("Follow your logged-in character's picked-up book in a compact window. Objective progress updates from the game; click an unfinished step to travel and place a map flag.");
+        }
+        ImGui.Spacing();
+    }
+
     private void DrawQuickAction(CharacterProgress c, Series series, string job, Stage stage, Requirement r, ulong id)
     {
         var status = Progress.Status(c, series, job, stage, r, tracker.InventoryFor(id));
+        var key = Progress.Key(series,job,stage,r);
+        if (series.Id == "arr" && stage.Id == "novus" && r.Id == "successful-materia-infusions" &&
+            !status.Complete && !c.Counters.ContainsKey(key) && !c.DetectedCounters.ContainsKey(key))
+        {
+            ImGui.TextColored(Lavender,"Not read yet"); ImGui.SameLine();
+            if (ImGui.SmallButton("Enter manually")) SetCount(c,series,job,stage,r,0);
+            return;
+        }
         if (r.Count > 1)
         {
             var value = status.Done;
@@ -477,10 +595,20 @@ public sealed partial class MainWindow : Window
         ImGui.TableNextColumn();
         if (r.Count > 1)
         {
+            var unreadScroll = series.Id == "arr" && stage.Id == "novus" && r.Id == "successful-materia-infusions" &&
+                !hasOverride && !c.DetectedCounters.ContainsKey(key) && !status.Complete;
+            if (unreadScroll)
+            {
+                ImGui.TextColored(Lavender, "Not read");
+                Tip("No infusion count has been read yet. Open your sphere scroll in game for a few seconds. This is not a confirmed zero.");
+            }
+            else
+            {
             ImGui.BeginDisabled(readOnly); ImGui.SetNextItemWidth(63 * Scale);
             var value = status.Done;
             if (ImGui.InputInt("##count", ref value, 0, 0)) SetCount(c, series, job, stage, r, value);
             ImGui.EndDisabled(); ImGui.SameLine(0, 3 * Scale); ImGui.TextColored(Muted, $"/ {r.Count}");
+            }
         }
         else ImGui.TextColored(status.Complete ? Green : Muted, status.Complete ? "Ready" : "To do");
         ImGui.TableNextColumn();
@@ -495,7 +623,19 @@ public sealed partial class MainWindow : Window
             if (status.SharedComplete) ImGui.TextColored(Green, "Character unlock complete");
             else if (status.InBags.HasValue) ImGui.TextUnformatted($"On hand: {status.InBags.Value:N0}. This stock is shared between relics.");
             else if (c.DetectedCounters.ContainsKey(key)) ImGui.TextUnformatted("Recorded from game data.");
+            else if (series.Id == "arr" && stage.Id == "animus")
+                ImGui.TextUnformatted("Progress is recorded automatically when this book's game data is available for its owning job. No observation has been saved for this objective yet.");
+            else if (series.Id == "arr" && stage.Id == "novus")
+                ImGui.TextUnformatted("Scroll pickup is detected from inventory. Open the sphere scroll in game to record infusions for its owning job. Paladin tracks sword and shield separately.");
+            else if (series.Id == "arr" && stage.Id is "relic" or "nexus" or "zeta" or "zodiac-braves")
+                ImGui.TextUnformatted("Supported progress is read automatically from the job's quest milestones, relic weapon or current Zodiac material batch. No completed progress has been observed for this objective yet.");
+            else if (series.Id == "hw" && stage.Id == "reconditioned")
+                ImGui.TextUnformatted("Open Ulan's enhancement window to record confirmed allocated points for the active quest's job. Unconfirmed slider changes are ignored.");
+            else if (series.Id == "hw")
+                ImGui.TextUnformatted("Waiting for game evidence. Duties follow the active quest and its accepted job; aetheric density updates automatically after each award. Held exchange products credit their materials.");
             else ImGui.TextUnformatted("No automatic progress available; record this objective manually.");
+            var materialCredit = Progress.Consumed(c,series,job,stage,r) + Progress.SharedCredit(c,series,job,stage,r);
+            if (r.Item.Length > 0 && materialCredit > 0) ImGui.TextUnformatted($"Materials credited from game progress: {materialCredit:N0}.");
             if (hasOverride)
             {
                 ImGui.TextColored(Lavender, "Using your manual entry");

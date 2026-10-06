@@ -17,5 +17,8 @@ public sealed class Configuration : IPluginConfiguration
     public bool AtmaSkipCollected { get; set; } = true;
     public bool AtmaPopoutOpen { get; set; }
     public bool AtmaPopoutLocked { get; set; }
+    public bool BookPopoutOpen { get; set; }
+    public bool BookPopoutLocked { get; set; }
+    public bool BookPopoutHideComplete { get; set; }
     public Dictionary<ulong, CharacterProgress> Characters { get; set; } = [];
 }

@@ -1,5 +1,24 @@
 # Release validation
 
+## 0.1.0.34 — 6 October 2026
+
+- Release built from the publication checkout; 346 regression cases pass.
+  Companion compatibility checks use the current standalone Umbra companion,
+  rather than the archived bundled copy.
+- Native UI previews checked compact/default sizes and enlarged fonts. Book
+  popout checks cover travel, flags, hiding completed objectives, locking,
+  scrolling, zone changes and resizing down to 320×360.
+- Anima density native signature is unique in the inspected client; exact getter
+  validation disables the optional reader if its layout changes. Quest phase,
+  accepted job, loaded character and held weapon checks gate reads.
+- Live post-duty density increases have not yet been verified. The glass reader
+  remains a fallback when native layout validation fails. Manual corrections
+  remain available.
+- Runtime archive contains only DLL, manifest, dependency manifest, README and
+  licences. Private tests, previews and audit artifacts are excluded.
+
+## Previous release validation
+
 Relic Atlas 0.1.0.23 / compatible standalone Umbra companion 0.1.0.2 — 27 September 2026.
 
 - Release builds: .NET 10, Dalamud.NET.Sdk/API 15; companion targets Umbra 3.1.18.0.

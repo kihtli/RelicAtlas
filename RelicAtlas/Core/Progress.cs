@@ -11,6 +11,12 @@ public sealed class CharacterProgress
     public Dictionary<string, int> Counters { get; set; } = [];
     public Dictionary<string, int> DetectedCounters { get; set; } = [];
     public Dictionary<string, string> ActiveBooks { get; set; } = [];
+    public ArrBookObservation? DetectedBook { get; set; }
+    public HashSet<uint> ObtainedScrolls { get; set; } = [];
+    public Dictionary<uint, int> ScrollInfusions { get; set; } = [];
+    public Dictionary<string, int> ArrLight { get; set; } = [];
+    public Dictionary<string, int> AnimaExchangeCredits { get; set; } = [];
+    public Dictionary<string, int> ZodiacMaterialCredits { get; set; } = [];
     public HashSet<string> CompletedShared { get; set; } = [];
     public Dictionary<string, bool> SharedOverrides { get; set; } = [];
     public WeaponProgress Weapon(Series series, string job)
@@ -51,7 +57,13 @@ public static class Progress
         var key = Key(series, job, stage, r);
         int? bags = r.Item.Length > 0 && inventory != null && inventory.TryGetValue(r.Item + (r.Hq ? "|HQ" : ""), out var held) ? held : null;
         // A recorded objective is authoritative; inventory is a live hint, never a permanent completion event.
-        var done = c.Counters.TryGetValue(key, out var manual) ? manual : bags ?? c.DetectedCounters.GetValueOrDefault(key);
+        var done = c.Counters.TryGetValue(key, out var manual) ? manual :
+            Consumed(c, series, job, stage, r) + SharedCredit(c,series,job,stage,r) + (bags ?? c.DetectedCounters.GetValueOrDefault(key));
+        // An acquired tier proves its prerequisites, including materials already handed in.
+        // Explicit objective/shared corrections and a manually selected earlier tier still win.
+        if (!c.Counters.ContainsKey(key) && !c.SharedOverrides.ContainsKey(r.Shared) &&
+            series.Stages.IndexOf(stage) is var index && index >= 0 &&
+            index <= c.Weapon(series, job).CompletedIndex(series.Stages.Count)) done = r.Count;
         if (r.CumulativeKey.Length > 0 && !c.Counters.ContainsKey(key))
         {
             var completed = c.Weapon(series, job).CompletedIndex(series.Stages.Count);
@@ -62,13 +74,22 @@ public static class Progress
         return new(Math.Clamp(done, 0, r.Count), r.Count, bags, false);
     }
 
+    public static int SharedCredit(CharacterProgress c, Series series, string job, Stage stage, Requirement r) =>
+        ArrZodiacMaterials.Credit(c,series,job,stage,r) + AnimaExchangeProgress.Credit(c,series,job,stage,r);
+
+    public static int Consumed(CharacterProgress c, Series series, string job, Stage stage, Requirement r) =>
+        series.Id == "arr" && stage.Id == "novus" && r.Id == "alexandrite" &&
+        !c.Counters.ContainsKey(Key(series, job, stage, r))
+            ? Math.Clamp(c.DetectedCounters.GetValueOrDefault($"arr/{job}/novus/successful-materia-infusions"), 0, r.Count) : 0;
+
     public static (Stage? Stage, Requirement? Requirement) Next(CharacterProgress c, Series series, string job,
         IReadOnlyDictionary<string, int>? inventory)
     {
         var index = c.Weapon(series, job).CompletedIndex(series.Stages.Count) + 1;
         if (index >= series.Stages.Count) return (null, null);
         var stage = series.Stages[index];
-        if (series.Id == "arr" && stage.Id == "animus" && c.ActiveBooks.TryGetValue(job, out var book))
+        var book = c.DetectedBook?.Job == job ? c.DetectedBook.Group : c.ActiveBooks.GetValueOrDefault(job);
+        if (series.Id == "arr" && stage.Id == "animus" && book != null)
         {
             var active = stage.Requirements.FirstOrDefault(r => r.Group == book && r.Applies(job) &&
                 !Status(c, series, job, stage, r, inventory).Complete);
